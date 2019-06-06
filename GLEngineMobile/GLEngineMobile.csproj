@@ -21,7 +21,7 @@
       <HintPath>C:\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK">
-      <HintPath>C:\MonoAndroid\v4.4\OpenTK.dll</HintPath>
+      <HintPath>..\..\MonoAndroid\v4.4\OpenTK.dll</HintPath>
     </Reference>    
   </ItemGroup>  
 

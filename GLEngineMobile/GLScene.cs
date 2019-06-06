@@ -42,6 +42,7 @@ namespace GLEngineMobile
 
 		public void LoadTextures(Context context)
 		{
+            GLTextureAdmin.AddTextureFromResource(context, "earth"); 
             GLTextureAdmin.AddTextureFromResource(context, "tex");
             GLTextureAdmin.AddTextureFromResource(context, "darkgray");
             GLTextureAdmin.AddTextureFromResource(context, "f_spot");
@@ -68,6 +69,14 @@ namespace GLEngineMobile
 				obj.Render();									
 			}
 		}
+
+        public void Magnify(double ratio)
+        {
+            foreach (var obj in Objects)
+            {
+                obj.Magnify(ratio);
+            }
+        }
 
 		public void AddObjectsFromDir(string directory, bool recursive = false)
 		{
@@ -153,154 +162,6 @@ namespace GLEngineMobile
 				}
 			}
 		}
-
-        /*
-		public void DoMoveOnMouse(MouseMoveEventArgs mouseEventArgs)
-		{
-			var xMove = mouseEventArgs.XDelta;
-
-			if (xMove<0) Observer.Rotation.Y -= 1;
-			if (xMove>0) Observer.Rotation.Y += 1;
-
-			var yMove = mouseEventArgs.YDelta;
-
-			if (yMove<0) Observer.Rotation.X += 1;
-			if (yMove>0) Observer.Rotation.X -= 1;
-		}
-
-		public void DoSetFullScreenOnKeyboard(KeyboardDevice Keyboard, GameWindow window)		
-		{
-			if (Keyboard[Key.Enter] && (Keyboard[Key.AltLeft] || Keyboard[Key.AltRight]))
-			{
-				if ((DateTime.Now - _FullScreenSetTime).TotalSeconds > 1) 
-				{
-					_FullScreenSetTime = DateTime.Now;
-					window.WindowState = window.WindowState == WindowState.Fullscreen ? WindowState.Normal : WindowState.Fullscreen;
-				}
-			}
-
-		}
-      
-		public void DoMoveOnKeyboard(KeyboardDevice Keyboard)
-		{
-			// user moves:
-
-			var availableActionKeys = new Dictionary<string,Key>() 
-			{
-				//{"RotateX+",Key.Keypad6},
-				//{"RotateX-",Key.Keypad4},
-
-				{"RotateXZ+",Key.Keypad7},
-				{"RotateXZ-",Key.Keypad1},
-				{"Home",Key.Home},									            	 		
-
-				{"Up",Key.Keypad8},
-				{"Down",Key.Keypad2},
-				{"Forward",Key.Up},
-				{"Backward",Key.Down},
-				{"RotateLeft",Key.Left},
-				{"RotateRight",Key.Right},
-
-				{"Left2",Key.Keypad4},
-				{"Right2",Key.Keypad6},
-
-				{"Forward2",Key.W},
-				{"Backward2",Key.S},
-				{"Left",Key.A},
-				{"Right",Key.D},
-
-				{"Zoom+",Key.KeypadPlus},
-				{"Zoom-",Key.KeypadMinus},
-
-				{"Enter",Key.Enter},
-			};										            	  
-
-			foreach (var keyAction in availableActionKeys)
-			{
-				if (Keyboard[keyAction.Value])
-				{								
-					var action = keyAction.Key;
-
-					switch (action)
-					{
-
-                        //case "RotateX+":
-                        //Observer.Rotation.X += 5;
-                        //break;
-                        //case "RotateX-":
-                        //Observer.Rotation.X -= 5;
-                        //break;
-                    
-						case "RotateY+":
-						Observer.Rotation.Y += 5;
-						break;
-						case "RotateY-":
-						Observer.Rotation.Y -= 5;
-						break;
-						case "RotateXZ+":
-						Observer.Rotation.X += 5;
-						break;
-						case "RotateXZ-":
-						Observer.Rotation.X -= 5;
-						break;		
-
-						case "Forward":								
-						case "Forward2":	
-						Go(0);
-						break;	
-
-						case "Backward":
-						case "Backward2":
-						Go(1);
-						break;	
-
-						case "Up":
-						Observer.Position.Y -= 1;							
-						break;	
-
-						case "Down":
-						Observer.Position.Y += 1;							
-						break;
-
-						case "Left":
-						case "Left2":
-						Go(2);
-						break;	
-
-						case "Right":
-						case "Right2":
-						Go(3);
-						break;
-
-						case "RotateLeft":
-						Observer.Rotation.Y -= 2;							
-						break;		
-
-						case "RotateRight":
-						Observer.Rotation.Y += 2;							
-						break;									
-
-						case "Home":	
-						ReLoad ();
-						break;	
-
-						case "Zoom+":
-						//Scene.Magnify(1.1);						
-						break;
-
-						case "Zoom-":
-						//Scene.Magnify(0.9);
-						break;		
-
-						case "Enter":
-							
-						break;			
-					}
-				}
-			}
-        }
-        */
-
 
 		/// <summary>
 		/// Go the specified direction.

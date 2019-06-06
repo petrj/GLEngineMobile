@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
@@ -48,7 +47,8 @@ namespace GLEngineMobileDemo
 				width = Width;
 				SetupCamera ();
 				Render ();
-			};          
+			};
+
         }
 
 		// This method is called everytime the context needs
@@ -137,30 +137,7 @@ namespace GLEngineMobileDemo
 
             _scene = new GLScene();
             _scene.LoadTextures(Context);
-
-            var polygon = GLPolygon.CreateFromPoints(
-                    new List<GLPoint>()
-                    {
-                        new GLPoint(0.0f, 1.5f, 0.0f),
-                        new GLPoint(-1.5f, -1.5f, 0.0f),
-                        new GLPoint(1.5f, -1.5f, 0.0f),
-                        new GLPoint(-1.5f, -0f, 0.0f),
-                    });
-            polygon.Texture = GLTextureAdmin.GetTextureByName("f_spot");
-
-            var polygon2 = GLPolygon.CreateFromPoints(
-                    new List<GLPoint>()
-                    {
-                        new GLPoint( 1.1f,  1.5f, -1.1f),
-                        new GLPoint(-1.1f, 1.5f,  -1.1f),
-                        new GLPoint(-1.1f,  1.5f,  1.1f),
-                        new GLPoint( 1.1f, 1.5f,   1.1f),
-                    });
-            polygon2.Texture = GLTextureAdmin.GetTextureByName("tex");
-
-            var obj = GLObject.CreateFromPolygons(new List<GLPolygon>() { polygon });
-            var obj2 = GLObject.CreateFromPolygons(new List<GLPolygon>() { polygon2 });         
-
+          
             var cube = new GLObject();
 
             cube.Polygons.Add(new GLPolygon(  // top
@@ -211,10 +188,30 @@ namespace GLEngineMobileDemo
             ent.SetTexture("tex");
             ent.Magnify(0.12);
 
+            var elipse = new GLEllipse()
+            {
+                RadiusMajor = 4,
+                RadiusMinor = 4,
+                FillColor = Color.Yellow
+            };
+
+            var sphere = new GLSphere()
+            {
+                Radius = 2,
+                Name = "Earth",
+                Stacks = 15,
+                Slices = 15
+            };
+            sphere.Texture = GLTextureAdmin.GetTextureByName("earth");
+
             //_scene.Objects.Add(obj);
             //_scene.Objects.Add(obj2);
             //_scene.Objects.Add(cube);
-            _scene.Objects.Add(ent);
+            //_scene.Objects.Add(new GLAxis());
+            //_scene.Objects.Add(elipse);
+
+            _scene.Objects.Add(ent);                        
+            _scene.Objects.Add(sphere);
 
             SetupCamera ();
 			Render ();
@@ -301,12 +298,12 @@ namespace GLEngineMobileDemo
 
                             if (ratio < 0.9)
                             {
-                                _scene.GetObjectByName("Enterprise").Magnify(0.9);
+                                _scene.Magnify(0.9f);
                             }
                             else
                             if (ratio > 1.1)
                             {
-                                _scene.GetObjectByName("Enterprise").Magnify(1.1);
+                                _scene.Magnify(1.1f);
                             }
 
                             Logger.Info($"Move: PinchToZoom, originalDistance: {originalDistance:N2}, newDistance: {newDistance:N2}, ratio: {ratio}");

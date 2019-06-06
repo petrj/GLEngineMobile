@@ -49,8 +49,8 @@ namespace GLEngineMobile
         {
             SetPolygonTexCoords(new List<GLTexCoord>()
             {
-                new GLTexCoord() { X = 0, Y = 1 },
                 new GLTexCoord() { X = 0, Y = 0 },
+                new GLTexCoord() { X = 0, Y = 1 },                
                 new GLTexCoord() { X = 1, Y = 0 },
                 new GLTexCoord() { X = 1, Y = 1 },                
             });
@@ -272,22 +272,11 @@ namespace GLEngineMobile
             if (Texture != null)
 			{
                 GL.Enable(All.Texture2D);
+                GL.Color4(Color.White.R, Color.White.G, Color.White.G, Color.White.A);  // viz http://stackoverflow.com/questions/5607471/previous-calls-to-gl-color3-are-making-my-texture-use-the-wrong-colors
                 GL.BindTexture(All.Texture2D, Texture.TexHandle);
-
-                //TKES.EnableCap
-                //GL.Enable(All.Texture2D);   
-
-                //var color = new 
-                //var colorHandle = TKES.GL.GetUniformLocation(mProgram,"vColor");
-                //TKES.GL.Uniform4(colorHandle,0,0,1.0,0);
-
-                //GL.co .Color4(255,255,255,255);  // viz http://stackoverflow.com/questions/5607471/previous-calls-to-gl-color3-are-making-my-texture-use-the-wrong-colors
-
-                //GL.BindTexture(All.Texture2D, Texture.TexHandle);								
             } else
 			{
                 // only fill color
-
                 GL.Disable(All.Texture2D);  
                 GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);               
             }
