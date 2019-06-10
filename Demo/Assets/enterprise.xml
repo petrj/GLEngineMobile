@@ -1,687 +1,687 @@
 <obj>
-                <point x="20" y="9.5"  z="64"></point>
-<polygon texture="tex" >
-                <point x="0" y="0"  z="0"></point>
-                <point x="0" y="0"  z="-4"></point>
-                <point x="0" y="-3"  z="-5"></point>
-                <point x="0" y="-3"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-2" y="0"  z="0"></point>
-                <point x="-2" y="0"  z="-4"></point>
-                <point x="-2" y="-3"  z="-5"></point>
-                <point x="-2" y="-3"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-2" y="0"  z="0"></point>
-                <point x="-1" y="0"  z="1"></point>
-                <point x="-1" y="-3"  z="0"></point>
-                <point x="-2" y="-3"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="0"  z="0"></point>
-                <point x="-1" y="0"  z="1"></point>
-                <point x="-1" y="-3"  z="0"></point>
-                <point x="0" y="-3"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-2" y="0"  z="-4"></point>
-                <point x="-1" y="0"  z="-5"></point>
-                <point x="-1" y="-3"  z="-6"></point>
-                <point x="-2" y="-3"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="0"  z="-4"></point>
-                <point x="-1" y="0"  z="-5"></point>
-                <point x="-1" y="-3"  z="-6"></point>
-                <point x="0" y="-3"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="0"  z="-5"></point>
-                <point x="1" y="0"  z="-5"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-3" y="0"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-3" y="0"  z="15"></point>
-                <point x="1" y="0"  z="15"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-11" y="0"  z="3"></point>
-                <point x="-11" y="0"  z="7"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="9" y="0"  z="3"></point>
-                <point x="9" y="0"  z="7"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="0"  z="-5"></point>
-                <point x="-7" y="0"  z="-3"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-3" y="0"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="1" y="0"  z="-5"></point>
-                <point x="5" y="0"  z="-3"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="1" y="0"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="0"  z="15"></point>
-                <point x="-7" y="0"  z="13"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-3" y="0"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="1" y="0"  z="15"></point>
-                <point x="5" y="0"  z="13"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="1" y="0"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="0"  z="3"></point>
-                <point x="7" y="0"  z="-1"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="9" y="0"  z="3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="0"  z="7"></point>
-                <point x="7" y="0"  z="11"></point>
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="9" y="0"  z="7"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-11" y="0"  z="3"></point>
-                <point x="-9" y="0"  z="-1"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-11" y="0"  z="7"></point>
-                <point x="-9" y="0"  z="11"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-9" y="0"  z="11"></point>
-                <point x="-7" y="0"  z="13"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-7" y="0"  z="-3"></point>
-                <point x="-9" y="0"  z="-1"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="5" y="0"  z="13"></point>
-                <point x="7" y="0"  z="11"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="5" y="0"  z="-3"></point>
-                <point x="7" y="0"  z="-1"></point>
-                <point x="-1" y="-1"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="1.5"  z="-5"></point>
-                <point x="1" y="1.5"  z="-5"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-3" y="1.5"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-3" y="1.5"  z="15"></point>
-                <point x="1" y="1.5"  z="15"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-11" y="1.5"  z="3"></point>
-                <point x="-11" y="1.5"  z="7"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="9" y="1.5"  z="3"></point>
-                <point x="9" y="1.5"  z="7"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="1.5"  z="-5"></point>
-                <point x="-7" y="1.5"  z="-3"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-3" y="1.5"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="1" y="1.5"  z="-5"></point>
-                <point x="5" y="1.5"  z="-3"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="1" y="1.5"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="1.5"  z="15"></point>
-                <point x="-7" y="1.5"  z="13"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-3" y="1.5"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="1" y="1.5"  z="15"></point>
-                <point x="5" y="1.5"  z="13"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="1" y="1.5"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="1.5"  z="3"></point>
-                <point x="7" y="1.5"  z="-1"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="9" y="1.5"  z="3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="1.5"  z="7"></point>
-                <point x="7" y="1.5"  z="11"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="9" y="1.5"  z="7"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-11" y="1.5"  z="3"></point>
-                <point x="-9" y="1.5"  z="-1"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-11" y="1.5"  z="7"></point>
-                <point x="-9" y="1.5"  z="11"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-9" y="1.5"  z="11"></point>
-                <point x="-7" y="1.5"  z="13"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="-7" y="1.5"  z="-3"></point>
-                <point x="-9" y="1.5"  z="-1"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="5" y="1.5"  z="13"></point>
-                <point x="7" y="1.5"  z="11"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="2.5"  z="5"></point>
-                <point x="5" y="1.5"  z="-3"></point>
-                <point x="7" y="1.5"  z="-1"></point>
-                <point x="-1" y="2.5"  z="5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-1" y="-1"  z="5"></point>
-                <point x="-3" y="1.5"  z="15"></point>
-                <point x="1" y="1.5"  z="15"></point>
-                <point x="1" y="0"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="1.5"  z="15"></point>
-                <point x="-7" y="1.5"  z="13"></point>
-                <point x="-7" y="0"  z="13"></point>
-                <point x="-3" y="0"  z="15"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-7" y="1.5"  z="13"></point>
-                <point x="-9" y="1.5"  z="11"></point>
-                <point x="-9" y="0"  z="11"></point>
-                <point x="-7" y="0"  z="13"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-9" y="1.5"  z="11"></point>
-                <point x="-11" y="1.5"  z="7"></point>
-                <point x="-11" y="0"  z="7"></point>
-                <point x="-9" y="0"  z="11"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-11" y="1.5"  z="3"></point>
-                <point x="-11" y="1.5"  z="7"></point>
-                <point x="-11" y="0"  z="7"></point>
-                <point x="-11" y="0"  z="3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-11" y="1.5"  z="3"></point>
-                <point x="-9" y="1.5"  z="-1"></point>
-                <point x="-9" y="0"  z="-1"></point>
-                <point x="-11" y="0"  z="3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-9" y="1.5"  z="-1"></point>
-                <point x="-7" y="1.5"  z="-3"></point>
-                <point x="-7" y="0"  z="-3"></point>
-                <point x="-9" y="0"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-7" y="1.5"  z="-3"></point>
-                <point x="-3" y="1.5"  z="-5"></point>
-                <point x="-3" y="0"  z="-5"></point>
-                <point x="-7" y="0"  z="-3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-3" y="1.5"  z="-5"></point>
-                <point x="1" y="1.5"  z="-5"></point>
-                <point x="1" y="0"  z="-5"></point>
-                <point x="-3" y="0"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="1" y="1.5"  z="-5"></point>
-                <point x="5" y="1.5"  z="-3"></point>
-                <point x="5" y="0"  z="-3"></point>
-                <point x="1" y="0"  z="-5"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="1.5"  z="-3"></point>
-                <point x="7" y="1.5"  z="-1"></point>
-                <point x="7" y="0"  z="-1"></point>
-                <point x="5" y="0"  z="-3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="7" y="1.5"  z="-1"></point>
-                <point x="9" y="1.5"  z="3"></point>
-                <point x="9" y="0"  z="3"></point>
-                <point x="7" y="0"  z="-1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="1.5"  z="3"></point>
-                <point x="9" y="1.5"  z="7"></point>
-                <point x="9" y="0"  z="7"></point>
-                <point x="9" y="0"  z="3"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="9" y="1.5"  z="7"></point>
-                <point x="7" y="1.5"  z="11"></point>
-                <point x="7" y="0"  z="11"></point>
-                <point x="9" y="0"  z="7"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="1.5"  z="13"></point>
-                <point x="7" y="1.5"  z="11"></point>
-                <point x="7" y="0"  z="11"></point>
-                <point x="5" y="0"  z="13"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="1.5"  z="13"></point>
-                <point x="1" y="1.5"  z="15"></point>
-                <point x="1" y="0"  z="15"></point>
-                <point x="5" y="0"  z="13"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-2" y="-3"  z="1"></point>
-                <point x="0" y="-3"  z="1"></point>
-                <point x="0" y="-3"  z="-22"></point>
-                <point x="-2" y="-3"  z="-22"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-2" y="-3"  z="1"></point>
-                <point x="-2" y="-3"  z="-22"></point>
-                <point x="-4" y="-4"  z="-22"></point>
-                <point x="-4" y="-4"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-4" y="-4"  z="1"></point>
-                <point x="-4" y="-4"  z="-22"></point>
-                <point x="-4" y="-5"  z="-22"></point>
-                <point x="-4" y="-5"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="-3"  z="1"></point>
-                <point x="0" y="-3"  z="-22"></point>
-                <point x="2" y="-4"  z="-22"></point>
-                <point x="2" y="-4"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-4"  z="1"></point>
-                <point x="2" y="-4"  z="-22"></point>
-                <point x="2" y="-5"  z="-22"></point>
-                <point x="2" y="-5"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-5"  z="1"></point>
-                <point x="2" y="-5"  z="-22"></point>
-                <point x="0" y="-6"  z="-22"></point>
-                <point x="0" y="-6"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-4" y="-5"  z="1"></point>
-                <point x="-4" y="-5"  z="-22"></point>
-                <point x="-2" y="-6"  z="-22"></point>
-                <point x="-2" y="-6"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="-6"  z="-22"></point>
-                <point x="-2" y="-6"  z="-22"></point>
-                <point x="-2" y="-6"  z="1"></point>
-                <point x="0" y="-6"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="2.5"  z="-18"></point>
-                <point x="4" y="2.5"  z="-20"></point>
-                <point x="2" y="-4"  z="-20"></point>
-                <point x="2" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="2.5"  z="-18"></point>
-                <point x="3" y="2.5"  z="-18"></point>
-                <point x="1" y="-4"  z="-18"></point>
-                <point x="2" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="3" y="2.5"  z="-18"></point>
-                <point x="3" y="2.5"  z="-20"></point>
-                <point x="1" y="-4"  z="-20"></point>
-                <point x="1" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="2.5"  z="-20"></point>
-                <point x="3" y="2.5"  z="-20"></point>
-                <point x="1" y="-4"  z="-20"></point>
-                <point x="2" y="-4"  z="-20"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-6" y="2.5"  z="-18"></point>
-                <point x="-6" y="2.5"  z="-20"></point>
-                <point x="-4" y="-4"  z="-20"></point>
-                <point x="-4" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="2.5"  z="-18"></point>
-                <point x="-5" y="2.5"  z="-20"></point>
-                <point x="-3" y="-4"  z="-20"></point>
-                <point x="-3" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="2.5"  z="-20"></point>
-                <point x="-6" y="2.5"  z="-20"></point>
-                <point x="-4" y="-4"  z="-20"></point>
-                <point x="-3" y="-4"  z="-20"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="2.5"  z="-18"></point>
-                <point x="-6" y="2.5"  z="-18"></point>
-                <point x="-4" y="-4"  z="-18"></point>
-                <point x="-3" y="-4"  z="-18"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-6" y="2.5"  z="-9"></point>
-                <point x="-5" y="2.5"  z="-9"></point>
-                <point x="-5" y="2.5"  z="-44"></point>
-                <point x="-6" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-7" y="3"  z="-44"></point>
-                <point x="-7" y="3"  z="-9"></point>
-                <point x="-6" y="2.5"  z="-9"></point>
-                <point x="-6" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-6" y="3.5"  z="-44"></point>
-                <point x="-6" y="3.5"  z="-9"></point>
-                <point x="-7" y="3"  z="-9"></point>
-                <point x="-7" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-6" y="3.5"  z="-44"></point>
-                <point x="-6" y="3.5"  z="-9"></point>
-                <point x="-5" y="3.5"  z="-9"></point>
-                <point x="-5" y="3.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="3.5"  z="-44"></point>
-                <point x="-5" y="3.5"  z="-9"></point>
-                <point x="-4" y="3"  z="-9"></point>
-                <point x="-4" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-4" y="3"  z="-44"></point>
-                <point x="-4" y="3"  z="-9"></point>
-                <point x="-5" y="2.5"  z="-9"></point>
-                <point x="-5" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="3.5"  z="-44"></point>
-                <point x="-6" y="3.5"  z="-44"></point>
-                <point x="-7" y="3"  z="-44"></point>
-                <point x="-4" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-4" y="3"  z="-44"></point>
-                <point x="-7" y="3"  z="-44"></point>
-                <point x="-6" y="2.5"  z="-44"></point>
-                <point x="-5" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-5" y="3.5"  z="-9"></point>
-                <point x="-6" y="3.5"  z="-9"></point>
-                <point x="-7" y="3"  z="-9"></point>
-                <point x="-4" y="3"  z="-9"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="-4" y="3"  z="-9"></point>
-                <point x="-7" y="3"  z="-9"></point>
-                <point x="-6" y="2.5"  z="-9"></point>
-                <point x="-5" y="2.5"  z="-9"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="3" y="2.5"  z="-9"></point>
-                <point x="4" y="2.5"  z="-9"></point>
-                <point x="4" y="2.5"  z="-44"></point>
-                <point x="3" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="3"  z="-44"></point>
-                <point x="2" y="3"  z="-9"></point>
-                <point x="3" y="2.5"  z="-9"></point>
-                <point x="3" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="3" y="3.5"  z="-44"></point>
-                <point x="3" y="3.5"  z="-9"></point>
-                <point x="2" y="3"  z="-9"></point>
-                <point x="2" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="3" y="3.5"  z="-44"></point>
-                <point x="3" y="3.5"  z="-9"></point>
-                <point x="4" y="3.5"  z="-9"></point>
-                <point x="4" y="3.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="3.5"  z="-44"></point>
-                <point x="4" y="3.5"  z="-9"></point>
-                <point x="5" y="3"  z="-9"></point>
-                <point x="5" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="3"  z="-44"></point>
-                <point x="5" y="3"  z="-9"></point>
-                <point x="4" y="2.5"  z="-9"></point>
-                <point x="4" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="3.5"  z="-44"></point>
-                <point x="3" y="3.5"  z="-44"></point>
-                <point x="2" y="3"  z="-44"></point>
-                <point x="5" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="3"  z="-44"></point>
-                <point x="2" y="3"  z="-44"></point>
-                <point x="3" y="2.5"  z="-44"></point>
-                <point x="4" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="4" y="3.5"  z="-9"></point>
-                <point x="3" y="3.5"  z="-9"></point>
-                <point x="2" y="3"  z="-9"></point>
-                <point x="5" y="3"  z="-9"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="5" y="3"  z="-9"></point>
-                <point x="2" y="3"  z="-9"></point>
-                <point x="3" y="2.5"  z="-9"></point>
-                <point x="4" y="2.5"  z="-9"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="-3"  z="1"></point>
-                <point x="-2" y="-3"  z="1"></point>
-                <point x="-4" y="-4"  z="1"></point>
-                <point x="2" y="-4"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-4"  z="1"></point>
-                <point x="-4" y="-4"  z="1"></point>
-                <point x="-4" y="-5"  z="1"></point>
-                <point x="2" y="-5"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-5"  z="1"></point>
-                <point x="-4" y="-5"  z="1"></point>
-                <point x="-2" y="-6"  z="1"></point>
-                <point x="0" y="-6"  z="1"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="0" y="-3"  z="-22"></point>
-                <point x="-2" y="-3"  z="-22"></point>
-                <point x="-4" y="-4"  z="-22"></point>
-                <point x="2" y="-4"  z="-22"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-4"  z="-22"></point>
-                <point x="-4" y="-4"  z="-22"></point>
-                <point x="-4" y="-5"  z="-22"></point>
-                <point x="2" y="-5"  z="-22"></point>
-</polygon>
-<polygon texture="tex" >
-                <point x="2" y="-5"  z="-22"></point>
-                <point x="-4" y="-5"  z="-22"></point>
-                <point x="-2" y="-6"  z="-22"></point>
-                <point x="0" y="-6"  z="-22"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-7" y="3"  z="-49"></point>
-                <point x="-7" y="3"  z="-44"></point>
-                <point x="-6" y="3.5"  z="-44"></point>
-                <point x="-6" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-6" y="3.5"  z="-44"></point>
-                <point x="-5" y="3.5"  z="-44"></point>
-                <point x="-5" y="3.5"  z="-49"></point>
-                <point x="-6" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-5" y="3.5"  z="-44"></point>
-                <point x="-4" y="3"  z="-44"></point>
-                <point x="-4" y="3"  z="-49"></point>
-                <point x="-5" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-7" y="3"  z="-49"></point>
-                <point x="-6" y="2.5"  z="-49"></point>
-                <point x="-6" y="2.5"  z="-44"></point>
-                <point x="-7" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-4" y="3"  z="-44"></point>
-                <point x="-4" y="3"  z="-49"></point>
-                <point x="-5" y="2.5"  z="-49"></point>
-                <point x="-5" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-5" y="2.5"  z="-44"></point>
-                <point x="-6" y="2.5"  z="-44"></point>
-                <point x="-6" y="2.5"  z="-49"></point>
-                <point x="-5" y="2.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-4" y="3"  z="-49"></point>
-                <point x="-5" y="3.5"  z="-49"></point>
-                <point x="-5" y="2.5"  z="-49"></point>
-                <point x="-4" y="3"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-7" y="3"  z="-49"></point>
-                <point x="-6" y="3.5"  z="-49"></point>
-                <point x="-6" y="2.5"  z="-49"></point>
-                <point x="-7" y="3"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="-5" y="3.5"  z="-49"></point>
-                <point x="-6" y="3.5"  z="-49"></point>
-                <point x="-6" y="2.5"  z="-49"></point>
-                <point x="-5" y="2.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="2" y="3"  z="-49"></point>
-                <point x="2" y="3"  z="-44"></point>
-                <point x="3" y="3.5"  z="-44"></point>
-                <point x="3" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="3" y="3.5"  z="-44"></point>
-                <point x="4" y="3.5"  z="-44"></point>
-                <point x="4" y="3.5"  z="-49"></point>
-                <point x="3" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="4" y="3.5"  z="-44"></point>
-                <point x="5" y="3"  z="-44"></point>
-                <point x="5" y="3"  z="-49"></point>
-                <point x="4" y="3.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="2" y="3"  z="-49"></point>
-                <point x="3" y="2.5"  z="-49"></point>
-                <point x="3" y="2.5"  z="-44"></point>
-                <point x="2" y="3"  z="-44"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="5" y="3"  z="-44"></point>
-                <point x="5" y="3"  z="-49"></point>
-                <point x="4" y="2.5"  z="-49"></point>
-                <point x="4" y="2.5"  z="-44"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="4" y="2.5"  z="-44"></point>
-                <point x="3" y="2.5"  z="-44"></point>
-                <point x="3" y="2.5"  z="-49"></point>
-                <point x="4" y="2.5"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="5" y="3"  z="-49"></point>
-                <point x="4" y="3.5"  z="-49"></point>
-                <point x="4" y="2.5"  z="-49"></point>
-                <point x="5" y="3"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="2" y="3"  z="-49"></point>
-                <point x="3" y="3.5"  z="-49"></point>
-                <point x="3" y="2.5"  z="-49"></point>
-                <point x="2" y="3"  z="-49"></point>
-</polygon>
-<polygon texture="darkgray" >
-                <point x="4" y="3.5"  z="-49"></point>
-                <point x="3" y="3.5"  z="-49"></point>
-                <point x="3" y="2.5"  z="-49"></point>
-                <point x="4" y="2.5"  z="-49"></point>
-</polygon>
+  <point x="20" y="9.5"  z="64"></point>
+  <polygon texture="tex" >
+    <point x="0" y="0"  z="0"></point>
+    <point x="0" y="0"  z="-4"></point>
+    <point x="0" y="-3"  z="-5"></point>
+    <point x="0" y="-3"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-2" y="0"  z="0"></point>
+    <point x="-2" y="0"  z="-4"></point>
+    <point x="-2" y="-3"  z="-5"></point>
+    <point x="-2" y="-3"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-2" y="0"  z="0"></point>
+    <point x="-1" y="0"  z="1"></point>
+    <point x="-1" y="-3"  z="0"></point>
+    <point x="-2" y="-3"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="0"  z="0"></point>
+    <point x="-1" y="0"  z="1"></point>
+    <point x="-1" y="-3"  z="0"></point>
+    <point x="0" y="-3"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-2" y="0"  z="-4"></point>
+    <point x="-1" y="0"  z="-5"></point>
+    <point x="-1" y="-3"  z="-6"></point>
+    <point x="-2" y="-3"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="0"  z="-4"></point>
+    <point x="-1" y="0"  z="-5"></point>
+    <point x="-1" y="-3"  z="-6"></point>
+    <point x="0" y="-3"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="0"  z="-5"></point>
+    <point x="1" y="0"  z="-5"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-3" y="0"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-3" y="0"  z="15"></point>
+    <point x="1" y="0"  z="15"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-11" y="0"  z="3"></point>
+    <point x="-11" y="0"  z="7"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="9" y="0"  z="3"></point>
+    <point x="9" y="0"  z="7"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="0"  z="-5"></point>
+    <point x="-7" y="0"  z="-3"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-3" y="0"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="1" y="0"  z="-5"></point>
+    <point x="5" y="0"  z="-3"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="1" y="0"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="0"  z="15"></point>
+    <point x="-7" y="0"  z="13"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-3" y="0"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="1" y="0"  z="15"></point>
+    <point x="5" y="0"  z="13"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="1" y="0"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="0"  z="3"></point>
+    <point x="7" y="0"  z="-1"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="9" y="0"  z="3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="0"  z="7"></point>
+    <point x="7" y="0"  z="11"></point>
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="9" y="0"  z="7"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-11" y="0"  z="3"></point>
+    <point x="-9" y="0"  z="-1"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-11" y="0"  z="7"></point>
+    <point x="-9" y="0"  z="11"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-9" y="0"  z="11"></point>
+    <point x="-7" y="0"  z="13"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-7" y="0"  z="-3"></point>
+    <point x="-9" y="0"  z="-1"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="5" y="0"  z="13"></point>
+    <point x="7" y="0"  z="11"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="5" y="0"  z="-3"></point>
+    <point x="7" y="0"  z="-1"></point>
+    <point x="-1" y="-1"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="1.5"  z="-5"></point>
+    <point x="1" y="1.5"  z="-5"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-3" y="1.5"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-3" y="1.5"  z="15"></point>
+    <point x="1" y="1.5"  z="15"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-11" y="1.5"  z="3"></point>
+    <point x="-11" y="1.5"  z="7"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="9" y="1.5"  z="3"></point>
+    <point x="9" y="1.5"  z="7"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="1.5"  z="-5"></point>
+    <point x="-7" y="1.5"  z="-3"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-3" y="1.5"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="1" y="1.5"  z="-5"></point>
+    <point x="5" y="1.5"  z="-3"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="1" y="1.5"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="1.5"  z="15"></point>
+    <point x="-7" y="1.5"  z="13"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-3" y="1.5"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="1" y="1.5"  z="15"></point>
+    <point x="5" y="1.5"  z="13"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="1" y="1.5"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="1.5"  z="3"></point>
+    <point x="7" y="1.5"  z="-1"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="9" y="1.5"  z="3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="1.5"  z="7"></point>
+    <point x="7" y="1.5"  z="11"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="9" y="1.5"  z="7"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-11" y="1.5"  z="3"></point>
+    <point x="-9" y="1.5"  z="-1"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-11" y="1.5"  z="7"></point>
+    <point x="-9" y="1.5"  z="11"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-9" y="1.5"  z="11"></point>
+    <point x="-7" y="1.5"  z="13"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="-7" y="1.5"  z="-3"></point>
+    <point x="-9" y="1.5"  z="-1"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="5" y="1.5"  z="13"></point>
+    <point x="7" y="1.5"  z="11"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="2.5"  z="5"></point>
+    <point x="5" y="1.5"  z="-3"></point>
+    <point x="7" y="1.5"  z="-1"></point>
+    <point x="-1" y="2.5"  z="5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-1" y="-1"  z="5"></point>
+    <point x="-3" y="1.5"  z="15"></point>
+    <point x="1" y="1.5"  z="15"></point>
+    <point x="1" y="0"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="1.5"  z="15"></point>
+    <point x="-7" y="1.5"  z="13"></point>
+    <point x="-7" y="0"  z="13"></point>
+    <point x="-3" y="0"  z="15"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-7" y="1.5"  z="13"></point>
+    <point x="-9" y="1.5"  z="11"></point>
+    <point x="-9" y="0"  z="11"></point>
+    <point x="-7" y="0"  z="13"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-9" y="1.5"  z="11"></point>
+    <point x="-11" y="1.5"  z="7"></point>
+    <point x="-11" y="0"  z="7"></point>
+    <point x="-9" y="0"  z="11"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-11" y="1.5"  z="3"></point>
+    <point x="-11" y="1.5"  z="7"></point>
+    <point x="-11" y="0"  z="7"></point>
+    <point x="-11" y="0"  z="3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-11" y="1.5"  z="3"></point>
+    <point x="-9" y="1.5"  z="-1"></point>
+    <point x="-9" y="0"  z="-1"></point>
+    <point x="-11" y="0"  z="3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-9" y="1.5"  z="-1"></point>
+    <point x="-7" y="1.5"  z="-3"></point>
+    <point x="-7" y="0"  z="-3"></point>
+    <point x="-9" y="0"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-7" y="1.5"  z="-3"></point>
+    <point x="-3" y="1.5"  z="-5"></point>
+    <point x="-3" y="0"  z="-5"></point>
+    <point x="-7" y="0"  z="-3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-3" y="1.5"  z="-5"></point>
+    <point x="1" y="1.5"  z="-5"></point>
+    <point x="1" y="0"  z="-5"></point>
+    <point x="-3" y="0"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="1" y="1.5"  z="-5"></point>
+    <point x="5" y="1.5"  z="-3"></point>
+    <point x="5" y="0"  z="-3"></point>
+    <point x="1" y="0"  z="-5"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="1.5"  z="-3"></point>
+    <point x="7" y="1.5"  z="-1"></point>
+    <point x="7" y="0"  z="-1"></point>
+    <point x="5" y="0"  z="-3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="7" y="1.5"  z="-1"></point>
+    <point x="9" y="1.5"  z="3"></point>
+    <point x="9" y="0"  z="3"></point>
+    <point x="7" y="0"  z="-1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="1.5"  z="3"></point>
+    <point x="9" y="1.5"  z="7"></point>
+    <point x="9" y="0"  z="7"></point>
+    <point x="9" y="0"  z="3"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="9" y="1.5"  z="7"></point>
+    <point x="7" y="1.5"  z="11"></point>
+    <point x="7" y="0"  z="11"></point>
+    <point x="9" y="0"  z="7"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="1.5"  z="13"></point>
+    <point x="7" y="1.5"  z="11"></point>
+    <point x="7" y="0"  z="11"></point>
+    <point x="5" y="0"  z="13"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="1.5"  z="13"></point>
+    <point x="1" y="1.5"  z="15"></point>
+    <point x="1" y="0"  z="15"></point>
+    <point x="5" y="0"  z="13"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-2" y="-3"  z="1"></point>
+    <point x="0" y="-3"  z="1"></point>
+    <point x="0" y="-3"  z="-22"></point>
+    <point x="-2" y="-3"  z="-22"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-2" y="-3"  z="1"></point>
+    <point x="-2" y="-3"  z="-22"></point>
+    <point x="-4" y="-4"  z="-22"></point>
+    <point x="-4" y="-4"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-4" y="-4"  z="1"></point>
+    <point x="-4" y="-4"  z="-22"></point>
+    <point x="-4" y="-5"  z="-22"></point>
+    <point x="-4" y="-5"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="-3"  z="1"></point>
+    <point x="0" y="-3"  z="-22"></point>
+    <point x="2" y="-4"  z="-22"></point>
+    <point x="2" y="-4"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-4"  z="1"></point>
+    <point x="2" y="-4"  z="-22"></point>
+    <point x="2" y="-5"  z="-22"></point>
+    <point x="2" y="-5"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-5"  z="1"></point>
+    <point x="2" y="-5"  z="-22"></point>
+    <point x="0" y="-6"  z="-22"></point>
+    <point x="0" y="-6"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-4" y="-5"  z="1"></point>
+    <point x="-4" y="-5"  z="-22"></point>
+    <point x="-2" y="-6"  z="-22"></point>
+    <point x="-2" y="-6"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="-6"  z="-22"></point>
+    <point x="-2" y="-6"  z="-22"></point>
+    <point x="-2" y="-6"  z="1"></point>
+    <point x="0" y="-6"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="2.5"  z="-18"></point>
+    <point x="4" y="2.5"  z="-20"></point>
+    <point x="2" y="-4"  z="-20"></point>
+    <point x="2" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="2.5"  z="-18"></point>
+    <point x="3" y="2.5"  z="-18"></point>
+    <point x="1" y="-4"  z="-18"></point>
+    <point x="2" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="3" y="2.5"  z="-18"></point>
+    <point x="3" y="2.5"  z="-20"></point>
+    <point x="1" y="-4"  z="-20"></point>
+    <point x="1" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="2.5"  z="-20"></point>
+    <point x="3" y="2.5"  z="-20"></point>
+    <point x="1" y="-4"  z="-20"></point>
+    <point x="2" y="-4"  z="-20"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-6" y="2.5"  z="-18"></point>
+    <point x="-6" y="2.5"  z="-20"></point>
+    <point x="-4" y="-4"  z="-20"></point>
+    <point x="-4" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="2.5"  z="-18"></point>
+    <point x="-5" y="2.5"  z="-20"></point>
+    <point x="-3" y="-4"  z="-20"></point>
+    <point x="-3" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="2.5"  z="-20"></point>
+    <point x="-6" y="2.5"  z="-20"></point>
+    <point x="-4" y="-4"  z="-20"></point>
+    <point x="-3" y="-4"  z="-20"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="2.5"  z="-18"></point>
+    <point x="-6" y="2.5"  z="-18"></point>
+    <point x="-4" y="-4"  z="-18"></point>
+    <point x="-3" y="-4"  z="-18"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-6" y="2.5"  z="-9"></point>
+    <point x="-5" y="2.5"  z="-9"></point>
+    <point x="-5" y="2.5"  z="-44"></point>
+    <point x="-6" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-7" y="3"  z="-44"></point>
+    <point x="-7" y="3"  z="-9"></point>
+    <point x="-6" y="2.5"  z="-9"></point>
+    <point x="-6" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-6" y="3.5"  z="-44"></point>
+    <point x="-6" y="3.5"  z="-9"></point>
+    <point x="-7" y="3"  z="-9"></point>
+    <point x="-7" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-6" y="3.5"  z="-44"></point>
+    <point x="-6" y="3.5"  z="-9"></point>
+    <point x="-5" y="3.5"  z="-9"></point>
+    <point x="-5" y="3.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="3.5"  z="-44"></point>
+    <point x="-5" y="3.5"  z="-9"></point>
+    <point x="-4" y="3"  z="-9"></point>
+    <point x="-4" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-4" y="3"  z="-44"></point>
+    <point x="-4" y="3"  z="-9"></point>
+    <point x="-5" y="2.5"  z="-9"></point>
+    <point x="-5" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="3.5"  z="-44"></point>
+    <point x="-6" y="3.5"  z="-44"></point>
+    <point x="-7" y="3"  z="-44"></point>
+    <point x="-4" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-4" y="3"  z="-44"></point>
+    <point x="-7" y="3"  z="-44"></point>
+    <point x="-6" y="2.5"  z="-44"></point>
+    <point x="-5" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-5" y="3.5"  z="-9"></point>
+    <point x="-6" y="3.5"  z="-9"></point>
+    <point x="-7" y="3"  z="-9"></point>
+    <point x="-4" y="3"  z="-9"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="-4" y="3"  z="-9"></point>
+    <point x="-7" y="3"  z="-9"></point>
+    <point x="-6" y="2.5"  z="-9"></point>
+    <point x="-5" y="2.5"  z="-9"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="3" y="2.5"  z="-9"></point>
+    <point x="4" y="2.5"  z="-9"></point>
+    <point x="4" y="2.5"  z="-44"></point>
+    <point x="3" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="3"  z="-44"></point>
+    <point x="2" y="3"  z="-9"></point>
+    <point x="3" y="2.5"  z="-9"></point>
+    <point x="3" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="3" y="3.5"  z="-44"></point>
+    <point x="3" y="3.5"  z="-9"></point>
+    <point x="2" y="3"  z="-9"></point>
+    <point x="2" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="3" y="3.5"  z="-44"></point>
+    <point x="3" y="3.5"  z="-9"></point>
+    <point x="4" y="3.5"  z="-9"></point>
+    <point x="4" y="3.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="3.5"  z="-44"></point>
+    <point x="4" y="3.5"  z="-9"></point>
+    <point x="5" y="3"  z="-9"></point>
+    <point x="5" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="3"  z="-44"></point>
+    <point x="5" y="3"  z="-9"></point>
+    <point x="4" y="2.5"  z="-9"></point>
+    <point x="4" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="3.5"  z="-44"></point>
+    <point x="3" y="3.5"  z="-44"></point>
+    <point x="2" y="3"  z="-44"></point>
+    <point x="5" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="3"  z="-44"></point>
+    <point x="2" y="3"  z="-44"></point>
+    <point x="3" y="2.5"  z="-44"></point>
+    <point x="4" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="4" y="3.5"  z="-9"></point>
+    <point x="3" y="3.5"  z="-9"></point>
+    <point x="2" y="3"  z="-9"></point>
+    <point x="5" y="3"  z="-9"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="5" y="3"  z="-9"></point>
+    <point x="2" y="3"  z="-9"></point>
+    <point x="3" y="2.5"  z="-9"></point>
+    <point x="4" y="2.5"  z="-9"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="-3"  z="1"></point>
+    <point x="-2" y="-3"  z="1"></point>
+    <point x="-4" y="-4"  z="1"></point>
+    <point x="2" y="-4"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-4"  z="1"></point>
+    <point x="-4" y="-4"  z="1"></point>
+    <point x="-4" y="-5"  z="1"></point>
+    <point x="2" y="-5"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-5"  z="1"></point>
+    <point x="-4" y="-5"  z="1"></point>
+    <point x="-2" y="-6"  z="1"></point>
+    <point x="0" y="-6"  z="1"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="0" y="-3"  z="-22"></point>
+    <point x="-2" y="-3"  z="-22"></point>
+    <point x="-4" y="-4"  z="-22"></point>
+    <point x="2" y="-4"  z="-22"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-4"  z="-22"></point>
+    <point x="-4" y="-4"  z="-22"></point>
+    <point x="-4" y="-5"  z="-22"></point>
+    <point x="2" y="-5"  z="-22"></point>
+  </polygon>
+  <polygon texture="tex" >
+    <point x="2" y="-5"  z="-22"></point>
+    <point x="-4" y="-5"  z="-22"></point>
+    <point x="-2" y="-6"  z="-22"></point>
+    <point x="0" y="-6"  z="-22"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-7" y="3"  z="-49"></point>
+    <point x="-7" y="3"  z="-44"></point>
+    <point x="-6" y="3.5"  z="-44"></point>
+    <point x="-6" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-6" y="3.5"  z="-44"></point>
+    <point x="-5" y="3.5"  z="-44"></point>
+    <point x="-5" y="3.5"  z="-49"></point>
+    <point x="-6" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-5" y="3.5"  z="-44"></point>
+    <point x="-4" y="3"  z="-44"></point>
+    <point x="-4" y="3"  z="-49"></point>
+    <point x="-5" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-7" y="3"  z="-49"></point>
+    <point x="-6" y="2.5"  z="-49"></point>
+    <point x="-6" y="2.5"  z="-44"></point>
+    <point x="-7" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-4" y="3"  z="-44"></point>
+    <point x="-4" y="3"  z="-49"></point>
+    <point x="-5" y="2.5"  z="-49"></point>
+    <point x="-5" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-5" y="2.5"  z="-44"></point>
+    <point x="-6" y="2.5"  z="-44"></point>
+    <point x="-6" y="2.5"  z="-49"></point>
+    <point x="-5" y="2.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-4" y="3"  z="-49"></point>
+    <point x="-5" y="3.5"  z="-49"></point>
+    <point x="-5" y="2.5"  z="-49"></point>
+    <point x="-4" y="3"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-7" y="3"  z="-49"></point>
+    <point x="-6" y="3.5"  z="-49"></point>
+    <point x="-6" y="2.5"  z="-49"></point>
+    <point x="-7" y="3"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="-5" y="3.5"  z="-49"></point>
+    <point x="-6" y="3.5"  z="-49"></point>
+    <point x="-6" y="2.5"  z="-49"></point>
+    <point x="-5" y="2.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="2" y="3"  z="-49"></point>
+    <point x="2" y="3"  z="-44"></point>
+    <point x="3" y="3.5"  z="-44"></point>
+    <point x="3" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="3" y="3.5"  z="-44"></point>
+    <point x="4" y="3.5"  z="-44"></point>
+    <point x="4" y="3.5"  z="-49"></point>
+    <point x="3" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="4" y="3.5"  z="-44"></point>
+    <point x="5" y="3"  z="-44"></point>
+    <point x="5" y="3"  z="-49"></point>
+    <point x="4" y="3.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="2" y="3"  z="-49"></point>
+    <point x="3" y="2.5"  z="-49"></point>
+    <point x="3" y="2.5"  z="-44"></point>
+    <point x="2" y="3"  z="-44"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="5" y="3"  z="-44"></point>
+    <point x="5" y="3"  z="-49"></point>
+    <point x="4" y="2.5"  z="-49"></point>
+    <point x="4" y="2.5"  z="-44"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="4" y="2.5"  z="-44"></point>
+    <point x="3" y="2.5"  z="-44"></point>
+    <point x="3" y="2.5"  z="-49"></point>
+    <point x="4" y="2.5"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="5" y="3"  z="-49"></point>
+    <point x="4" y="3.5"  z="-49"></point>
+    <point x="4" y="2.5"  z="-49"></point>
+    <point x="5" y="3"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="2" y="3"  z="-49"></point>
+    <point x="3" y="3.5"  z="-49"></point>
+    <point x="3" y="2.5"  z="-49"></point>
+    <point x="2" y="3"  z="-49"></point>
+  </polygon>
+  <polygon texture="darkgray" >
+    <point x="4" y="3.5"  z="-49"></point>
+    <point x="3" y="3.5"  z="-49"></point>
+    <point x="3" y="2.5"  z="-49"></point>
+    <point x="4" y="2.5"  z="-49"></point>
+  </polygon>
 </obj>

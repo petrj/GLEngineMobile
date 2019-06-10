@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scene name="scene">  
+  
+    <obj name="Enterprise" source="enterprise.xml" />
+  
+    <planet name="Earth" radius="5" slices="40" stacks="40" texture="earth">
+    	 <point name="Position" x="0" y="0"  z="0"></point>
+    	  <vector name="Rotation" x="0" y="0"  z="0"></vector>
+    	  <vector name="RotationSpeed" x="0" y="0.5"  z="0"></vector>
+    	 <ring shown="false" texture="neptune" color="#FFFFFF" size="2"></ring>
+    	 <satellite name="Moon" radius="0.75" slices="15" stacks="15" texture="moon">
+           <point name="Position" x="0" y="0"  z="0"></point>
+    	 	    <vector name="Rotation" x="95" y="30"  z="90"></vector>
+    	 	    <vector name="RotationSpeed" x="0" y="0"  z="-0.25"></vector>
+    	 	    <ellipse name="Orbit" radiusMajor="5" radiusMinor="5">
+    	 		    <vector name="U" x="1.6" y="0.2"  z="1.6"></vector>
+    	 		    <vector name="V" x="1.6" y="1"  z="-1.6"></vector>
+    	 	    </ellipse>
+    	 </satellite>
+      
+   </planet>  
+</scene>

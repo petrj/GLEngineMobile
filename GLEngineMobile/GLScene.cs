@@ -7,6 +7,7 @@ using OpenTK.Platform;
 using System.Collections.Generic;
 using Android.Content;
 using LoggerService;
+using Android.Content.Res;
 
 namespace GLEngineMobile
 {
@@ -127,23 +128,23 @@ namespace GLEngineMobile
 			return nearestPolygon;
 		} 
 
-		public void ReLoad()
-		{
-			if ((!String.IsNullOrEmpty (FileName)) && (File.Exists(FileName)))
-			{
-				Load (FileName);
-			}
-		}
+        public void LoadFromAndroidAsset(Context context, string name)
+        {
+            AssetManager assets = context.Assets;
 
-		public void Load(string fileName)
-		{
-			FileName = fileName;
-			Objects = new List<GLObj>();
+            string content;
+            using (StreamReader sr = new StreamReader(assets.Open(name)))
+            {
+                content = sr.ReadToEnd();
+            }
 
-			var xmlDoc = new XmlDocument();
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(content);
+            LoadFromXmlDocument(xmlDoc);
+        }
 
-			xmlDoc.Load(fileName);
-
+        public void LoadFromXmlDocument(XmlDocument xmlDoc)
+		{	
 			var sceneNode = xmlDoc.SelectSingleNode("//scene");
 			if(sceneNode != null)
 			{
