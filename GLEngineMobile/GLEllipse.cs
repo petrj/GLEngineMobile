@@ -6,6 +6,7 @@ using OpenTK.Graphics;
 using TK = OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using Android.Graphics;
+using Android.Content;
 
 namespace GLEngineMobile
 {
@@ -140,9 +141,9 @@ namespace GLEngineMobile
             base.AfterRender();
         }
 
-        public override void LoadFromXmlElement(XmlElement element)
+        public override void LoadFromXmlElement(Context context, XmlElement element)
         {
-            base.LoadFromXmlElement(element);
+            base.LoadFromXmlElement(context, element);
 
             if (element.HasAttribute("radiusMajor"))
                 RadiusMajor = Convert.ToDouble(element.GetAttribute("radiusMajor"));

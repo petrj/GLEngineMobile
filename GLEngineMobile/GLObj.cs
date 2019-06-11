@@ -5,7 +5,7 @@ using System.Xml;
 using System.Collections.Generic;
 using GL=OpenTK.Graphics.ES11.GL;
 using TK=OpenTK.Graphics;
-
+using Android.Content;
 
 namespace GLEngineMobile
 {
@@ -58,17 +58,51 @@ namespace GLEngineMobile
                 return 0;
         }
 
-        public virtual void LoadFromXmlElement(XmlElement element)
+        public static XmlDocument GetAssetXML(Context context, string name)
         {
-            if (element.HasAttribute("name"))
-                Name = element.Attributes["name"].Value;
+            var assets = context.Assets;
 
+            string content;
+            using (StreamReader sr = new StreamReader(assets.Open(name)))
+            {
+                content = sr.ReadToEnd();
+            }
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(content);
+
+            return xmlDoc;
+        }
+
+        public virtual void LoadFromAndroidAsset(Context context, string name)
+        {
+            var xmlDoc = GetAssetXML(context, name);
+
+            var objNode = xmlDoc.SelectSingleNode("//obj");
+
+            if (objNode != null)
+            {
+                LoadFromXmlElement(context, objNode as XmlElement);
+            }
+        }
+
+        public virtual void LoadFromXmlElement(Context context, XmlElement element)
+        {
+            if (element.HasAttribute("source"))
+            {
+                var assetName = element.Attributes["source"].Value;
+                LoadFromAndroidAsset(context, assetName);
+                return;
+            }
+
+            if (element.HasAttribute("name"))
+                Name = element.Attributes["name"].Value;            
 
             var pointEl = element.SelectSingleNode("./point[@name='Position']") as XmlElement;
             if (pointEl != null)
             {
-                Position.LoadFromXmlElement(pointEl);
-            }
+                Position.LoadFromXmlElement(pointEl);                
+            }            
 
             var rotEl = element.SelectSingleNode("./vector[@name='Rotation']") as XmlElement;
             if (rotEl != null)

@@ -117,9 +117,9 @@ namespace GLEngineMobile
 			base.Render();
 		}
 
-		public override void LoadFromXmlElement(XmlElement element)
+		public override void LoadFromXmlElement(Context context, XmlElement element)
 		{
-			base.LoadFromXmlElement(element);
+			base.LoadFromXmlElement(context, element);
 
 			var ringEl = element.SelectSingleNode("./ring") as XmlElement;
 			if (ringEl != null)
@@ -142,7 +142,7 @@ namespace GLEngineMobile
 				foreach (XmlElement moonElement in sattelitesEl)
 	            {
 	            	var moon = new GLSphere();
-	            	moon.LoadFromXmlElement(moonElement);
+	            	moon.LoadFromXmlElement(context, moonElement);
                     Satellites.Add(moon);
                 }
 			}

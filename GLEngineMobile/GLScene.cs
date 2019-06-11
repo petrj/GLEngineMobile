@@ -34,12 +34,8 @@ namespace GLEngineMobile
 			ObjectsDirectory = "obj";
 			_FullScreenSetTime = DateTime.Now.AddSeconds (-60);
 			State = AutoPilotStateEnum.Stoppped;
-		}
-	
-		public void LoadObjects()
-		{
-			AddObjectsFromDir(ObjectsDirectory);       
-		}
+		}	
+
 
 		public void LoadTextures(Context context)
 		{
@@ -78,25 +74,6 @@ namespace GLEngineMobile
                 obj.Magnify(ratio);
             }
         }
-
-		public void AddObjectsFromDir(string directory, bool recursive = false)
-		{
-			if (Directory.Exists(directory))
-			{
-				var files = Directory.GetFiles(directory, "*.xml", recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
-				foreach (var f in files)
-				{
-					var obj = new GLObject();
-					obj.LoadFromFile(f);
-
-					// moving to center
-					var c = obj.Center;
-					obj.Move(obj.Position.X-c.X,obj.Position.Y-c.Y,obj.Position.Z-c.Z);
-
-					Objects.Add(obj);
-				}
-			}
-		}
 
 		public  GLPolygon NearestPolygon(GLPoint P)
 		{
@@ -140,10 +117,11 @@ namespace GLEngineMobile
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(content);
-            LoadFromXmlDocument(xmlDoc);
+
+            LoadFromXmlDocument(context, xmlDoc);
         }
 
-        public void LoadFromXmlDocument(XmlDocument xmlDoc)
+        public void LoadFromXmlDocument(Context context, XmlDocument xmlDoc)
 		{	
 			var sceneNode = xmlDoc.SelectSingleNode("//scene");
 			if(sceneNode != null)
@@ -151,12 +129,13 @@ namespace GLEngineMobile
 				var objs = sceneNode.SelectNodes ("./obj");
 				foreach (XmlElement objElement in objs) 
 				{
-					if ((objElement.HasAttribute ("name")) && (objElement.GetAttribute ("name") == "Observer")) {
-						Observer.LoadFromXmlElement (objElement);
+					if ((objElement.HasAttribute ("name")) && (objElement.GetAttribute ("name") == "Observer"))
+                    {
+						Observer.LoadFromXmlElement(context, objElement);
 					} else 
 					{
 						var obj = new GLObject ();
-						obj.LoadFromXmlElement (objElement);
+						obj.LoadFromXmlElement(context, objElement);
 
 						Objects.Add (obj);					
 					}

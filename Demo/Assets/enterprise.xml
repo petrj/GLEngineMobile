@@ -72,13 +72,13 @@
     <point x="-1" y="-1"  z="5"></point>
     <point x="1" y="0"  z="-5"></point>
   </polygon>
-  <polygon texture="tex" >
+  <polygon texture="tex">
     <point x="-3" y="0"  z="15"></point>
     <point x="-7" y="0"  z="13"></point>
     <point x="-1" y="-1"  z="5"></point>
     <point x="-3" y="0"  z="15"></point>
   </polygon>
-  <polygon texture="tex" >
+  <polygon texture="tex">
     <point x="1" y="0"  z="15"></point>
     <point x="5" y="0"  z="13"></point>
     <point x="-1" y="-1"  z="5"></point>
@@ -174,7 +174,7 @@
     <point x="-1" y="2.5"  z="5"></point>
     <point x="-3" y="1.5"  z="15"></point>
   </polygon>
-  <polygon texture="tex" >
+  <polygon texture="tex">
     <point x="1" y="1.5"  z="15"></point>
     <point x="5" y="1.5"  z="13"></point>
     <point x="-1" y="2.5"  z="5"></point>
@@ -228,8 +228,8 @@
     <point x="7" y="1.5"  z="-1"></point>
     <point x="-1" y="2.5"  z="5"></point>
   </polygon>
-  <polygon texture="tex" >
-    <point x="-1" y="-1"  z="5"></point>
+  <polygon texture="tex">
+    <point x="-3" y="0"  z="15"></point>
     <point x="-3" y="1.5"  z="15"></point>
     <point x="1" y="1.5"  z="15"></point>
     <point x="1" y="0"  z="15"></point>

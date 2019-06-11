@@ -6,6 +6,7 @@ using OpenTK.Graphics;
 using TK = OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using Android.Graphics;
+using Android.Content;
 
 namespace GLEngineMobile
 {
@@ -170,9 +171,9 @@ namespace GLEngineMobile
 				pol.Magnify (ratio);
 		}
 
-		public override void LoadFromXmlElement(XmlElement element)
+		public override void LoadFromXmlElement(Context context, XmlElement element)
 		{
-			base.LoadFromXmlElement(element);
+			base.LoadFromXmlElement(context, element);
 
 			if (element.HasAttribute("radius"))
 				Radius = Convert.ToDouble(element.GetAttribute("radius"));
@@ -198,7 +199,7 @@ namespace GLEngineMobile
 			var orbitEllipseElement = element.SelectSingleNode("./ellipse[@name='Orbit']") as XmlElement;
 			if (orbitEllipseElement != null)
 			{
-				Orbit.LoadFromXmlElement(orbitEllipseElement);
+				Orbit.LoadFromXmlElement(context, orbitEllipseElement);
 			}		
 		}
 	}

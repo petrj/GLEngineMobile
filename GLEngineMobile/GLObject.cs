@@ -245,8 +245,6 @@ namespace GLEngineMobile
 		
 		public void LoadFromjObject(GLObject obj)
 		{
-			//Logger.WriteToLog("Loading from obj: " + obj.Name);			
-
 			Position = obj.Position.Clone();
 			Rotation = Rotation.Clone();
 			Polygons = new List<GLPolygon>();
@@ -256,23 +254,9 @@ namespace GLEngineMobile
 			}
 		}
 
-        public override void LoadFromXmlElement(XmlElement element)
+        public override void LoadFromXmlElement(Context context, XmlElement element)
         {
-            base.LoadFromXmlElement(element);
-
-			if (element.HasAttribute ("fileName")) 
-			{
-				var fileName = element.Attributes ["fileName"].Value;
-
-				if (!File.Exists (fileName))
-					fileName = "obj" + System.IO.Path.DirectorySeparatorChar + fileName;
-
-				if (File.Exists (fileName)) 
-				{
-					LoadFromFile (fileName);
-				} 
-			}
-
+            base.LoadFromXmlElement(context, element);
 
             var polygonNodes = element.SelectNodes("./polygon");
             foreach (XmlElement polygonElement in polygonNodes)
@@ -282,68 +266,6 @@ namespace GLEngineMobile
                 Polygons.Add(pol);
             }
         }
-
-        public void LoadFromFile(string fileName)
-		{
-			//Logger.WriteToLog("Loading from " + fileName);
-			
-			Name = Path.GetFileNameWithoutExtension(fileName);
-		
-			Polygons = new List<GLPolygon>();
-			
-			var loadedPolygons = 0;
-		
-			var xmlDoc = new XmlDocument();
-
-	            xmlDoc.Load(fileName);
-	            var objNode = xmlDoc.SelectSingleNode("//obj");
-	            if(objNode != null)
-	            {
-	            	var polygonNodes = xmlDoc.SelectNodes("//obj/polygon");
-	            	foreach (XmlElement polygonElement in polygonNodes)
-	            	{
-	            		var pol = new GLPolygon();
-	            		pol.LoadFromXmlElement(polygonElement);
-	            		Polygons.Add(pol);
-	            		
-	            		loadedPolygons++;
-	            	}
-	            }
-	              //  Console.WriteLine(titleNode.InnerText);
-	            //Console.ReadKey();   
-		
-			//WriteToLog();
-		}
-
-
-        public void LoadFromAndroidAsset(Context context, string name)
-        {
-            AssetManager assets = context.Assets;
-
-            string content;
-            using (StreamReader sr = new StreamReader(assets.Open(name)))
-            {
-                content = sr.ReadToEnd();
-            }
-
-            var xmlDoc = new XmlDocument();
-
-            xmlDoc.LoadXml(content);
-
-            var objNode = xmlDoc.SelectSingleNode("//obj");
-            if (objNode != null)
-            {
-                LoadFromXmlElement(objNode as XmlElement);
-            }
-        }
-
-        /*
-		public override void WriteToLog()
-		{
-				base.WriteToLog();
-				Logger.WriteToLog(String.Format("Loaded polygons: {0}", Polygons.Count));
-		}
-        */
     }
 }
 

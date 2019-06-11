@@ -185,7 +185,7 @@ namespace GLEngineMobileDemo
             };
 
             ent.LoadFromAndroidAsset(Context, "enterprise.xml");            
-            ent.SetTexture("tex");
+            //ent.SetTexture("tex");
             ent.Magnify(0.12);
 
             var elipse = new GLEllipse()
