@@ -8,6 +8,11 @@ using System.Collections.Generic;
 using Android.Content;
 using LoggerService;
 using Android.Content.Res;
+using OpenTK.Graphics;
+using OpenTK.Graphics.ES11;
+using OpenTK.Platform;
+using OpenTK.Platform.Android;
+using OpenTK;
 
 namespace GLEngineMobile
 {
@@ -39,7 +44,8 @@ namespace GLEngineMobile
 
 		public void LoadTextures(Context context)
 		{
-            GLTextureAdmin.AddTextureFromResource(context, "earth"); 
+            GLTextureAdmin.AddTextureFromResource(context, "earth");
+            GLTextureAdmin.AddTextureFromResource(context, "moon");
             GLTextureAdmin.AddTextureFromResource(context, "tex");
             GLTextureAdmin.AddTextureFromResource(context, "darkgray");
             GLTextureAdmin.AddTextureFromResource(context, "f_spot");
@@ -61,7 +67,18 @@ namespace GLEngineMobile
 
 		public void Render()
 		{
-			foreach (var obj in Objects)
+            GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
+            GL.MatrixMode(All.Modelview);
+            GL.LoadIdentity();
+
+            var op = Observer.Position;
+            var or = Observer.Rotation;
+
+            GL.Translate((float)op.X, (float)op.Y, (float)op.Z);
+            GL.Rotate(-(float)or.X, 1, 0, 0);
+            GL.Rotate(-(float)or.Y, 0, 1, 0);
+
+            foreach (var obj in Objects)
 			{
 				obj.Render();									
 			}
@@ -107,17 +124,7 @@ namespace GLEngineMobile
 
         public void LoadFromAndroidAsset(Context context, string name)
         {
-            AssetManager assets = context.Assets;
-
-            string content;
-            using (StreamReader sr = new StreamReader(assets.Open(name)))
-            {
-                content = sr.ReadToEnd();
-            }
-
-            var xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(content);
-
+            var xmlDoc = GLObj.GetAssetXML(context, name);
             LoadFromXmlDocument(context, xmlDoc);
         }
 
@@ -126,6 +133,7 @@ namespace GLEngineMobile
 			var sceneNode = xmlDoc.SelectSingleNode("//scene");
 			if(sceneNode != null)
 			{
+            
 				var objs = sceneNode.SelectNodes ("./obj");
 				foreach (XmlElement objElement in objs) 
 				{
@@ -133,14 +141,23 @@ namespace GLEngineMobile
                     {
 						Observer.LoadFromXmlElement(context, objElement);
 					} else 
-					{
+					{                     
 						var obj = new GLObject ();
 						obj.LoadFromXmlElement(context, objElement);
 
-						Objects.Add (obj);					
+						Objects.Add (obj);
 					}
 				}
-			}
+                
+                var planets = sceneNode.SelectNodes("./planet");
+                foreach (XmlElement planetNode in planets)
+                {
+                    var planet = new GLPlanet();
+                    planet.LoadFromXmlElement(context, planetNode);
+
+                    Objects.Add(planet);
+                }
+            }
 		}
 
 		/// <summary>

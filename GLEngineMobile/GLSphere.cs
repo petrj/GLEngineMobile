@@ -7,6 +7,7 @@ using TK = OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using Android.Graphics;
 using Android.Content;
+using System.Globalization;
 
 namespace GLEngineMobile
 {
@@ -175,8 +176,8 @@ namespace GLEngineMobile
 		{
 			base.LoadFromXmlElement(context, element);
 
-			if (element.HasAttribute("radius"))
-				Radius = Convert.ToDouble(element.GetAttribute("radius"));
+            if (element.HasAttribute("radius"))
+                Radius = Convert.ToDouble(element.GetAttribute("radius"), CultureInfo.InvariantCulture);
 
 			if (element.HasAttribute("slices"))
 				Slices = Convert.ToInt32(element.GetAttribute("slices"));

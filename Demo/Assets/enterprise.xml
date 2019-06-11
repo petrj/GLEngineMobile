@@ -1,5 +1,6 @@
-<obj>
-  <point x="20" y="9.5"  z="64"></point>
+<obj name="Enterprise">
+  <point name="Position" x="8" y="0"  z="0"></point>
+  <vector name="Rotation" x="0" y="0"  z="0"></vector>
   <polygon texture="tex" >
     <point x="0" y="0"  z="0"></point>
     <point x="0" y="0"  z="-4"></point>

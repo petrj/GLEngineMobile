@@ -86,6 +86,7 @@ namespace GLEngineMobile
 
 		public override void Render ()
 		{
+           
 			//var timeAngle = ( (DateTime.Now.Second + DateTime.Now.Millisecond/1000.0) * 360/10.0);
 			foreach (var satelitte in Satellites)
 			{
@@ -103,6 +104,8 @@ namespace GLEngineMobile
 				satelitte.Render();
 			}
 
+           
+         
 			if (ShowRing)
 			{
 				if (Ring == null)
@@ -113,7 +116,8 @@ namespace GLEngineMobile
 
 				Ring.Render();
 			}
-
+        
+          
 			base.Render();
 		}
 

@@ -22,7 +22,6 @@ namespace GLEngineMobileDemo
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();
         bool _zoom = false;
-		float _xangle, _yangle;        
         int width, height;
         GLScene _scene;
 
@@ -39,22 +38,34 @@ namespace GLEngineMobileDemo
 
 		private void Initialize ()
 		{
-			_xangle = -45;
-			_yangle = 45;
+            _scene = new GLScene();
 
-			Resize += delegate {
+            _scene.Observer.Rotation.X = -45;
+            _scene.Observer.Rotation.Y = 20;
+
+            var elipse = new GLEllipse()
+            {
+                RadiusMajor = 4,
+                RadiusMinor = 4,
+                FillColor = Color.Yellow
+            };
+
+            //_scene.Objects.Add(new GLAxis());
+            _scene.Objects.Add(new GLStarSpace() { Count = 200 });
+            //_scene.Objects.Add(elipse);
+
+            Resize += delegate {
 				height = Height;
 				width = Width;
 				SetupCamera ();
 				Render ();
 			};
-
         }
 
-		// This method is called everytime the context needs
-		// to be recreated. Use it to set any egl-specific settings
-		// prior to context creation
-		protected override void CreateFrameBuffer ()
+        // This method is called everytime the context needs
+        // to be recreated. Use it to set any egl-specific settings
+        // prior to context creation
+        protected override void CreateFrameBuffer ()
 		{
 			GLContextVersion = GLContextVersion.Gles1_1;
 
@@ -131,87 +142,13 @@ namespace GLEngineMobileDemo
 			GL.CullFace (All.Back);
 
 			GL.Hint (All.PerspectiveCorrectionHint, All.Nicest);
-
-            GL.Enable(All.Texture2D);
+            GL.Enable(All.Texture2D);           
             */
 
-            _scene = new GLScene();
-            _scene.LoadTextures(Context);
-          
-            var cube = new GLObject();
+            _scene.LoadTextures(Context);   
 
-            cube.Polygons.Add(new GLPolygon(  // top
-                new GLPoint(1, 1, -1),
-                new GLPoint(-1, 1, -1),
-                new GLPoint(-1, 1, 1),
-                new GLPoint(1, 1, 1)
-                ));
-            cube.Polygons.Add(new GLPolygon(  // bottom
-                new GLPoint(1, -1, 1),
-                new GLPoint(-1, -1, 1),
-                new GLPoint(-1, -1, -1),
-                new GLPoint(1, -1, -1)
-                ));
-            cube.Polygons.Add(new GLPolygon(  // front
-                new GLPoint(1, 1, 1),
-                new GLPoint(-1, 1, 1),
-                new GLPoint(-1, -1, 1),
-                new GLPoint(1, -1, 1)
-                ));
-            cube.Polygons.Add(new GLPolygon(  // back
-                new GLPoint(1, -1, -1),
-                new GLPoint(-1, -1, -1),
-                new GLPoint(-1, 1, -1),
-                new GLPoint(1, 1, -1)
-                ));
-            cube.Polygons.Add(new GLPolygon(  // left
-                new GLPoint(-1, 1, 1),
-                new GLPoint(-1, 1, -1),
-                new GLPoint(-1, -1, -1),
-                new GLPoint(-1, -1, 1)
-                ));
-            cube.Polygons.Add(new GLPolygon(  // right
-                new GLPoint(1, 1, -1),
-                new GLPoint(1, 1, 1),
-                new GLPoint(1, -1, 1),
-                new GLPoint(1, -1, -1)
-                ));
-
-            cube.SetTexture("tex");
-
-            var ent = new GLObject()
-            {
-                Name = "Enterprise"
-            };
-
-            ent.LoadFromAndroidAsset(Context, "enterprise.xml");            
-            //ent.SetTexture("tex");
-            ent.Magnify(0.12);
-
-            var elipse = new GLEllipse()
-            {
-                RadiusMajor = 4,
-                RadiusMinor = 4,
-                FillColor = Color.Yellow
-            };
-
-            var sphere = new GLSphere()
-            {
-                Radius = 2,
-                Name = "Earth",
-                Stacks = 15,
-                Slices = 15
-            };
-            sphere.Texture = GLTextureAdmin.GetTextureByName("earth");
-
-            //_scene.Objects.Add(obj);
-            //_scene.Objects.Add(obj2);
-            //_scene.Objects.Add(cube);
-            //_scene.Objects.Add(new GLAxis());
-            //_scene.Objects.Add(elipse);
-
-            _scene.Objects.Add(ent);                        
-            _scene.Objects.Add(sphere);
+            _scene.LoadFromAndroidAsset(Context, "scene.xml");
+            _scene.GetObjectByName("Enterprise").Magnify(0.12);
 
             SetupCamera ();
 			Render ();
@@ -316,8 +253,10 @@ namespace GLEngineMobileDemo
 
                     float xdiff = ((float)_fingerTapCoordinates.X - x);
                     float ydiff = ((float)_fingerTapCoordinates.Y - y);
-                    _xangle = _xangle + ydiff;
-                    _yangle = _yangle + xdiff;
+                    _scene.Observer.Rotation.X += ydiff;
+                    _scene.Observer.Rotation.Y += xdiff;
+                    //_xangle = _xangle + ydiff;
+                    //_yangle = _yangle + xdiff;
 
                     _fingerTapCoordinates.X = x;
                     _fingerTapCoordinates.Y = y;
@@ -342,14 +281,6 @@ namespace GLEngineMobileDemo
 		void Render ()
 		{
             MakeCurrent();
-
-            GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
-			GL.MatrixMode(All.Modelview);
-			GL.LoadIdentity();
-				
-			GL.Translate(0, 0, -6);
-			GL.Rotate(-_xangle, 1, 0, 0);
-			GL.Rotate(-_yangle, 0, 1, 0);            
 
             _scene.Render();
 
