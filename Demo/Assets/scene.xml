@@ -3,6 +3,7 @@
   <obj name="Enterprise" source="enterprise.xml" />
   <obj name="Observer">
     <point name="Position" x="0" y="0"  z="-20"></point>
+    <vector name="Rotation" x="-40" y="-90"  z="0"></vector>
   </obj>  
   <planet name="Earth" radius="2" slices="15" stacks="15" texture="earth">
     	<point name="Position" x="0" y="0"  z="0"></point>

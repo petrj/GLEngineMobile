@@ -45,21 +45,18 @@
 				android:visibility="gone"
 				android:text="@string/switch_texture"/>
 		</LinearLayout>
-	</FrameLayout>
-  <!--LinearLayout
-		android:orientation="horizontal"
+	</FrameLayout>    
+  <LinearLayout 
+    android:orientation="horizontal"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center">
-
-		<Button android:id="@+id/show"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/show"/>
-
-		<Button android:id="@+id/hide"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/hide"/>
-	</LinearLayout-->
-</LinearLayout>
+    <TextView 
+      android:id="@+id/rotationTextView"
+      android:name="rotationLabel" 
+      android:text="test" 
+      android:textColor="#FFFFFF"
+      android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"/>
+  </LinearLayout>  
+  </LinearLayout>

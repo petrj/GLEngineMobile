@@ -24,7 +24,9 @@ namespace GLEngineMobileDemo
             // Inflate our UI from its XML layout description
             SetContentView(Resource.Layout.main);
 
-            PaintingView glp = FindViewById<PaintingView>(Resource.Id.paintingview);
+            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
+
+            paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
 
             /*
             // Find the views whose visibility will change

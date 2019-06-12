@@ -14,18 +14,20 @@ using GLEngineMobile;
 using LoggerService;
 using Android.Content.Res;
 using System.IO;
+using Android.Widget;
 
 namespace GLEngineMobileDemo
 {
 	class PaintingView : AndroidGameView
 	{
         GLPoint _fingerTapCoordinates = new GLPoint();
-        GLPoint _finger2TapCoordinates = new GLPoint();
+        GLPoint _finger2TapCoordinates = new GLPoint();        
         bool _zoom = false;
         int width, height;
         GLScene _scene;
+        public TextView RotationLabel { get; set; }
 
-		public PaintingView (Context context, IAttributeSet attrs) :
+        public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
 		{
 			Initialize ();
@@ -40,8 +42,8 @@ namespace GLEngineMobileDemo
 		{
             _scene = new GLScene();
 
-            _scene.Observer.Rotation.X = -45;
-            _scene.Observer.Rotation.Y = 20;
+            //_scene.Observer.Rotation.X = -45;
+            //_scene.Observer.Rotation.Y = 20;
 
             var elipse = new GLEllipse()
             {
@@ -282,7 +284,12 @@ namespace GLEngineMobileDemo
 		{
             MakeCurrent();
 
-            _scene.Render();
+            _scene.Render();            
+            
+            if (RotationLabel != null)
+            {
+                RotationLabel.Text = $"Rotation: : {_scene.Observer.Rotation.ToString()}";
+            }
 
             SwapBuffers();
 		}
