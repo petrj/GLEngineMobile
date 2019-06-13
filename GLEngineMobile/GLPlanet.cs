@@ -42,8 +42,24 @@ namespace GLEngineMobile
 			Name = name;
 			Texture  = GLTextureAdmin.GetTextureByName(textureName);
 		}
-	
-		public void GenerateRingPolygon()
+
+        public override void Magnify(double ratio)
+        {
+            base.Magnify(ratio);
+
+            if (ShowRing)
+            {
+                RingSize = RingSize * ratio;
+                Ring.Magnify(ratio);
+            }
+
+            foreach (var satellite in Satellites)
+            {
+                satellite.Magnify(ratio);
+            }
+        }
+
+        public void GenerateRingPolygon()
 		{
 			Ring = new GLObject();
 

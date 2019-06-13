@@ -15,6 +15,7 @@ using LoggerService;
 using Android.Content.Res;
 using System.IO;
 using Android.Widget;
+using System.Threading.Tasks;
 
 namespace GLEngineMobileDemo
 {
@@ -56,12 +57,21 @@ namespace GLEngineMobileDemo
             _scene.Objects.Add(new GLStarSpace() { Count = 200 });
             //_scene.Objects.Add(elipse);
 
-            Resize += delegate {
+            Resize += delegate 
+            {
 				height = Height;
 				width = Width;
 				SetupCamera ();
-				Render ();
 			};
+
+            Run(20); // 20 fps
+
+            RenderFrame += PaintingView_RenderFrame;            
+        }
+
+        private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
+        {
+            Render();
         }
 
         // This method is called everytime the context needs
@@ -150,10 +160,14 @@ namespace GLEngineMobileDemo
             _scene.LoadTextures(Context);   
 
             _scene.LoadFromAndroidAsset(Context, "scene.xml");
-            _scene.GetObjectByName("Enterprise").Magnify(0.12);
 
-            SetupCamera ();
-			Render ();
+            var ent = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
+            ent.MoveToCenter();
+            ent.Magnify(0.12);
+            ent.OrbitEllipse.RadiusMajor = 6;
+            ent.OrbitEllipse.RadiusMinor = 5;
+
+            SetupCamera();			
 		}
 
 		void SetupCamera ()
@@ -264,8 +278,6 @@ namespace GLEngineMobileDemo
                     _fingerTapCoordinates.Y = y;
                 }
 			}
-			if (e.Action == MotionEventActions.Down || e.Action == MotionEventActions.Move)
-				Render ();  
 
             if (e.Action == MotionEventActions.Up)
             {
@@ -284,8 +296,18 @@ namespace GLEngineMobileDemo
 		{
             MakeCurrent();
 
-            _scene.Render();            
-            
+            _scene.Render();
+
+            var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
+            enterprise.OrbitAngle = enterprise.OrbitAngle-5;
+
+            var planet = _scene.GetObjectByName("Earth") as GLPlanet;
+            foreach (var satellite in planet.Satellites)
+            {
+                satellite.OrbitAngle = satellite.OrbitAngle - 2;
+            }
+            planet.Rotation.Y += 5;
+
             if (RotationLabel != null)
             {
                 RotationLabel.Text = $"Rotation: : {_scene.Observer.Rotation.ToString()}";
@@ -302,8 +324,7 @@ namespace GLEngineMobileDemo
 
 		protected override void OnResize (EventArgs e)
 		{
-			base.OnResize (e);
-			Render ();
+			base.OnResize (e);			
 		}
 
 		public static float ToRadians (float degrees)

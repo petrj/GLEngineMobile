@@ -7,6 +7,9 @@ using Android.Content.PM;
 using Android.Views;
 using LoggerService;
 using GLEngineMobileDemo;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GLEngineMobileDemo
 {    
@@ -27,7 +30,7 @@ namespace GLEngineMobileDemo
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
 
             paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
-
+            
             /*
             // Find the views whose visibility will change
             mMenuContainer = FindViewById(Resource.Id.hidecontainer);

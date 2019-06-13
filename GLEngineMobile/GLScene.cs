@@ -157,6 +157,15 @@ namespace GLEngineMobile
 
                     Objects.Add(planet);
                 }
+
+                var spaceShips = sceneNode.SelectNodes("./spaceShip");
+                foreach (XmlElement spaceShipNode in spaceShips)
+                {
+                    var spaceShip = new GLSpaceShip();
+                    spaceShip.LoadFromXmlElement(context, spaceShipNode);
+
+                    Objects.Add(spaceShip);
+                }
             }
 		}
 
