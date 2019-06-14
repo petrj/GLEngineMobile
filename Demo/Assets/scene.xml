@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <scene name="scene">
   <spaceShip name="Enterprise" source="enterprise.xml" />
+  <cube name="Cube" size="2" texture="borg">
+     <point name="Position" x="10" y="0"  z="4"></point>
+  </cube>
   <obj name="Observer">
     <point name="Position" x="0" y="0"  z="-20"></point>
     <vector name="Rotation" x="-40" y="-90"  z="0"></vector>

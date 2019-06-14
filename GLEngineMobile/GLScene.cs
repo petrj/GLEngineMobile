@@ -13,6 +13,7 @@ using OpenTK.Graphics.ES11;
 using OpenTK.Platform;
 using OpenTK.Platform.Android;
 using OpenTK;
+using Android.Graphics.Drawables;
 
 namespace GLEngineMobile
 {
@@ -44,13 +45,19 @@ namespace GLEngineMobile
 
 		public void LoadTextures(Context context)
 		{
+            foreach (var f in typeof(Drawable).GetFields())
+            {
+                System.Diagnostics.Debug.WriteLine($"{f.Name} {f.GetValue(null)}");
+            }
+
             GLTextureAdmin.AddTextureFromResource(context, "earth");
             GLTextureAdmin.AddTextureFromResource(context, "moon");
             GLTextureAdmin.AddTextureFromResource(context, "tex");
             GLTextureAdmin.AddTextureFromResource(context, "darkgray");
             GLTextureAdmin.AddTextureFromResource(context, "f_spot");
             GLTextureAdmin.AddTextureFromResource(context, "pattern");
-		}
+            GLTextureAdmin.AddTextureFromResource(context, "borg");
+        }
 
 		public GLObj GetObjectByName(string name)
 		{
@@ -165,6 +172,15 @@ namespace GLEngineMobile
                     spaceShip.LoadFromXmlElement(context, spaceShipNode);
 
                     Objects.Add(spaceShip);
+                }
+
+                var cubeNodes = sceneNode.SelectNodes("./cube");
+                foreach (XmlElement cubeNode in cubeNodes)
+                {
+                    var cube = new GLCube();
+                    cube.LoadFromXmlElement(context, cubeNode);
+
+                    Objects.Add(cube);
                 }
             }
 		}
