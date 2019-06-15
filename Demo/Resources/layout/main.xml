@@ -32,18 +32,16 @@
 
 		<LinearLayout android:id="@+id/hidecontainer"
 			android:orientation="vertical"
-			android:visibility="gone"
+			android:visibility="visible"
 			android:background="@drawable/translucent"
-			android:gravity="center"
+			android:gravity="bottom|left"                  
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
-
-			<Button android:id="@+id/switch_texture"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:visibility="gone"
-				android:text="@string/switch_texture"/>
+      
+      <ImageView android:id="@+id/cross"
+        android:src="@drawable/cross"
+        android:layout_width="135dp"
+        android:layout_height="135dp" />      	
 		</LinearLayout>
 	</FrameLayout>    
   <LinearLayout 
@@ -59,4 +57,4 @@
       android:layout_width="wrap_content"
 		  android:layout_height="wrap_content"/>
   </LinearLayout>  
-  </LinearLayout>
+</LinearLayout>

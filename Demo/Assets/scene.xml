@@ -8,7 +8,7 @@
     <point name="Position" x="0" y="0"  z="-20"></point>
     <vector name="Rotation" x="-40" y="-90"  z="0"></vector>
   </obj>  
-  <planet name="Earth" radius="2" slices="15" stacks="15" texture="earth">
+  <planet name="Earth" radius="2" slices="10" stacks="10" texture="earth">
     	<point name="Position" x="0" y="0"  z="0"></point>
     	<vector name="Rotation" x="0" y="0"  z="0"></vector>
     	<vector name="RotationSpeed" x="0" y="0"  z="0"></vector>

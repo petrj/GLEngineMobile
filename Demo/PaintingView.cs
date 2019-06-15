@@ -142,13 +142,15 @@ namespace GLEngineMobileDemo
 
 		protected override void OnLoad (EventArgs e)
 		{            
-			GL.ShadeModel (All.Smooth);
-			GL.ClearColor (0, 0, 0, 1);
+			//GL.ShadeModel (All.Flat);
+            GL.ShadeModel(All.Smooth);
+            GL.ClearColor (0, 0, 0, 1);
 
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
 			GL.DepthFunc (All.Lequal);
 
+            
             /*
 			GL.Enable (All.CullFace);
 			GL.CullFace (All.Back);
@@ -163,9 +165,10 @@ namespace GLEngineMobileDemo
 
             var ent = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
             ent.MoveToCenter();
-            ent.Magnify(0.12);
+            ent.Magnify(0.12);            
             ent.OrbitEllipse.RadiusMajor = 6;
             ent.OrbitEllipse.RadiusMinor = 5;
+            ent.OrbitAngle = 270;            
 
             SetupCamera();			
 		}
@@ -208,20 +211,23 @@ namespace GLEngineMobileDemo
             var x = e.GetX();
             var y = e.GetY();
 
+            var tcme = TapCrossMoveEvent.GetTapMoveEvent(135, 135, x, y - (Height - 135)); 
+
             base.OnTouchEvent (e);
+
             if (e.Action == MotionEventActions.Down)
             {
                 _fingerTapCoordinates.X = x;
                 _fingerTapCoordinates.Y = y;
 
-                Logger.Info($"Down:");
+                Logger.Info($"Down: {x}:{y}");
             }           
             else
             if (e.Action == MotionEventActions.Pointer2Down)
             {
                 // second finger down 
 
-                Logger.Info($"Pointer2Down:");
+                Logger.Info($"Pointer2Down: {x}:{y}");
             } else
 			if (e.Action == MotionEventActions.Move)
             {
@@ -263,16 +269,15 @@ namespace GLEngineMobileDemo
                         }
                     }
                 }
-                else if (!_zoom)
+                else if (!_zoom && tcme==null)
                 {
                     Logger.Info($"Move:");
-
+                    
                     float xdiff = ((float)_fingerTapCoordinates.X - x);
                     float ydiff = ((float)_fingerTapCoordinates.Y - y);
+
                     _scene.Observer.Rotation.X += ydiff;
                     _scene.Observer.Rotation.Y += xdiff;
-                    //_xangle = _xangle + ydiff;
-                    //_yangle = _yangle + xdiff;
 
                     _fingerTapCoordinates.X = x;
                     _fingerTapCoordinates.Y = y;
@@ -284,7 +289,29 @@ namespace GLEngineMobileDemo
                 _zoom = false;
             }
 
-			return true;
+            if (tcme != null)
+            {
+                var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
+
+                if (tcme.Right > 0)
+                {
+                    enterprise.Rotation.Y -= tcme.Right / 20.0;
+                }
+                if (tcme.Left > 0)
+                {
+                    enterprise.Rotation.Y += tcme.Left / 20.0;
+                }
+                if (tcme.Top > 0)
+                {
+                    enterprise.Rotation.Z += tcme.Top / 20.0;
+                }
+                if (tcme.Bottom > 0)
+                {
+                    enterprise.Rotation.Z -= tcme.Bottom / 20.0;
+                }
+            }
+
+            return true;
 		}
 
 		protected override void OnUnload (EventArgs e)
@@ -296,10 +323,7 @@ namespace GLEngineMobileDemo
 		{
             MakeCurrent();
 
-            _scene.Render();
-
-            var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
-            enterprise.OrbitAngle = enterprise.OrbitAngle-5;
+            _scene.Render();        
 
             var planet = _scene.GetObjectByName("Earth") as GLPlanet;
             foreach (var satellite in planet.Satellites)
