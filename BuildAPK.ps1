@@ -14,10 +14,10 @@ function Create-APK
        [Parameter(Mandatory=$true)]
        $msbuild,
 
-	   [ValidateSet("16", "27")]
+	   [ValidateSet("19", "28")]
        $MinSdkVersion,
 
-	   [ValidateSet("16", "27")]
+	   [ValidateSet("19", "28")]
 	   $TargetSdkVersion,
 
 
@@ -94,5 +94,8 @@ if (-not (Test-Path -Path "nuget.exe"))
 
 .\nuget.exe restore .\GLEngineMobile.sln
 
-Create-APK -ProjFileName "$scriptPath\Demo\Demo.csproj" -MinSdkVersion 16 -TargetSdkVersion 27 -msbuild $msbuild | Move-Item -Destination  . -Verbose -Force
-Create-APK -ProjFileName "$scriptPath\Demo\Demo.csproj" -MinSdkVersion 16 -TargetSdkVersion 27 -msbuild $msbuild -Target "Debug" | Move-Item -Destination  . -Verbose -Force
+Create-APK -ProjFileName "$scriptPath\SpaceDemo\SpaceDemo.csproj" -MinSdkVersion 19 -TargetSdkVersion 28 -msbuild $msbuild | Move-Item -Destination  . -Verbose -Force
+Create-APK -ProjFileName "$scriptPath\SpaceDemo\SpaceDemo.csproj" -MinSdkVersion 19 -TargetSdkVersion 28 -msbuild $msbuild -Target "Debug" | Move-Item -Destination  . -Verbose -Force
+
+Create-APK -ProjFileName "$scriptPath\LabyrinthDemo\LabyrinthDemo.csproj" -MinSdkVersion 19 -TargetSdkVersion 28 -msbuild $msbuild | Move-Item -Destination  . -Verbose -Force
+Create-APK -ProjFileName "$scriptPath\LabyrinthDemo\LabyrinthDemo.csproj" -MinSdkVersion 19 -TargetSdkVersion 28 -msbuild $msbuild -Target "Debug" | Move-Item -Destination  . -Verbose -Force

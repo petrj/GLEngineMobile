@@ -17,7 +17,7 @@ using System.IO;
 using Android.Widget;
 using System.Threading.Tasks;
 
-namespace GLEngineMobileDemo
+namespace GLEngineMobileSpaceDemo
 {
 	class PaintingView : AndroidGameView
 	{
@@ -211,8 +211,6 @@ namespace GLEngineMobileDemo
             var x = e.GetX();
             var y = e.GetY();
 
-            var tcme = TapCrossMoveEvent.GetTapMoveEvent(135, 135, x, y - (Height - 135)); 
-
             base.OnTouchEvent (e);
 
             if (e.Action == MotionEventActions.Down)
@@ -269,7 +267,7 @@ namespace GLEngineMobileDemo
                         }
                     }
                 }
-                else if (!_zoom && tcme==null)
+                else if (!_zoom)
                 {
                     Logger.Info($"Move:");
                     
@@ -287,29 +285,7 @@ namespace GLEngineMobileDemo
             if (e.Action == MotionEventActions.Up)
             {
                 _zoom = false;
-            }
-
-            if (tcme != null)
-            {
-                var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
-
-                if (tcme.Right > 0)
-                {
-                    enterprise.Rotation.Y -= tcme.Right / 20.0;
-                }
-                if (tcme.Left > 0)
-                {
-                    enterprise.Rotation.Y += tcme.Left / 20.0;
-                }
-                if (tcme.Top > 0)
-                {
-                    enterprise.Rotation.Z += tcme.Top / 20.0;
-                }
-                if (tcme.Bottom > 0)
-                {
-                    enterprise.Rotation.Z -= tcme.Bottom / 20.0;
-                }
-            }
+            }            
 
             return true;
 		}
@@ -323,7 +299,10 @@ namespace GLEngineMobileDemo
 		{
             MakeCurrent();
 
-            _scene.Render();        
+            _scene.Render();
+
+            var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
+            enterprise.OrbitAngle += 3;
 
             var planet = _scene.GetObjectByName("Earth") as GLPlanet;
             foreach (var satellite in planet.Satellites)

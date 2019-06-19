@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GLEngineMobile", "GLEngineM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{3DC9078A-EC4A-4253-A6FC-FD157C815CD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDemo", "SpaceDemo\SpaceDemo.csproj", "{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthDemo", "LabyrinthDemo\LabyrinthDemo.csproj", "{E083685B-5206-4205-A43F-DB5491091314}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,12 @@ Global
 		{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E083685B-5206-4205-A43F-DB5491091314}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

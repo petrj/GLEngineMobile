@@ -6,19 +6,16 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Views;
 using LoggerService;
-using GLEngineMobileDemo;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GLEngineMobileDemo
+namespace GLEngineMobileSpaceDemo
 {    
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_texturedcube",
+    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/SpaceDemoIcon",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : AppCompatActivity
     {
-        //View mMenuContainer, mSwitchTexture;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -30,36 +27,16 @@ namespace GLEngineMobileDemo
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
 
             paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
-            
-            /*
-            // Find the views whose visibility will change
-            mMenuContainer = FindViewById(Resource.Id.hidecontainer);
-            mSwitchTexture = FindViewById(Resource.Id.switch_texture);
-            //mSwitchTexture.Click += delegate { glp.SwitchTexture(); };
-
-            // Find our buttons
-            Button showButton = FindViewById<Button>(Resource.Id.show);
-            Button hideButton = FindViewById<Button>(Resource.Id.hide);
-
-            // Wire each button to a click listener
-            showButton.Click += delegate { SetVisibility(ViewStates.Visible); };
-            hideButton.Click += delegate { SetVisibility(ViewStates.Gone); };
-            */
 
             Logger.InitLoggerService(new BasicLoggingService());
-            Logger.Info("Starting activity");
+            Logger.Info("Starting Space Demo");
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        void SetVisibility(ViewStates state)
-        {
-            //mSwitchTexture.Visibility = state;
-            //mMenuContainer.Visibility = state;
         }
     }
 }

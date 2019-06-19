@@ -4,8 +4,10 @@ cd $PSScriptRoot
 foreach ($folder in `
     @(
         ".vs",
-        "Demo\bin",
-        "Demo\obj",
+        "LabyrinthDemo\bin",		
+        "LabyrinthDemo\obj",
+        "SpaceDemo\bin",
+        "SpaceDemo\obj",		
 		"GLEngineMobile\bin",
         "GLEngineMobile\obj",		
         "LoggerService\bin",

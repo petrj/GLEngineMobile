@@ -25,24 +25,10 @@
 		android:layout_height="0px"
 		android:layout_weight="1">
 
-    <GLEngineMobileDemo.PaintingView
+    <GLEngineMobileSpaceDemo.PaintingView
 			android:id="@+id/paintingview"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
-
-		<LinearLayout android:id="@+id/hidecontainer"
-			android:orientation="vertical"
-			android:visibility="visible"
-			android:background="@drawable/translucent"
-			android:gravity="bottom|left"                  
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-      
-      <ImageView android:id="@+id/cross"
-        android:src="@drawable/cross"
-        android:layout_width="135dp"
-        android:layout_height="135dp" />      	
-		</LinearLayout>
 	</FrameLayout>    
   <LinearLayout 
     android:orientation="horizontal"
