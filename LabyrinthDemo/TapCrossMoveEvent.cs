@@ -34,6 +34,12 @@ namespace GLEngineMobileLabyrinthDemo
         {
             var res = new TapCrossMoveEvent();
 
+            if ( (x<0) || (x>width) ||
+                 (y < 0) || (y > height))
+            {
+                return null;
+            }
+
             var cx = (float)width / 2.0;
             var cy = (float)height / 2.0;
 

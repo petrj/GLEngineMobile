@@ -23,7 +23,6 @@ namespace GLEngineMobileLabyrinthDemo
             SetContentView(Resource.Layout.main);
 
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
-
             paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
          
             Logger.InitLoggerService(new BasicLoggingService());

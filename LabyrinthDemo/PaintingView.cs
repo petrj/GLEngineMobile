@@ -46,16 +46,20 @@ namespace GLEngineMobileLabyrinthDemo
             //_scene.Observer.Rotation.X = -45;
             //_scene.Observer.Rotation.Y = 20;
 
-            var elipse = new GLEllipse()
-            {
-                RadiusMajor = 4,
-                RadiusMinor = 4,
-                FillColor = Color.Yellow
-            };
+            //var elipse = new GLEllipse()
+            //{
+            //    RadiusMajor = 4,
+            //    RadiusMinor = 4,
+            //    FillColor = Color.Yellow
+            //};
 
-            //_scene.Objects.Add(new GLAxis());
-            _scene.Objects.Add(new GLStarSpace() { Count = 200 });
-            //_scene.Objects.Add(elipse);
+            var labyrinth = new GLLabyrinthObj();
+            labyrinth.Name = "labyrinth";
+            labyrinth.Generate();
+            _scene.Observer.Position = labyrinth.LabPointToScenePoint(labyrinth.StartPos);
+            _scene.Observer.Rotation = new GLVector(0, 0, 0);
+
+            _scene.Objects.Add(labyrinth);
 
             Resize += delegate 
             {
@@ -64,8 +68,9 @@ namespace GLEngineMobileLabyrinthDemo
 				SetupCamera ();
 			};
 
-            Run(20); // 20 fps
+            //Render();
 
+            Run(20); // 20 fps
             RenderFrame += PaintingView_RenderFrame;            
         }
 
@@ -149,7 +154,6 @@ namespace GLEngineMobileLabyrinthDemo
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
 			GL.DepthFunc (All.Lequal);
-
             
             /*
 			GL.Enable (All.CullFace);
@@ -159,16 +163,32 @@ namespace GLEngineMobileLabyrinthDemo
             GL.Enable(All.Texture2D);           
             */
 
-            _scene.LoadTextures(Context);   
+            _scene.LoadTextures(Context);
 
-            _scene.LoadFromAndroidAsset(Context, "scene.xml");
+            GLTextureAdmin.AddTextureFromResource(Context, "blue0");
+            GLTextureAdmin.AddTextureFromResource(Context, "blue1");
 
-            var ent = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
-            ent.MoveToCenter();
-            ent.Magnify(0.12);            
-            ent.OrbitEllipse.RadiusMajor = 6;
-            ent.OrbitEllipse.RadiusMinor = 5;
-            ent.OrbitAngle = 270;            
+            GLTextureAdmin.AddTextureFromResource(Context, "labBottom");
+            GLTextureAdmin.AddTextureFromResource(Context, "labBottomF");
+            GLTextureAdmin.AddTextureFromResource(Context, "labBottomL");
+            GLTextureAdmin.AddTextureFromResource(Context, "labBottomS");
+
+            GLTextureAdmin.AddTextureFromResource(Context, "labTop");
+            GLTextureAdmin.AddTextureFromResource(Context, "labTopF");
+            GLTextureAdmin.AddTextureFromResource(Context, "labTopL");
+            GLTextureAdmin.AddTextureFromResource(Context, "labTopS");
+
+            GLTextureAdmin.AddTextureFromResource(Context, "labWall0");
+            GLTextureAdmin.AddTextureFromResource(Context, "labWall1");
+            GLTextureAdmin.AddTextureFromResource(Context, "labWall2");
+            GLTextureAdmin.AddTextureFromResource(Context, "labWall3");
+
+            GLTextureAdmin.AddTextureFromResource(Context, "labWallF");
+            GLTextureAdmin.AddTextureFromResource(Context, "labWallL");
+            GLTextureAdmin.AddTextureFromResource(Context, "labWallS");
+
+            GLTextureAdmin.AddTextureFromResource(Context, "money");
+            GLTextureAdmin.AddTextureFromResource(Context, "moneySmall");
 
             SetupCamera();			
 		}
@@ -181,11 +201,14 @@ namespace GLEngineMobileLabyrinthDemo
 			GL.Viewport(0, 0, width, height);
 			// setup projection matrix
 			GL.MatrixMode(All.Projection);
-			GL.LoadIdentity();
+			//GL.LoadIdentity();
 
-			// gluPerspective
-			Matrix4 m = Matrix4.CreatePerspectiveFieldOfView (ToRadians (45.0f), (float)width / (float)height, 1.0f, 100.0f);
-			float [] perspective_m = new float [16];
+            // gluPerspective
+            //Matrix4 m = Matrix4.CreatePerspectiveFieldOfView (ToRadians (45.0f), (float)width / (float)height, 1.0f, 10000.0f);
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
+
+            
+            float [] perspective_m = new float [16];
 
 			int i = 0;
 			perspective_m [i + 0] = m.Row0.X; perspective_m [i + 1] = m.Row0.Y;
@@ -202,116 +225,45 @@ namespace GLEngineMobileLabyrinthDemo
 
 			perspective_m [i + 0] = m.Row3.X; perspective_m [i + 1] = m.Row3.Y;
 			perspective_m [i + 2] = m.Row3.Z; perspective_m [i + 3] = m.Row3.W;
-
+            
+            //GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadMatrix (perspective_m);
 		}
-        
-		public override bool OnTouchEvent (MotionEvent e)
-		{   
-            var x = e.GetX();
-            var y = e.GetY();
 
-            var tcme = TapCrossMoveEvent.GetTapMoveEvent(135, 135, x, y - (Height - 135)); 
+        public float PxFromDp(float dp)
+        {
+            return dp * Context.Resources.DisplayMetrics.Density;
+        }
 
-            base.OnTouchEvent (e);
-
-            if (e.Action == MotionEventActions.Down)
-            {
-                _fingerTapCoordinates.X = x;
-                _fingerTapCoordinates.Y = y;
-
-                Logger.Info($"Down: {x}:{y}");
-            }           
-            else
-            if (e.Action == MotionEventActions.Pointer2Down)
-            {
-                // second finger down 
-
-                Logger.Info($"Pointer2Down: {x}:{y}");
-            } else
-			if (e.Action == MotionEventActions.Move)
-            {
-                if (e.PointerCount > 1)
-                {
-                    if (!_zoom)
-                    {
-                        _zoom = true;                        
-
-                        _fingerTapCoordinates = new GLPoint(e.GetX(0), e.GetY(0), 0);
-                        _finger2TapCoordinates = new GLPoint(e.GetX(1), e.GetY(1), 0);
-                    }
-                    else
-                    {
-                        Logger.Info($"Zoom:");
-
-                        var originalDistance = _fingerTapCoordinates.DistanceToPoint(_finger2TapCoordinates);
-
-                        var actualFinger1TapCoordinates = new GLPoint(e.GetX(0), e.GetY(0), 0);
-                        var actualFinger2TapCoordinates = new GLPoint(e.GetX(1), e.GetY(1), 0);
-
-                        var newDistance = actualFinger1TapCoordinates.DistanceToPoint(actualFinger2TapCoordinates);
-
-                        if (originalDistance != 0)
-                        {
-                            var ratio = newDistance / originalDistance;
-
-                            if (ratio < 0.9)
-                            {
-                                _scene.Magnify(0.9f);
-                            }
-                            else
-                            if (ratio > 1.1)
-                            {
-                                _scene.Magnify(1.1f);
-                            }
-
-                            Logger.Info($"Move: PinchToZoom, originalDistance: {originalDistance:N2}, newDistance: {newDistance:N2}, ratio: {ratio}");
-                        }
-                    }
-                }
-                else if (!_zoom && tcme==null)
-                {
-                    Logger.Info($"Move:");
-                    
-                    float xdiff = ((float)_fingerTapCoordinates.X - x);
-                    float ydiff = ((float)_fingerTapCoordinates.Y - y);
-
-                    _scene.Observer.Rotation.X += ydiff;
-                    _scene.Observer.Rotation.Y += xdiff;
-
-                    _fingerTapCoordinates.X = x;
-                    _fingerTapCoordinates.Y = y;
-                }
-			}
-
-            if (e.Action == MotionEventActions.Up)
-            {
-                _zoom = false;
-            }
-
+        public override bool OnTouchEvent (MotionEvent e)
+	    {
+            var tcme = TapCrossMoveEvent.GetTapMoveEvent(Convert.ToInt32(PxFromDp(135)), Convert.ToInt32(PxFromDp(135)), e.GetX(), e.GetY() - (Height - 135)); 
+                        
             if (tcme != null)
-            {
-                var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
-
+            {                
                 if (tcme.Right > 0)
                 {
-                    enterprise.Rotation.Y -= tcme.Right / 20.0;
+                    _scene.Observer.Rotation.X += 0.5;
                 }
                 if (tcme.Left > 0)
                 {
-                    enterprise.Rotation.Y += tcme.Left / 20.0;
+                    _scene.Observer.Rotation.X -= 0.5;
                 }
                 if (tcme.Top > 0)
                 {
-                    enterprise.Rotation.Z += tcme.Top / 20.0;
+                  
                 }
                 if (tcme.Bottom > 0)
                 {
-                    enterprise.Rotation.Z -= tcme.Bottom / 20.0;
+                    
                 }
-            }
 
-            return true;
+                return true;
+
+            } else
+            {
+                return base.OnTouchEvent(e);
+            }            
 		}
 
 		protected override void OnUnload (EventArgs e)
@@ -324,17 +276,10 @@ namespace GLEngineMobileLabyrinthDemo
             MakeCurrent();
 
             _scene.Render();        
-
-            var planet = _scene.GetObjectByName("Earth") as GLPlanet;
-            foreach (var satellite in planet.Satellites)
-            {
-                satellite.OrbitAngle = satellite.OrbitAngle - 2;
-            }
-            planet.Rotation.Y -= 5;
-
+            
             if (RotationLabel != null)
             {
-                RotationLabel.Text = $"Rotation: : {_scene.Observer.Rotation.ToString()}";
+                RotationLabel.Text = $"Position: {_scene.Observer.Position.ToString()} Rotation: : {_scene.Observer.Rotation.ToString()}";
             }
 
             SwapBuffers();

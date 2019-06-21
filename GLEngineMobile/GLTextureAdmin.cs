@@ -35,15 +35,15 @@ namespace GLEngineMobile
 		}
 
 		public static GLTexture AddTextureFromResource(Context context, string name)
-		{
-            if (Textures.ContainsKey(name))
+		{            
+            if (Textures.ContainsKey(name.ToLower()))
             {
                 Logger.Info($"Texture {name} already loaded");
-                return Textures[name];
+                return Textures[name.ToLower()];
             }
 
-            var tex = GLTexture.CreateFromResource(context, name);
-            Textures.Add(name, tex);
+            var tex = GLTexture.CreateFromResource(context, name.ToLower());
+            Textures.Add(name.ToLower(), tex);
 
             return tex;
         }
