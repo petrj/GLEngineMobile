@@ -80,10 +80,11 @@ namespace GLEngineMobile
 
             var op = Observer.Position;
             var or = Observer.Rotation;
-
+                        
             GL.Translate((float)op.X, (float)op.Y, (float)op.Z);
             GL.Rotate(-(float)or.X, 1, 0, 0);
             GL.Rotate(-(float)or.Y, 0, 1, 0);
+
 
             foreach (var obj in Objects)
 			{

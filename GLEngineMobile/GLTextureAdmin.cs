@@ -27,9 +27,9 @@ namespace GLEngineMobile
 
 		public static GLTexture GetTextureByName(string name)
 		{
-			if (Textures.ContainsKey(name))
+			if (Textures.ContainsKey(name.ToLower()))
 			{
-				return Textures[name];
+				return Textures[name.ToLower()];
 			} else
 			return null;
 		}

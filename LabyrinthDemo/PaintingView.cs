@@ -43,21 +43,8 @@ namespace GLEngineMobileLabyrinthDemo
 		{
             _scene = new GLScene();
 
-            //_scene.Observer.Rotation.X = -45;
-            //_scene.Observer.Rotation.Y = 20;
-
-            //var elipse = new GLEllipse()
-            //{
-            //    RadiusMajor = 4,
-            //    RadiusMinor = 4,
-            //    FillColor = Color.Yellow
-            //};
-
             var labyrinth = new GLLabyrinthObj();
-            labyrinth.Name = "labyrinth";
-            labyrinth.Generate();
-            _scene.Observer.Position = labyrinth.LabPointToScenePoint(labyrinth.StartPos);
-            _scene.Observer.Rotation = new GLVector(0, 0, 0);
+            labyrinth.Name = "labyrinth";          
 
             _scene.Objects.Add(labyrinth);
 
@@ -163,6 +150,7 @@ namespace GLEngineMobileLabyrinthDemo
             GL.Enable(All.Texture2D);           
             */
 
+
             _scene.LoadTextures(Context);
 
             GLTextureAdmin.AddTextureFromResource(Context, "blue0");
@@ -190,6 +178,17 @@ namespace GLEngineMobileLabyrinthDemo
             GLTextureAdmin.AddTextureFromResource(Context, "money");
             GLTextureAdmin.AddTextureFromResource(Context, "moneySmall");
 
+            var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
+            labyrinth.Generate();
+
+            _scene.Observer.Position = labyrinth.LabPointToScenePoint(labyrinth.StartPos);
+            _scene.Observer.Rotation = new GLVector(0, 180, 0);
+
+            Logger.InitLoggerService(new BasicLoggingService());
+            Logger.Info("BottomRight: " + labyrinth.BottomRight.ToString());
+            Logger.Info("UpperLeft: " + labyrinth.UpperLeft.ToString());
+            Logger.Info("Observer position: " + _scene.Observer.Position.ToString());
+
             SetupCamera();			
 		}
 
@@ -205,7 +204,7 @@ namespace GLEngineMobileLabyrinthDemo
 
             // gluPerspective
             //Matrix4 m = Matrix4.CreatePerspectiveFieldOfView (ToRadians (45.0f), (float)width / (float)height, 1.0f, 10000.0f);
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 10000.0f);
 
             
             float [] perspective_m = new float [16];
@@ -237,25 +236,27 @@ namespace GLEngineMobileLabyrinthDemo
 
         public override bool OnTouchEvent (MotionEvent e)
 	    {
-            var tcme = TapCrossMoveEvent.GetTapMoveEvent(Convert.ToInt32(PxFromDp(135)), Convert.ToInt32(PxFromDp(135)), e.GetX(), e.GetY() - (Height - 135)); 
+            var crossSize = Convert.ToInt32(PxFromDp(135));
+            var tcme = TapCrossMoveEvent.GetTapMoveEvent(crossSize, crossSize, e.GetX(), e.GetY() - (Height - crossSize)); 
                         
             if (tcme != null)
             {                
-                if (tcme.Right > 0)
+                if (tcme.Right > 50)
                 {
-                    _scene.Observer.Rotation.X += 0.5;
-                }
-                if (tcme.Left > 0)
-                {
-                    _scene.Observer.Rotation.X -= 0.5;
-                }
-                if (tcme.Top > 0)
-                {
-                  
-                }
-                if (tcme.Bottom > 0)
-                {
+                    _scene.Observer.Rotation.Y -= tcme.Right/20f;
                     
+                }
+                if (tcme.Left > 50)
+                {
+                    _scene.Observer.Rotation.Y += tcme.Left / 20f;                     
+                }
+                if (tcme.Top > 50)
+                {
+                    _scene.Go(0);
+                }
+                if (tcme.Bottom > 50)
+                {
+                    _scene.Go(1);
                 }
 
                 return true;

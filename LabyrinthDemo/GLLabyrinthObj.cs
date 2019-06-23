@@ -80,7 +80,7 @@ namespace GLEngineMobileLabyrinthDemo
 		
 		public GLPoint LabPointToScenePoint(Point P)
 		{
-			var glP = new GLPoint((-TileWidth)*P.X,-8,30+(-TileWidth)*(P.Y+1));
+			var glP = new GLPoint((TileWidth)*P.X,-3,(TileWidth)*(P.Y));
 			return glP;
 		}
 
@@ -329,12 +329,14 @@ namespace GLEngineMobileLabyrinthDemo
 			{			
 				var leftPolygon = new GLPolygon();
 				leftPolygon.Points = new List<GLPoint>() 			
-					{ 	
-						new GLPoint(x+TileWidth,y,z+TileWidth),
+					{
+
+                        new GLPoint(x+TileWidth,y,z+TileWidth),
 						new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
 						new GLPoint(x+TileWidth,y+TileWidth,z),
 						new GLPoint(x+TileWidth,y,z)
-					};				
+                     
+                    };				
 				
 				leftPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(leftPolygon);
@@ -346,11 +348,11 @@ namespace GLEngineMobileLabyrinthDemo
 				var rightPolygon = new GLPolygon();
 				rightPolygon.Points = new List<GLPoint>() 			
 					{ 	
-						new GLPoint(x,y,z+TileWidth),
+   						new GLPoint(x,y,z+TileWidth),
 						new GLPoint(x,y+TileWidth,z+TileWidth),
 						new GLPoint(x,y+TileWidth,z),
-						new GLPoint(x,y,z)
-					};				
+						new GLPoint(x,y,z)               
+                    };				
 				
 				rightPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);											
 				polygons.Add(rightPolygon);
