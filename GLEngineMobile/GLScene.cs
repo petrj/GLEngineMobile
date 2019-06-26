@@ -19,7 +19,7 @@ namespace GLEngineMobile
 {
 	public class GLScene : IDisposable
 	{
-		private DateTime _FullScreenSetTime;
+        private DateTime _FullScreenSetTime;
 
 		public List<GLObj> Objects { get; set; }
 
@@ -40,24 +40,7 @@ namespace GLEngineMobile
 			ObjectsDirectory = "obj";
 			_FullScreenSetTime = DateTime.Now.AddSeconds (-60);
 			State = AutoPilotStateEnum.Stoppped;
-		}	
-
-
-		public void LoadTextures(Context context)
-		{
-            foreach (var f in typeof(Drawable).GetFields())
-            {
-                System.Diagnostics.Debug.WriteLine($"{f.Name} {f.GetValue(null)}");
-            }
-
-            GLTextureAdmin.AddTextureFromResource(context, "earth");
-            GLTextureAdmin.AddTextureFromResource(context, "moon");
-            GLTextureAdmin.AddTextureFromResource(context, "tex");
-            GLTextureAdmin.AddTextureFromResource(context, "darkgray");
-            GLTextureAdmin.AddTextureFromResource(context, "f_spot");
-            GLTextureAdmin.AddTextureFromResource(context, "pattern");
-            GLTextureAdmin.AddTextureFromResource(context, "borg");
-        }
+		}	               
 
 		public GLObj GetObjectByName(string name)
 		{
@@ -80,11 +63,12 @@ namespace GLEngineMobile
 
             var op = Observer.Position;
             var or = Observer.Rotation;
-                        
-            GL.Translate((float)op.X, (float)op.Y, (float)op.Z);
-            GL.Rotate(-(float)or.X, 1, 0, 0);
-            GL.Rotate(-(float)or.Y, 0, 1, 0);
 
+            GL.Rotate((float)or.X, 1, 0, 0);
+            GL.Rotate((float)or.Y, 0, 1, 0);
+            GL.Rotate((float)or.Z, 0, 0, 1);
+
+            GL.Translate((float)op.X, (float)op.Y, (float)op.Z);
 
             foreach (var obj in Objects)
 			{

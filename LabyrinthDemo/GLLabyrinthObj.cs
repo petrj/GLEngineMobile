@@ -80,7 +80,7 @@ namespace GLEngineMobileLabyrinthDemo
 		
 		public GLPoint LabPointToScenePoint(Point P)
 		{
-			var glP = new GLPoint((TileWidth)*P.X,-3,(TileWidth)*(P.Y));
+			var glP = new GLPoint(-(TileWidth)*P.X,-3,-(TileWidth)*(P.Y));
 			return glP;
 		}
 
@@ -299,11 +299,21 @@ namespace GLEngineMobileLabyrinthDemo
 		
 			var bottomPolygon = new GLPolygon();
 			bottomPolygon.Points = new List<GLPoint>() 
-				{ 	new GLPoint(x,y,z),
-					new GLPoint(x+TileWidth,y,z),
-					new GLPoint(x+TileWidth,y,z+TileWidth),
-					new GLPoint(x,y,z+TileWidth)
-				};
+				{
+
+                new GLPoint(x+TileWidth,y,z+TileWidth),
+                new GLPoint(x+TileWidth,y,z),
+                new GLPoint(x,y,z),
+
+                
+                new GLPoint(x,y,z+TileWidth),
+                
+
+                
+                
+                                
+
+                };
 				
 			bottomPolygon.Texture = specialBottomTexture == null ? GLTextureAdmin.GetTextureByName("labBottom") 
 																: GLTextureAdmin.GetTextureByName(specialBottomTexture);

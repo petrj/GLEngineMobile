@@ -23,7 +23,8 @@ namespace GLEngineMobile
             {
             	kvp.Value.Unload();
            	}
-		}
+            Textures = new Dictionary<string, GLTexture>();
+        }
 
 		public static GLTexture GetTextureByName(string name)
 		{
@@ -34,7 +35,15 @@ namespace GLEngineMobile
 			return null;
 		}
 
-		public static GLTexture AddTextureFromResource(Context context, string name)
+        public static void AddTexturesFromResource(Context context, IEnumerable<string> names)
+        {
+            foreach (var name in names)
+            {
+                AddTextureFromResource(context, name);
+            }
+        }
+
+        public static GLTexture AddTextureFromResource(Context context, string name)
 		{            
             if (Textures.ContainsKey(name.ToLower()))
             {

@@ -41,21 +41,10 @@ namespace GLEngineMobileSpaceDemo
 
 		private void Initialize ()
 		{
-            _scene = new GLScene();
-
-            //_scene.Observer.Rotation.X = -45;
-            //_scene.Observer.Rotation.Y = 20;
-
-            var elipse = new GLEllipse()
-            {
-                RadiusMajor = 4,
-                RadiusMinor = 4,
-                FillColor = Color.Yellow
-            };
+            _scene = new GLScene();         
 
             //_scene.Objects.Add(new GLAxis());
-            _scene.Objects.Add(new GLStarSpace() { Count = 200 });
-            //_scene.Objects.Add(elipse);
+            _scene.Objects.Add(new GLStarSpace() { Count = 200 });            
 
             Resize += delegate 
             {
@@ -141,35 +130,28 @@ namespace GLEngineMobileSpaceDemo
 		}
 
 		protected override void OnLoad (EventArgs e)
-		{            
-			//GL.ShadeModel (All.Flat);
+		{              
+            //GL.ShadeModel (All.Flat);
             GL.ShadeModel(All.Smooth);
-            GL.ClearColor (0, 0, 0, 1);
+            GL.ClearColor(0, 0, 0, 1);
 
-			GL.ClearDepth (1.0f);
-			GL.Enable (All.DepthTest);
-			GL.DepthFunc (All.Lequal);
+            GL.ClearDepth(1.0f);
+            GL.Enable(All.DepthTest);
+            GL.DepthFunc(All.Lequal);
 
-            
-            /*
-			GL.Enable (All.CullFace);
-			GL.CullFace (All.Back);
-
-			GL.Hint (All.PerspectiveCorrectionHint, All.Nicest);
-            GL.Enable(All.Texture2D);           
-            */
-
-            _scene.LoadTextures(Context);   
+            GLTextureAdmin.UnLoadGLTextures ();
+            GLTextureAdmin.AddTexturesFromResource(Context, new string[]
+            { "earth", "moon", "tex", "darkgray", "f_spot", "pattern", "borg" });
 
             _scene.LoadFromAndroidAsset(Context, "scene.xml");
 
             var ent = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
             ent.MoveToCenter();
-            ent.Magnify(0.12);            
+            ent.Magnify(0.12);
             ent.OrbitEllipse.RadiusMajor = 6;
             ent.OrbitEllipse.RadiusMinor = 5;
-            ent.OrbitAngle = 270;            
-
+            ent.OrbitAngle = 90;
+           
             SetupCamera();			
 		}
 
@@ -302,12 +284,12 @@ namespace GLEngineMobileSpaceDemo
             _scene.Render();
 
             var enterprise = _scene.GetObjectByName("Enterprise") as GLSpaceShip;
-            enterprise.OrbitAngle += 3;
+            enterprise.OrbitAngle -= 3;
 
             var planet = _scene.GetObjectByName("Earth") as GLPlanet;
             foreach (var satellite in planet.Satellites)
             {
-                satellite.OrbitAngle = satellite.OrbitAngle - 2;
+                satellite.OrbitAngle = satellite.OrbitAngle + 2;
             }
             planet.Rotation.Y += 5;
 

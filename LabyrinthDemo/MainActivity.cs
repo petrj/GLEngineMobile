@@ -10,7 +10,7 @@ using LoggerService;
 
 namespace GLEngineMobileLabyrinthDemo
 {    
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/app_texturedcube",
+    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/LabyrinthDemoIcon",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : AppCompatActivity
     {

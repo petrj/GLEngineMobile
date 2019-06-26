@@ -51,8 +51,8 @@ namespace GLEngineMobile
             {
                 new GLTexCoord() { X = 0, Y = 0 },
                 new GLTexCoord() { X = 0, Y = 1 },                
-                new GLTexCoord() { X = 1, Y = 0 },
-                new GLTexCoord() { X = 1, Y = 1 },                
+                new GLTexCoord() { X = 1, Y = 1 },
+                new GLTexCoord() { X = 1, Y = 0 },                
             });
         }
 

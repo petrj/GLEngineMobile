@@ -23,7 +23,6 @@ namespace GLEngineMobileLabyrinthDemo
 	{
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();        
-        bool _zoom = false;
         int width, height;
         GLScene _scene;
         public TextView RotationLabel { get; set; }
@@ -141,42 +140,17 @@ namespace GLEngineMobileLabyrinthDemo
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
 			GL.DepthFunc (All.Lequal);
-            
-            /*
-			GL.Enable (All.CullFace);
-			GL.CullFace (All.Back);
 
-			GL.Hint (All.PerspectiveCorrectionHint, All.Nicest);
-            GL.Enable(All.Texture2D);           
-            */
+            GLTextureAdmin.UnLoadGLTextures();
 
-
-            _scene.LoadTextures(Context);
-
-            GLTextureAdmin.AddTextureFromResource(Context, "blue0");
-            GLTextureAdmin.AddTextureFromResource(Context, "blue1");
-
-            GLTextureAdmin.AddTextureFromResource(Context, "labBottom");
-            GLTextureAdmin.AddTextureFromResource(Context, "labBottomF");
-            GLTextureAdmin.AddTextureFromResource(Context, "labBottomL");
-            GLTextureAdmin.AddTextureFromResource(Context, "labBottomS");
-
-            GLTextureAdmin.AddTextureFromResource(Context, "labTop");
-            GLTextureAdmin.AddTextureFromResource(Context, "labTopF");
-            GLTextureAdmin.AddTextureFromResource(Context, "labTopL");
-            GLTextureAdmin.AddTextureFromResource(Context, "labTopS");
-
-            GLTextureAdmin.AddTextureFromResource(Context, "labWall0");
-            GLTextureAdmin.AddTextureFromResource(Context, "labWall1");
-            GLTextureAdmin.AddTextureFromResource(Context, "labWall2");
-            GLTextureAdmin.AddTextureFromResource(Context, "labWall3");
-
-            GLTextureAdmin.AddTextureFromResource(Context, "labWallF");
-            GLTextureAdmin.AddTextureFromResource(Context, "labWallL");
-            GLTextureAdmin.AddTextureFromResource(Context, "labWallS");
-
-            GLTextureAdmin.AddTextureFromResource(Context, "money");
-            GLTextureAdmin.AddTextureFromResource(Context, "moneySmall");
+            GLTextureAdmin.AddTexturesFromResource(Context, new string[]
+            {
+                "labBottom", "labBottomF", "labBottomL", "labBottomS" ,
+                "labTop", "labTopF", "labTopL", "labTopS" ,
+                "labWall0", "labWall1", "labWall2", "labWall3" ,
+                "labWallF", "labWallL", "labWallS" ,
+                "money", "moneySmall", "blue0", "blue1"
+            });
 
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             labyrinth.Generate();
@@ -199,14 +173,10 @@ namespace GLEngineMobileLabyrinthDemo
 
 			GL.Viewport(0, 0, width, height);
 			// setup projection matrix
-			GL.MatrixMode(All.Projection);
-			//GL.LoadIdentity();
+			GL.MatrixMode(All.Projection);			
 
-            // gluPerspective
-            //Matrix4 m = Matrix4.CreatePerspectiveFieldOfView (ToRadians (45.0f), (float)width / (float)height, 1.0f, 10000.0f);
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 10000.0f);
-
-            
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
+                        
             float [] perspective_m = new float [16];
 
 			int i = 0;
@@ -225,7 +195,6 @@ namespace GLEngineMobileLabyrinthDemo
 			perspective_m [i + 0] = m.Row3.X; perspective_m [i + 1] = m.Row3.Y;
 			perspective_m [i + 2] = m.Row3.Z; perspective_m [i + 3] = m.Row3.W;
             
-            //GL.MatrixMode(MatrixMode.Projection);
 			GL.LoadMatrix (perspective_m);
 		}
 
@@ -243,20 +212,20 @@ namespace GLEngineMobileLabyrinthDemo
             {                
                 if (tcme.Right > 50)
                 {
-                    _scene.Observer.Rotation.Y -= tcme.Right/20f;
+                    _scene.Observer.Rotation.Y += tcme.Right/20f;
                     
                 }
                 if (tcme.Left > 50)
                 {
-                    _scene.Observer.Rotation.Y += tcme.Left / 20f;                     
+                    _scene.Observer.Rotation.Y -= tcme.Left / 20f;                     
                 }
                 if (tcme.Top > 50)
                 {
-                    _scene.Go(0);
+                    _scene.Go(1);
                 }
                 if (tcme.Bottom > 50)
                 {
-                    _scene.Go(1);
+                    _scene.Go(0);
                 }
 
                 return true;
