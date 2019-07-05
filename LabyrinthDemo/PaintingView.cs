@@ -22,11 +22,12 @@ namespace GLEngineMobileLabyrinthDemo
 	class PaintingView : AndroidGameView
 	{
         GLPoint _fingerTapCoordinates = new GLPoint();
-        GLPoint _finger2TapCoordinates = new GLPoint();        
-        int width, height;
-        GLScene _scene;
+        GLPoint _finger2TapCoordinates = new GLPoint();
+        private int width, height;
+        private TapCrossMoveEvent _lastTapCrossMove;
+        private GLScene _scene;
         public TextView RotationLabel { get; set; }
-
+        
         public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
 		{
@@ -52,17 +53,41 @@ namespace GLEngineMobileLabyrinthDemo
 				height = Height;
 				width = Width;
 				SetupCamera ();
-			};
+			};            
 
-            //Render();
-
-            Run(20); // 20 fps
+            Run(35); // 35 fps
             RenderFrame += PaintingView_RenderFrame;            
         }
-
-        private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
+        private void SetupCamera()
         {
-            Render();
+            width = Width;
+            height = Height;
+
+            GL.Viewport(0, 0, width, height);
+            // setup projection matrix
+            GL.MatrixMode(All.Projection);
+
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
+
+            float[] perspective_m = new float[16];
+
+            int i = 0;
+            perspective_m[i + 0] = m.Row0.X; perspective_m[i + 1] = m.Row0.Y;
+            perspective_m[i + 2] = m.Row0.Z; perspective_m[i + 3] = m.Row0.W;
+            i += 4;
+
+            perspective_m[i + 0] = m.Row1.X; perspective_m[i + 1] = m.Row1.Y;
+            perspective_m[i + 2] = m.Row1.Z; perspective_m[i + 3] = m.Row1.W;
+            i += 4;
+
+            perspective_m[i + 0] = m.Row2.X; perspective_m[i + 1] = m.Row2.Y;
+            perspective_m[i + 2] = m.Row2.Z; perspective_m[i + 3] = m.Row2.W;
+            i += 4;
+
+            perspective_m[i + 0] = m.Row3.X; perspective_m[i + 1] = m.Row3.Y;
+            perspective_m[i + 2] = m.Row3.Z; perspective_m[i + 3] = m.Row3.W;
+
+            GL.LoadMatrix(perspective_m);
         }
 
         // This method is called everytime the context needs
@@ -166,37 +191,10 @@ namespace GLEngineMobileLabyrinthDemo
             SetupCamera();			
 		}
 
-		void SetupCamera ()
-		{
-			width = Width;
-			height = Height;
+        protected override void OnUnload(EventArgs e)
+        {
 
-			GL.Viewport(0, 0, width, height);
-			// setup projection matrix
-			GL.MatrixMode(All.Projection);			
-
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
-                        
-            float [] perspective_m = new float [16];
-
-			int i = 0;
-			perspective_m [i + 0] = m.Row0.X; perspective_m [i + 1] = m.Row0.Y;
-			perspective_m [i + 2] = m.Row0.Z; perspective_m [i + 3] = m.Row0.W;
-			i += 4;
-
-			perspective_m [i + 0] = m.Row1.X; perspective_m [i + 1] = m.Row1.Y;
-			perspective_m [i + 2] = m.Row1.Z; perspective_m [i + 3] = m.Row1.W;
-			i += 4;
-
-			perspective_m [i + 0] = m.Row2.X; perspective_m [i + 1] = m.Row2.Y;
-			perspective_m [i + 2] = m.Row2.Z; perspective_m [i + 3] = m.Row2.W;
-			i += 4;
-
-			perspective_m [i + 0] = m.Row3.X; perspective_m [i + 1] = m.Row3.Y;
-			perspective_m [i + 2] = m.Row3.Z; perspective_m [i + 3] = m.Row3.W;
-            
-			GL.LoadMatrix (perspective_m);
-		}
+        }
 
         public float PxFromDp(float dp)
         {
@@ -206,42 +204,53 @@ namespace GLEngineMobileLabyrinthDemo
         public override bool OnTouchEvent (MotionEvent e)
 	    {
             var crossSize = Convert.ToInt32(PxFromDp(135));
-            var tcme = TapCrossMoveEvent.GetTapMoveEvent(crossSize, crossSize, e.GetX(), e.GetY() - (Height - crossSize)); 
-                        
-            if (tcme != null)
-            {                
-                if (tcme.Right > 50)
-                {
-                    _scene.Observer.Rotation.Y += tcme.Right/20f;
-                    
-                }
-                if (tcme.Left > 50)
-                {
-                    _scene.Observer.Rotation.Y -= tcme.Left / 20f;                     
-                }
-                if (tcme.Top > 50)
-                {
-                    _scene.Go(1);
-                }
-                if (tcme.Bottom > 50)
-                {
-                    _scene.Go(0);
-                }
+
+            if (e.Action == MotionEventActions.Down 
+                ||
+                e.Action == MotionEventActions.Move )
+            {
+                _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(crossSize, crossSize, e.GetX(), e.GetY() - (Height - crossSize));
 
                 return true;
+            } else
+            if (e.Action == MotionEventActions.Up)
+            {
+                _lastTapCrossMove = null;
 
+                return true;
             } else
             {
                 return base.OnTouchEvent(e);
-            }            
+            }
 		}
 
-		protected override void OnUnload (EventArgs e)
-		{
-            
+        private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
+        {
+            if (_lastTapCrossMove != null)
+            {
+                if (_lastTapCrossMove.Right > 50)
+                {
+                    _scene.Observer.Rotation.Y += _lastTapCrossMove.Right/5f;
+
+                }
+                if (_lastTapCrossMove.Left > 50)
+                {
+                    _scene.Observer.Rotation.Y -= _lastTapCrossMove.Left /5f;                     
+                }
+                if (_lastTapCrossMove.Top > 50)
+                {
+                    _scene.Go(1, _lastTapCrossMove.Top/10f);
+                }
+                if (_lastTapCrossMove.Bottom > 50)
+                {
+                    _scene.Go(0);
+                }                
+            }
+
+            Render();
         }
 
-		void Render ()
+        void Render ()
 		{
             MakeCurrent();
 
@@ -255,22 +264,15 @@ namespace GLEngineMobileLabyrinthDemo
             SwapBuffers();
 		}
 		
-		protected override void Dispose (bool disposing)
-		{
-            GLTextureAdmin.UnLoadGLTextures();
-            base.Dispose (disposing);
-		}
-
 		protected override void OnResize (EventArgs e)
 		{
 			base.OnResize (e);			
 		}
 
-		public static float ToRadians (float degrees)
-		{
-			//pi/180
-			//FIXME: precalc pi/180
-			return (float) (degrees * (System.Math.PI/180.0));
-		}		
-	}
+        protected override void Dispose(bool disposing)
+        {
+            GLTextureAdmin.UnLoadGLTextures();
+            base.Dispose(disposing);
+        }
+    }
 }
