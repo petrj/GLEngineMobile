@@ -97,9 +97,13 @@ namespace GLEngineMobile
 		public override string ToString ()
 		{
 			return "[" + X.ToString("N2")+" ; " + Y.ToString("N2")+" ; " + Z.ToString("N2") + "]";
-		}		
-		
-		public static GLVector CrossProduct(GLVector u,GLVector v)
+		}
+        public string ToShortString()
+        {
+            return "[" + X.ToString("#0") + ";" + Y.ToString("#0") + ";" + Z.ToString("#0") + "]";
+        }
+
+        public static GLVector CrossProduct(GLVector u,GLVector v)
 		{
 			return new GLVector(u.Y*v.Z-u.Z*v.Y,u.Z*v.X-u.X*v.Z,u.X*v.Y-u.Y*v.X);
 		}

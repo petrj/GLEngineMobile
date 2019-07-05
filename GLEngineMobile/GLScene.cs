@@ -68,7 +68,7 @@ namespace GLEngineMobile
             GL.Rotate((float)or.Y, 0, 1, 0);
             GL.Rotate((float)or.Z, 0, 0, 1);
 
-            GL.Translate((float)op.X, (float)op.Y, (float)op.Z);
+            GL.Translate(-(float)op.X, -(float)op.Y, -(float)op.Z);
 
             foreach (var obj in Objects)
 			{
@@ -178,24 +178,22 @@ namespace GLEngineMobile
 		/// 1 .. backward  (angle 0)
 		/// 2 .. left  (angle -90)
 		/// 3 .. right</param>  (angle +90)
-		public void Go(int direction, double stepSize = 2)
+		public void Go(DirectionEnum direction, double stepSize = 2)
 		{
 			GLPoint movedPoint = new GLPoint(0,0,0);
 			switch (direction)
 			{
-				case 0:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y,true);break;
-				case 1:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y,false);break;
-				case 2:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y-90,true);break;
-				case 3:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y+90,true);break;
+				case DirectionEnum.Forward:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y,true);break;
+				case DirectionEnum.Backward:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y,false);break;
+				case DirectionEnum.Left:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y-90,true);break;
+				case DirectionEnum.Right:  movedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,stepSize,Observer.Rotation.Y+90,true);break;
 			}
 
-			//Observer.Position = movedPoint;
-
-
 			var nearestPolygon = NearestPolygon (movedPoint);
-			var dist =  nearestPolygon.DistanceToPoint(new GLPoint(-movedPoint.X,movedPoint.Y,-movedPoint.Z));
+            var dist = nearestPolygon.DistanceToPoint(movedPoint);
 
-			//Logger.WriteToLog("Distance to labyrinth:" + dist);            
+            //L/ogger.Debug("Distance to labyrinth:" + dist);            
+
 			if (dist>5)
 			{
 				Observer.Position = movedPoint;
@@ -204,43 +202,45 @@ namespace GLEngineMobile
 				// collision 		
 
 				var angle = nearestPolygon.AngleToVec(new GLVector(Observer.Position,movedPoint));
-				/*
 
-				//Logger.WriteToLog("Angle to collision polygon: " + angle.ToString());			
-
-				if ((angle<65) && (direction<2))
+				if ((angle<65) && ((int)direction<2))
 				{
-					// sliding 	angle left
+					// sliding left
+
 					GLPoint leftRotatedMovedPoint = new GLPoint(0,0,0);
 					switch (direction)
 					{
-						case 0:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,true);break;
-						case 1:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,false);break;		        		
+						case DirectionEnum.Forward:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,true);break;
+						case DirectionEnum.Backward:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,false);break;		        		
 					}
 
-					var distLeft =  DistanceToPoint(new GLPoint(-leftRotatedMovedPoint.X,leftRotatedMovedPoint.Y+8,-leftRotatedMovedPoint.Z));
+                    var nearestPolygonToLeft = NearestPolygon(leftRotatedMovedPoint);
+                    var distLeft = nearestPolygonToLeft.DistanceToPoint(leftRotatedMovedPoint);
+
 					if (distLeft>5)
 					{
-						observer.Position = leftRotatedMovedPoint;				
+						Observer.Position = leftRotatedMovedPoint;				
 					} else
 					{
-						GLPoint rightRotatedMovedPoint = new GLPoint(0,0,0);
+                        // sliding right
+
+                        GLPoint rightRotatedMovedPoint = new GLPoint(0,0,0);
 						switch (direction)
 						{
-							case 0:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,true);break;
-							case 1:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,false);break;		        		
+							case DirectionEnum.Forward:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,true);break;
+							case DirectionEnum.Backward:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,false);break;		        		
 						}
 
-						var distRight =  labyrinth.DistanceToPoint(new GLPoint(-rightRotatedMovedPoint.X,rightRotatedMovedPoint.Y+8,-rightRotatedMovedPoint.Z));
+                        var nearestPolygonToRight = NearestPolygon(rightRotatedMovedPoint);
+
+                        var distRight = nearestPolygonToRight.DistanceToPoint(rightRotatedMovedPoint);
 						if (distRight>5)
 						{
-							observer.Position = rightRotatedMovedPoint;				
+                            Observer.Position = rightRotatedMovedPoint;				
 						}
 					}
 				}
-				*/
 			}
-
 		}
 
 		#region IDisposable implementation

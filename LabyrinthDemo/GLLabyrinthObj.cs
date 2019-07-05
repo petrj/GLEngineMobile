@@ -26,7 +26,7 @@ namespace GLEngineMobileLabyrinthDemo
 		public int LabyrinthHeight = 100;
 		
 		public double FloorY = -3;		
-		public double TileWidth = 20;		
+		public double TileWidth = 25;		
 		
 		private Random Rnd = new Random();
 		
@@ -80,7 +80,7 @@ namespace GLEngineMobileLabyrinthDemo
 		
 		public GLPoint LabPointToScenePoint(Point P)
 		{
-			var glP = new GLPoint(-(TileWidth)*P.X,-3,-(TileWidth)*(P.Y));
+			var glP = new GLPoint((TileWidth)*P.X,3,(TileWidth)*(P.Y));
 			return glP;
 		}
 

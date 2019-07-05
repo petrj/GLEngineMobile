@@ -23,7 +23,7 @@ namespace GLEngineMobileLabyrinthDemo
             SetContentView(Resource.Layout.main);
 
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
-            paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
+            paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
          
             Logger.InitLoggerService(new BasicLoggingService());
             Logger.Info("Starting labyrinth demo");

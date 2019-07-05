@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2007 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-  
-          http://www.apache.org/licenses/LICENSE-2.0
-  
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
   android:background="#000000"
@@ -30,31 +15,96 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 
-		<LinearLayout android:id="@+id/hidecontainer"
+    <LinearLayout android:id="@+id/debugdisplaycontainer"
+      android:orientation="vertical"
+      android:visibility="visible"
+      android:background="@drawable/translucent"
+      android:gravity="bottom|center"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/debugDisplayTextView"
+        android:name="debugDisplayLabel"
+        android:text="Debug display"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/leftdisplaymoneycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/transparent"
+      android:gravity="top|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <ImageView android:id="@+id/moneyimageview"
+             android:src="@drawable/money"
+             android:layout_marginLeft="5dp"
+             android:layout_marginTop="5dp"
+             android:layout_width="35dp"
+             android:layout_height="20dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/leftdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/transparent"
+      android:gravity="top|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/leftDisplayTextView"
+        android:name="leftDisplayLabel"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:text="0/5"
+        android:textColor="#FFFF00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>      
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/rightdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"			
+      android:gravity="top|right"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/rightDisplayTextView"
+        android:name="rightDisplayLabel"
+        android:text="Level 1"
+        android:layout_marginTop="5dp"
+        android:textColor="#9999FF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/crosscontainer"
 			android:orientation="vertical"
 			android:visibility="visible"
 			android:background="@drawable/translucent"
-			android:gravity="bottom|left"                  
+			android:gravity="bottom|right"                  
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-      
+			android:layout_height="match_parent">      
       <ImageView android:id="@+id/cross"
         android:src="@drawable/cross"
         android:layout_width="135dp"
         android:layout_height="135dp" />      	
 		</LinearLayout>
-	</FrameLayout>    
-  <LinearLayout 
-    android:orientation="horizontal"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center">
-    <TextView 
-      android:id="@+id/rotationTextView"
-      android:name="rotationLabel" 
-      android:text="test" 
-      android:textColor="#FFFFFF"
-      android:layout_width="wrap_content"
-		  android:layout_height="wrap_content"/>
-  </LinearLayout>  
+    
+    <LinearLayout android:id="@+id/sidemovecontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/translucent"
+			android:gravity="bottom|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"> 
+      <ImageView android:id="@+id/sidemove"
+        android:src="@drawable/step"
+        android:layout_width="135dp"
+        android:layout_height="135dp" />
+    </LinearLayout>
+    
+  </FrameLayout>     
 </LinearLayout>

@@ -25,8 +25,9 @@ namespace GLEngineMobileLabyrinthDemo
         GLPoint _finger2TapCoordinates = new GLPoint();
         private int width, height;
         private TapCrossMoveEvent _lastTapCrossMove;
+        private TapCrossMoveEvent _lastTapSideMove;
         private GLScene _scene;
-        public TextView RotationLabel { get; set; }
+        public TextView DebugDisplayLabel { get; set; }
         
         public PaintingView (Context context, IAttributeSet attrs) :
 			base (context, attrs)
@@ -58,6 +59,7 @@ namespace GLEngineMobileLabyrinthDemo
             Run(35); // 35 fps
             RenderFrame += PaintingView_RenderFrame;            
         }
+
         private void SetupCamera()
         {
             width = Width;
@@ -205,17 +207,55 @@ namespace GLEngineMobileLabyrinthDemo
 	    {
             var crossSize = Convert.ToInt32(PxFromDp(135));
 
-            if (e.Action == MotionEventActions.Down 
-                ||
-                e.Action == MotionEventActions.Move )
+            // 1 finger for half screen
+
+          
+
+
+            if (
+                (e.Action == MotionEventActions.Down  ||
+                e.Action == MotionEventActions.Move  ||
+                e.Action == MotionEventActions.Pointer1Down ||
+                e.Action == MotionEventActions.Pointer2Down)
+                )
             {
-                _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(crossSize, crossSize, e.GetX(), e.GetY() - (Height - crossSize));
+                if (e.GetX() > Width / 2f)
+                {
+                    // right half => cross tap event
+
+                    _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(
+                          crossSize,
+                          crossSize,
+                          e.GetX() - (Width - crossSize),
+                          e.GetY() - (Height - crossSize));
+                }
+                else
+                {
+                    // left half => side move event
+                    _lastTapSideMove = TapCrossMoveEvent.GetTapMoveEvent(
+                          crossSize,
+                          crossSize,
+                          e.GetX(),
+                          e.GetY() - (Height - crossSize));
+                }
 
                 return true;
             } else
-            if (e.Action == MotionEventActions.Up)
+            if (e.Action == MotionEventActions.Up ||
+                e.Action == MotionEventActions.Pointer1Up ||
+                e.Action == MotionEventActions.Pointer2Up)
             {
-                _lastTapCrossMove = null;
+                if (e.GetX() > Width / 2f)
+                {
+                    // right half => cross tap event
+
+                    _lastTapCrossMove = null;
+                }
+                else
+                {
+                    // left half => side move event
+                    _lastTapSideMove = null;
+                }
 
                 return true;
             } else
@@ -231,7 +271,6 @@ namespace GLEngineMobileLabyrinthDemo
                 if (_lastTapCrossMove.Right > 50)
                 {
                     _scene.Observer.Rotation.Y += _lastTapCrossMove.Right/5f;
-
                 }
                 if (_lastTapCrossMove.Left > 50)
                 {
@@ -239,12 +278,24 @@ namespace GLEngineMobileLabyrinthDemo
                 }
                 if (_lastTapCrossMove.Top > 50)
                 {
-                    _scene.Go(1, _lastTapCrossMove.Top/10f);
+                    _scene.Go(DirectionEnum.Forward, _lastTapCrossMove.Top/10f);
                 }
                 if (_lastTapCrossMove.Bottom > 50)
                 {
-                    _scene.Go(0);
+                    _scene.Go(DirectionEnum.Backward, _lastTapCrossMove.Bottom / 10f);
                 }                
+            }
+
+            if (_lastTapSideMove != null)
+            {
+                if (_lastTapSideMove.Right > 50)
+                {
+                    _scene.Go(DirectionEnum.Right, _lastTapSideMove.Right / 50f);
+                }
+                if (_lastTapSideMove.Left > 50)
+                {
+                    _scene.Go(DirectionEnum.Left, _lastTapSideMove.Left / 50f);
+                }
             }
 
             Render();
@@ -256,9 +307,9 @@ namespace GLEngineMobileLabyrinthDemo
 
             _scene.Render();        
             
-            if (RotationLabel != null)
+            if (DebugDisplayLabel != null)
             {
-                RotationLabel.Text = $"Position: {_scene.Observer.Position.ToString()} Rotation: : {_scene.Observer.Rotation.ToString()}";
+                DebugDisplayLabel.Text = $"Position: {_scene.Observer.Position.ToShortString()} Rotation: : {_scene.Observer.Rotation.ToShortString()}";
             }
 
             SwapBuffers();
