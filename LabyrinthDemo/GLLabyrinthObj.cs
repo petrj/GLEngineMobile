@@ -114,9 +114,9 @@ namespace GLEngineMobileLabyrinthDemo
 
 		public void Generate(Context context)
 		{		
-		 	Clear();		
+		 	Clear();
 
-			State = AutoPilotStateEnum.Stoppped;
+            State = AutoPilotStateEnum.Stoppped;
 		 	
 		 	StartPos = new Point(Rnd.Next(20,80),Rnd.Next(20,80));
 
@@ -258,6 +258,7 @@ namespace GLEngineMobileLabyrinthDemo
 			Logger.Info("Map:"+Environment.NewLine+mapLines.ToString());  
 				 				 			 			
 			Locked = true;
+            FinishCount = 0;
 					 			
 			Move(-TileWidth/2,0,0);			
 		}

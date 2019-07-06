@@ -25,7 +25,7 @@
       <TextView
         android:id="@+id/debugDisplayTextView"
         android:name="debugDisplayLabel"
-        android:text="Debug display"
+        android:text=""
         android:textColor="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -91,7 +91,8 @@
         android:name="rightDisplayLabel"
         android:text="Level 1"
         android:layout_marginTop="5dp"
-        android:textColor="#FFFFFF"        
+        android:textColor="#FFFFFF" 
+        android:layout_marginRight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -106,6 +107,7 @@
       <ImageView android:id="@+id/cross"
         android:src="@drawable/cross"
         android:layout_width="135dp"
+        android:layout_marginRight="20dp"
         android:layout_height="135dp" />      	
 		</LinearLayout>
     

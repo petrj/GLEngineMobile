@@ -1,29 +1,21 @@
-using System;
-using System.Runtime.InteropServices;
-using OpenTK.Graphics;
-using OpenTK.Graphics.ES11;
-using OpenTK.Platform;
-using OpenTK.Platform.Android;
-using OpenTK;
 using Android.Content;
-using Android.Graphics;
 using Android.Util;
 using Android.Views;
-using System.Collections.Generic;
+using Android.Widget;
 using GLEngineMobile;
 using LoggerService;
-using Android.Content.Res;
-using System.IO;
-using Android.Widget;
-using System.Threading.Tasks;
+using OpenTK;
+using OpenTK.Graphics;
+using OpenTK.Graphics.ES11;
+using OpenTK.Platform.Android;
+using System;
 
 namespace GLEngineMobileLabyrinthDemo
 {
-	class PaintingView : AndroidGameView
+    class PaintingView : AndroidGameView
 	{
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();
-        private int width, height;
         private TapCrossMoveEvent _lastTapCrossMove;
         private TapCrossMoveEvent _lastTapSideMove;
         private GLScene _scene;
@@ -56,8 +48,6 @@ namespace GLEngineMobileLabyrinthDemo
 
             Resize += delegate 
             {
-				height = Height;
-				width = Width;
 				SetupCamera ();
 			};           
 
@@ -67,10 +57,7 @@ namespace GLEngineMobileLabyrinthDemo
 
         private void SetupCamera()
         {
-            width = Width;
-            height = Height;
-
-            GL.Viewport(0, 0, width, height);
+            GL.Viewport(0, 0, Width, Height);
             // setup projection matrix
             GL.MatrixMode(All.Projection);
 
@@ -173,7 +160,9 @@ namespace GLEngineMobileLabyrinthDemo
 			GL.Enable (All.DepthTest);
 			GL.DepthFunc (All.Lequal);
 
-            Restart();
+            var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
+            if (labyrinth.Polygons.Count == 0)
+                Restart();
 
             SetupCamera();			
 		}
@@ -196,6 +185,11 @@ namespace GLEngineMobileLabyrinthDemo
 
             _scene.Observer.Position = labyrinth.LabPointToScenePoint(labyrinth.StartPos);
             _scene.Observer.Rotation = new GLVector(0, 180, 0);
+
+            _lastTapCrossMove = null;
+            _lastTapSideMove = null;
+
+            UpdateDisplays();
         }
 
         protected override void OnUnload(EventArgs e)
@@ -211,7 +205,7 @@ namespace GLEngineMobileLabyrinthDemo
         public override bool OnTouchEvent (MotionEvent e)
 	    {
             var crossSize = Convert.ToInt32(PxFromDp(135));
-            var sidemoveLeftPos = Convert.ToInt32(PxFromDp(20));
+            var marginSize = Convert.ToInt32(PxFromDp(20));
 
             // 1 finger for every half of screen
 
@@ -229,7 +223,7 @@ namespace GLEngineMobileLabyrinthDemo
                     _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
-                          e.GetX() - (Width - crossSize),
+                          e.GetX() - (Width - crossSize) - marginSize,
                           e.GetY() - (Height - crossSize));
                 }
                 else
@@ -238,7 +232,7 @@ namespace GLEngineMobileLabyrinthDemo
                     _lastTapSideMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
-                          e.GetX() - sidemoveLeftPos,
+                          e.GetX() - marginSize,
                           e.GetY() - (Height - crossSize));
                 }
 
@@ -296,12 +290,12 @@ namespace GLEngineMobileLabyrinthDemo
                 if (_lastTapSideMove.Right > 10)
                 {
                     //_scene.Go(DirectionEnum.Right, _lastTapSideMove.Right / 50f);
-                    _scene.Observer.Rotation.Y += _lastTapSideMove.Right / 5f;
+                    _scene.Observer.Rotation.Y += _lastTapSideMove.Right / 10f;
                 }
                 if (_lastTapSideMove.Left > 10)
                 {
                     //_scene.Go(DirectionEnum.Left, _lastTapSideMove.Left / 50f);
-                    _scene.Observer.Rotation.Y -= _lastTapSideMove.Left / 5f;
+                    _scene.Observer.Rotation.Y -= _lastTapSideMove.Left / 10f;
                 }
             }
 
@@ -311,26 +305,37 @@ namespace GLEngineMobileLabyrinthDemo
             if (nearestBonusItem != null)
             {
                 var dist = _scene.Observer.Position.DistanceToPoint(nearestBonusItem.Position);
-                if (dist < 15)
+                if (dist < labyrinth.TileWidth)
                 {
                     labyrinth.PickUpBonusItem(nearestBonusItem);
+                    UpdateDisplays();
                 }
             }
             
             var finishPosition = labyrinth.LabPointToScenePoint(labyrinth.EndPos);
             var distToFinish = _scene.Observer.Position.DistanceToPoint(finishPosition);
-            if (distToFinish < 15 && !labyrinth.Locked)
+            if (distToFinish < labyrinth.TileWidth && !labyrinth.Locked)
             {
-                labyrinth.Level++;
+                labyrinth.Level++;                
                 Restart();
-            }
+            }         
 
-            if (DebugDisplayLabel != null)
-            {
-                DebugDisplayLabel.Text = $"Position: {_scene.Observer.Position.ToShortString()} Rotation: : {_scene.Observer.Rotation.ToShortString()}";
-            }
+            Render();
+        }
+
+        private void UpdateDisplays()
+        {
+            var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
+
+                /*
+             if (DebugDisplayLabel != null)
+             {
+                 DebugDisplayLabel.Text = $"Position: {_scene.Observer.Position.ToShortString()} Rotation: : {_scene.Observer.Rotation.ToShortString()}";
+             }
+             */
+
             if (LeftDisplayLabel != null)
-            {             
+            {
                 LeftDisplayLabel.Text = $"{labyrinth.FinishCount}/{labyrinth.BonusItemsCount}";
             }
             if (RightDisplayLabel != null)
@@ -341,8 +346,6 @@ namespace GLEngineMobileLabyrinthDemo
             {
                 CenterDisplayLabel.Text = labyrinth.Locked ? "Find all dollars" : "Find exit";
             }
-
-            Render();
         }
 
         void Render ()
