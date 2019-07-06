@@ -3358,17 +3358,17 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a0069
 			public const int action_bar_title = 2131361897;
 			
-			// aapt resource value: 0x7f0a00bb
-			public const int action_container = 2131361979;
+			// aapt resource value: 0x7f0a00bd
+			public const int action_container = 2131361981;
 			
 			// aapt resource value: 0x7f0a008e
 			public const int action_context_bar = 2131361934;
 			
-			// aapt resource value: 0x7f0a00c6
-			public const int action_divider = 2131361990;
+			// aapt resource value: 0x7f0a00c8
+			public const int action_divider = 2131361992;
 			
-			// aapt resource value: 0x7f0a00bc
-			public const int action_image = 2131361980;
+			// aapt resource value: 0x7f0a00be
+			public const int action_image = 2131361982;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -3385,11 +3385,11 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a006b
 			public const int action_mode_close_button = 2131361899;
 			
-			// aapt resource value: 0x7f0a00bd
-			public const int action_text = 2131361981;
+			// aapt resource value: 0x7f0a00bf
+			public const int action_text = 2131361983;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int actions = 2131361991;
+			// aapt resource value: 0x7f0a00c9
+			public const int actions = 2131361993;
 			
 			// aapt resource value: 0x7f0a006c
 			public const int activity_chooser_view_content = 2131361900;
@@ -3442,17 +3442,23 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a004c
 			public const int center = 2131361868;
 			
+			// aapt resource value: 0x7f0a00b6
+			public const int centerDisplayTextView = 2131361974;
+			
 			// aapt resource value: 0x7f0a0051
 			public const int center_horizontal = 2131361873;
 			
 			// aapt resource value: 0x7f0a0052
 			public const int center_vertical = 2131361874;
 			
+			// aapt resource value: 0x7f0a00b5
+			public const int centerdisplaycontainer = 2131361973;
+			
 			// aapt resource value: 0x7f0a0086
 			public const int checkbox = 2131361926;
 			
-			// aapt resource value: 0x7f0a00c5
-			public const int chronometer = 2131361989;
+			// aapt resource value: 0x7f0a00c7
+			public const int chronometer = 2131361991;
 			
 			// aapt resource value: 0x7f0a0061
 			public const int clip_horizontal = 2131361889;
@@ -3475,11 +3481,11 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a00a5
 			public const int coordinator = 2131361957;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int cross = 2131361976;
+			// aapt resource value: 0x7f0a00ba
+			public const int cross = 2131361978;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int crosscontainer = 2131361975;
+			// aapt resource value: 0x7f0a00b9
+			public const int crosscontainer = 2131361977;
 			
 			// aapt resource value: 0x7f0a007c
 			public const int custom = 2131361916;
@@ -3571,8 +3577,8 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a0071
 			public const int icon = 2131361905;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int icon_group = 2131361992;
+			// aapt resource value: 0x7f0a00ca
+			public const int icon_group = 2131361994;
 			
 			// aapt resource value: 0x7f0a0041
 			public const int ifRoom = 2131361857;
@@ -3580,8 +3586,8 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a006e
 			public const int image = 2131361902;
 			
-			// aapt resource value: 0x7f0a00c1
-			public const int info = 2131361985;
+			// aapt resource value: 0x7f0a00c3
+			public const int info = 2131361987;
 			
 			// aapt resource value: 0x7f0a0068
 			public const int italic = 2131361896;
@@ -3619,8 +3625,8 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a0070
 			public const int list_item = 2131361904;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int masked = 2131361994;
+			// aapt resource value: 0x7f0a00cc
+			public const int masked = 2131361996;
 			
 			// aapt resource value: 0x7f0a009c
 			public const int message = 2131361948;
@@ -3655,14 +3661,14 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a0025
 			public const int normal = 2131361829;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int notification_background = 2131361987;
+			// aapt resource value: 0x7f0a00c5
+			public const int notification_background = 2131361989;
 			
-			// aapt resource value: 0x7f0a00bf
-			public const int notification_main_column = 2131361983;
+			// aapt resource value: 0x7f0a00c1
+			public const int notification_main_column = 2131361985;
 			
-			// aapt resource value: 0x7f0a00be
-			public const int notification_main_column_container = 2131361982;
+			// aapt resource value: 0x7f0a00c0
+			public const int notification_main_column_container = 2131361984;
 			
 			// aapt resource value: 0x7f0a0060
 			public const int outline = 2131361888;
@@ -3694,17 +3700,17 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a0055
 			public const int right = 2131361877;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int rightDisplayTextView = 2131361974;
+			// aapt resource value: 0x7f0a00b8
+			public const int rightDisplayTextView = 2131361976;
+			
+			// aapt resource value: 0x7f0a00c4
+			public const int right_icon = 2131361988;
 			
 			// aapt resource value: 0x7f0a00c2
-			public const int right_icon = 2131361986;
+			public const int right_side = 2131361986;
 			
-			// aapt resource value: 0x7f0a00c0
-			public const int right_side = 2131361984;
-			
-			// aapt resource value: 0x7f0a00b5
-			public const int rightdisplaycontainer = 2131361973;
+			// aapt resource value: 0x7f0a00b7
+			public const int rightdisplaycontainer = 2131361975;
 			
 			// aapt resource value: 0x7f0a000c
 			public const int save_image_matrix = 2131361804;
@@ -3781,11 +3787,11 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a002c
 			public const int showTitle = 2131361836;
 			
-			// aapt resource value: 0x7f0a00ba
-			public const int sidemove = 2131361978;
+			// aapt resource value: 0x7f0a00bc
+			public const int sidemove = 2131361980;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int sidemovecontainer = 2131361977;
+			// aapt resource value: 0x7f0a00bb
+			public const int sidemovecontainer = 2131361979;
 			
 			// aapt resource value: 0x7f0a00a2
 			public const int smallLabel = 2131361954;
@@ -3868,8 +3874,8 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a001a
 			public const int textinput_helper_text = 2131361818;
 			
-			// aapt resource value: 0x7f0a00c4
-			public const int time = 2131361988;
+			// aapt resource value: 0x7f0a00c6
+			public const int time = 2131361990;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int title = 2131361827;
@@ -3919,8 +3925,8 @@ namespace GLEngineMobileLabyrinthDemo
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;
 			
-			// aapt resource value: 0x7f0a00c9
-			public const int visible = 2131361993;
+			// aapt resource value: 0x7f0a00cb
+			public const int visible = 2131361995;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int withText = 2131361859;

@@ -63,6 +63,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>      
     </LinearLayout>
+    
+    <LinearLayout android:id="@+id/centerdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"			
+      android:gravity="top|center"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/centerDisplayTextView"
+        android:name="centerDisplayLabel"
+        android:text="Find all dollars"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF"        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>    
 
     <LinearLayout android:id="@+id/rightdisplaycontainer"
 			android:orientation="vertical"
@@ -75,7 +91,7 @@
         android:name="rightDisplayLabel"
         android:text="Level 1"
         android:layout_marginTop="5dp"
-        android:textColor="#9999FF"
+        android:textColor="#FFFFFF"        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -102,6 +118,7 @@
 			android:layout_height="match_parent"> 
       <ImageView android:id="@+id/sidemove"
         android:src="@drawable/step"
+        android:layout_marginLeft="20dp"
         android:layout_width="135dp"
         android:layout_height="135dp" />
     </LinearLayout>

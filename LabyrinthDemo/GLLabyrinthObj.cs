@@ -10,6 +10,7 @@ using TK = OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using GLEngineMobile;
 using LoggerService;
+using Android.Content;
 
 namespace GLEngineMobileLabyrinthDemo
 {
@@ -17,10 +18,12 @@ namespace GLEngineMobileLabyrinthDemo
 	{	
 		public int[,] LabMatrix { get; set; }
 		
-		public List<Point> BonusItems  { get; set; }
+		public Dictionary<Point,GLObject> BonusItems  { get; set; }
 		
 		public Point StartPos { get; set; }
 		public Point EndPos { get; set; }
+
+        public int BonusItemsCount = 10;
 		
 		public int LabyrinthWidth = 100;
 		public int LabyrinthHeight = 100;
@@ -31,9 +34,9 @@ namespace GLEngineMobileLabyrinthDemo
 		private Random Rnd = new Random();
 		
 		public int FinishCount { get; set; }
-		public int MounyCount { get; set; }
-		
-		public List<GLPolygon> LockedFinishPolygons { get; set; }
+        public int Level { get; set; } = 1;
+
+        public List<GLPolygon> LockedFinishPolygons { get; set; }
 		public List<GLPolygon> UnLockedFinishPolygons { get; set; }
 
 		public List<int> Path { get; set; }
@@ -80,7 +83,7 @@ namespace GLEngineMobileLabyrinthDemo
 		
 		public GLPoint LabPointToScenePoint(Point P)
 		{
-			var glP = new GLPoint((TileWidth)*P.X,3,(TileWidth)*(P.Y));
+			var glP = new GLPoint((TileWidth)*P.X,10,(TileWidth)*(P.Y));
 			return glP;
 		}
 
@@ -108,24 +111,14 @@ namespace GLEngineMobileLabyrinthDemo
 
 			 	return true;
 		}
-		
-		public void RenderBonusItems(GLObj item)
-		{			
-			foreach (var point in BonusItems)
-			{
-				item.Position = new GLPoint((point.X+0)*TileWidth,-9,(point.Y+0)*TileWidth+TileWidth/2);
-				item.Render();
-			}			
-		}
-		
-		public void Generate()
+
+		public void Generate(Context context)
 		{		
 		 	Clear();		
 
 			State = AutoPilotStateEnum.Stoppped;
 		 	
 		 	StartPos = new Point(Rnd.Next(20,80),Rnd.Next(20,80));
-		 	//StartPos = new Point(2,0);		 	
 
 		 	var actPos = new Point(StartPos.X,StartPos.Y);
 		 	EndPos = new Point(actPos.X,actPos.Y);
@@ -138,7 +131,10 @@ namespace GLEngineMobileLabyrinthDemo
 		 	for (var move=0;move<=moves;move++)
 		 	{
 		 		var steps = Rnd.Next( 1, 4);
-		 		for (var step=0;step<steps;step++)
+
+                if (move == 0) steps = 3; // 3 steps on beginning
+
+                for (var step=0;step<steps;step++)
 		 		{		 		
 		 			if (CanMove(actPos.X,actPos.Y,direction))
 		 			{
@@ -159,10 +155,7 @@ namespace GLEngineMobileLabyrinthDemo
 			 	
 			 	direction = Rnd.Next( 0, 3);
 		 	}
-		 	
-		 	//GeneratePosition(0,FloorY,0);
-		 	
-		 	
+	 	
 		 	var generatedPositions = new List<Point>();		 	
 		 	for (var j=0;j<LabyrinthHeight;j++)
 			{
@@ -189,21 +182,36 @@ namespace GLEngineMobileLabyrinthDemo
 				}			
 
 			}
-			
-												
-			// 5 bonus items 
-			for (var i=0;i<5;i++)
-			{
-				if (generatedPositions.Count>0)
-				{			
-					var r = Rnd.Next(0,generatedPositions.Count-1);
-				
-					BonusItems.Add(new Point(generatedPositions[r].X,generatedPositions[r].Y));
-				
-					generatedPositions.RemoveAt(r);				
-				}
-			}				
-			
+
+            // bonus items
+
+            if (generatedPositions.Count > BonusItemsCount + 4)
+            {
+                while (BonusItems.Count < BonusItemsCount)
+                {
+                    var r = Rnd.Next(2, generatedPositions.Count - 2);
+                    if (BonusItems.Count == 0)
+                    {
+                        // first bonus item always 2 steps before observer
+                        r = 2;
+                    }
+
+                    var p = new Point(generatedPositions[r].X, generatedPositions[r].Y);
+
+                    if (BonusItems.ContainsKey(p))
+                    {
+                        continue;
+                    }
+
+                    var item = new GLObject();
+                    item.LoadFromAndroidAsset(context, "money.xml");
+                    item.Position = new GLPoint((p.X + 0) * TileWidth, 0, (p.Y + 0) * TileWidth + TileWidth / 2);                    
+                    item.SetTexture("money");
+
+                    BonusItems.Add(new Point(p.X, p.Y), item);
+                }
+            }
+		
 			// generating map
 			var mapLines = new StringBuilder();
 			for (var j=0;j<LabyrinthHeight;j++)
@@ -223,9 +231,9 @@ namespace GLEngineMobileLabyrinthDemo
 						} else
 						{
 							var bonusAtThisPos =  false;
-							foreach (var bonus in BonusItems)
+							foreach (var kvp in BonusItems)
 							{
-								if ((i==bonus.X) && (j==bonus.Y))
+								if ((i==kvp.Key.X) && (j== kvp.Key.Y))
 								{
 									bonusAtThisPos = true;
 									break;
@@ -300,19 +308,11 @@ namespace GLEngineMobileLabyrinthDemo
 			var bottomPolygon = new GLPolygon();
 			bottomPolygon.Points = new List<GLPoint>() 
 				{
-
-                new GLPoint(x+TileWidth,y,z+TileWidth),
-                new GLPoint(x+TileWidth,y,z),
-                new GLPoint(x,y,z),
-
+                    new GLPoint(x+TileWidth,y,z+TileWidth),
+                    new GLPoint(x+TileWidth,y,z),
+                    new GLPoint(x,y,z),
                 
-                new GLPoint(x,y,z+TileWidth),
-                
-
-                
-                
-                                
-
+                    new GLPoint(x,y,z+TileWidth),
                 };
 				
 			bottomPolygon.Texture = specialBottomTexture == null ? GLTextureAdmin.GetTextureByName("labBottom") 
@@ -407,10 +407,68 @@ namespace GLEngineMobileLabyrinthDemo
 			
 			return polygons;
 		}
-	
-		public GLLabyrinthObj()
+
+        public override void Render()
+        {
+            base.Render();
+
+            foreach (var kvp in BonusItems)
+            {
+                // rotation around in 5 secs
+                var ms = DateTime.Now.Millisecond + DateTime.Now.Second*1000;
+                ms = ms % 5000;
+
+                var angle = ms * (360.0 / (5.0 * 1000.0)); // around in 5 sec;                
+
+                kvp.Value.Rotation.Y = angle;
+
+                kvp.Value.Render();
+            }
+        }
+
+        public GLObject GetNearestBonusItem(GLPoint p)
+        {
+            var minDist = double.MaxValue;
+            GLObject res = null;
+            foreach (var item in BonusItems)
+            {
+                var dist = p.DistanceToPoint(item.Value.Position);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    res = item.Value;
+                }
+            }
+
+            return res;
+        }
+
+        public void PickUpBonusItem(GLObject item)
+        {
+            var found = false;
+            Point indexToRemove = new Point();
+            foreach (var kvp in BonusItems)
+            {
+                if (kvp.Value == item)
+                {
+                    indexToRemove = kvp.Key;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                BonusItems.Remove(indexToRemove);
+                FinishCount++;
+                if (FinishCount >= BonusItemsCount)
+                    Locked = false;
+            }
+        }
+
+        public GLLabyrinthObj()
 		{
-			BonusItems = new List<Point>();
+			BonusItems = new Dictionary<Point, GLObject>();
 			
 			UnLockedFinishPolygons = new List<GLPolygon>();
 			LockedFinishPolygons = new List<GLPolygon>();
@@ -419,7 +477,7 @@ namespace GLEngineMobileLabyrinthDemo
 			LabMatrix = new int[LabyrinthWidth,LabyrinthHeight];			
 			
 			FinishCount = 0;
-			MounyCount = 0;
+            Level = 1;
 			
 			Clear();
 		}	

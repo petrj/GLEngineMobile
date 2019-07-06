@@ -124,10 +124,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\enterprise.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="Assets\scene.xml" />
+    <AndroidAsset Include="Assets\money.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-nodpi\borg.jpg">
