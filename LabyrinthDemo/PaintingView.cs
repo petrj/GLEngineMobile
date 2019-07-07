@@ -51,7 +51,7 @@ namespace GLEngineMobileLabyrinthDemo
 				SetupCamera ();
 			};           
 
-            Run(35); // 35 fps
+            Run(30); // fps
             RenderFrame += PaintingView_RenderFrame;            
         }
 
@@ -61,7 +61,7 @@ namespace GLEngineMobileLabyrinthDemo
             // setup projection matrix
             GL.MatrixMode(All.Projection);
 
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 500.0f);
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 200.0f);
 
             float[] perspective_m = new float[16];
 
@@ -158,8 +158,11 @@ namespace GLEngineMobileLabyrinthDemo
 
 			GL.ClearDepth (1.0f);
 			GL.Enable (All.DepthTest);
-			GL.DepthFunc (All.Lequal);
+            GL.DepthFunc (All.Lequal);
 
+            GL.Enable(All.Blend);
+            GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
+            
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
                 Restart();
