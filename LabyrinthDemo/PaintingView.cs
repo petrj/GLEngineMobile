@@ -160,8 +160,9 @@ namespace GLEngineMobileLabyrinthDemo
 			GL.Enable (All.DepthTest);
             GL.DepthFunc (All.Lequal);
 
-            GL.Enable(All.Blend);
-            GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
+            // too slow rendering when uncomented
+            // GL.Enable(All.Blend);
+            // GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
             
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
