@@ -274,6 +274,8 @@ namespace GLEngineMobile
                 GL.Enable(All.Texture2D);
                 GL.Color4(Color.White.R, Color.White.G, Color.White.G, Color.White.A);  // viz http://stackoverflow.com/questions/5607471/previous-calls-to-gl-color3-are-making-my-texture-use-the-wrong-colors
                 GL.BindTexture(All.Texture2D, Texture.TexHandle);
+
+                //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (int)All.Replace);
             } else
 			{
                 // only fill color
@@ -292,8 +294,7 @@ namespace GLEngineMobile
                 {
                     GL.VertexPointer(3, All.Float, 0, new IntPtr(pv));
                     GL.TexCoordPointer(2, All.Float, 0, new IntPtr(pt));
-                    GL.DrawArrays(All.TriangleFan, 0, 4);
-                    GL.Finish();
+                    GL.DrawArrays(All.TriangleFan, 0, Points.Count);
                 }
             }
 
@@ -302,7 +303,7 @@ namespace GLEngineMobile
             GL.DisableClientState(All.VertexArray);
             GL.DisableClientState(All.TextureCoordArray);        
         }
-		
+
 		public static GLPolygon CreateFromPoints(IEnumerable<GLPoint> points)
 		{
 			var pol = new GLPolygon();
@@ -334,24 +335,5 @@ namespace GLEngineMobile
 				Texture = GLTextureAdmin.GetTextureByName(Name);
 			}
 		}
-
-        /*
-		public void WriteToLog()
-		{
-			var res = "Polygon " + Name;
-			res += Environment.NewLine;
-
-			res += "Texture: " + Texture.Name;
-			res += Environment.NewLine;
-
-			foreach (var p in Points) 
-			{
-				res += p.ToString();
-				res += Environment.NewLine;
-			}
-
-			Logger.WriteToLog(res);
-		}	*/
-
-	}
+    }
 }

@@ -1,11 +1,12 @@
 using System;
 using System.IO;
-using System.Drawing;
 using System.Xml;
 using System.Collections.Generic;
 using OpenTK;
 using Android.Content.Res;
 using Android.Content;
+using Android.Graphics;
+using OpenTK.Graphics.ES11;
 
 namespace GLEngineMobile
 {
@@ -69,13 +70,13 @@ namespace GLEngineMobile
 		public override void Render()
 		{		
 			base.BeforeRender();
-		
-			foreach (var polygon in Polygons)
-			{			
-				polygon.Render();
-			}
-			
-			base.AfterRender();
+            
+            foreach (var polygon in Polygons)
+            {
+                polygon.Render();
+            }
+
+            base.AfterRender();
 		}
 		
 		public GLPolygon FirstPolygon
