@@ -61,7 +61,7 @@ namespace GLEngineMobileLabyrinthDemo
             // setup projection matrix
             GL.MatrixMode(All.Projection);
 
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 200.0f);
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 300.0f);
 
             float[] perspective_m = new float[16];
 

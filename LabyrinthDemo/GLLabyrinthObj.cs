@@ -83,7 +83,7 @@ namespace GLEngineMobileLabyrinthDemo
 		
 		public GLPoint LabPointToScenePoint(Point P)
 		{
-			var glP = new GLPoint((TileWidth)*P.X,10,(TileWidth)*(P.Y));
+			var glP = new GLPoint((TileWidth)*P.X, 10,(TileWidth)*(P.Y)+TileWidth/2);
 			return glP;
 		}
 
@@ -291,8 +291,8 @@ namespace GLEngineMobileLabyrinthDemo
 			if (Rnd.Next(0,3)==1) texNameIndex = 1; else			
 			if (Rnd.Next(0,3)==1) texNameIndex = 3; else
 			if (Rnd.Next(0,7)==1) texNameIndex = 2; 
-			
-			texName = texName + texNameIndex.ToString();
+           
+            texName = texName + texNameIndex.ToString();
 			var tex = GLTextureAdmin.GetTextureByName(texName);
 			
 			return tex;
