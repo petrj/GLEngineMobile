@@ -29,7 +29,7 @@ namespace GLEngineMobileLabyrinthDemo
             paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);            
 
             Logger.InitLoggerService(new BasicLoggingService());
-            Logger.Info("Starting labyrinth demo");
+            Logger.Info("Starting Labyrinth demo");
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

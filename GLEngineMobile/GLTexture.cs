@@ -54,12 +54,12 @@ namespace GLEngineMobile
             _bmp = bmp;
 
             GL.BindTexture(All.Texture2D, TexHandle);
-
+            
             // setup texture parameters
-            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);
+            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);            
             GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
             GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);            
 
             Android.Opengl.GLUtils.TexImage2D((int)All.Texture2D, 0, bmp, 0);
         }

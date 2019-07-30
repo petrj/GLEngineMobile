@@ -61,7 +61,7 @@ namespace GLEngineMobileLabyrinthDemo
             // setup projection matrix
             GL.MatrixMode(All.Projection);
 
-            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 300.0f);
+            Matrix4 m = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1f, 600.0f);
 
             float[] perspective_m = new float[16];
 
@@ -154,15 +154,22 @@ namespace GLEngineMobileLabyrinthDemo
 		{            
 			//GL.ShadeModel (All.Flat);
             GL.ShadeModel(All.Smooth);
-            GL.ClearColor (0, 0, 0, 1);
+            GL.ClearColor (1, 1, 1, 1);
 
-			GL.ClearDepth (1.0f);
-			GL.Enable (All.DepthTest);
-            GL.DepthFunc (All.Lequal);
+            /* 
+            GL.enable(All.Blend);
+            GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
+            GL.Disable(All.Lighting);
+            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Replace);
+            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Modulate);
+            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Combine);
+            GL.Color4(255, 255, 255, 255);
+            */
 
-            // too slow rendering when uncomented
-            // GL.Enable(All.Blend);
-            // GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
+
+            GL.ClearDepth (1.0f);            
+            GL.Enable (All.DepthTest);
+            GL.DepthFunc (All.Lequal);            
             
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
@@ -177,11 +184,11 @@ namespace GLEngineMobileLabyrinthDemo
 
             GLTextureAdmin.AddTexturesFromResource(Context, new string[]
             {
-                "labBottom", "labBottomF", "labBottomL", "labBottomS" ,
+                "blue1", "labBottomF", "labBottomL", "labBottomS" ,
                 "labTop", "labTopF", "labTopL", "labTopS" ,
                 "labWall0", "labWall1", "labWall2", "labWall3" ,
                 "labWallF", "labWallL", "labWallS" ,
-                "money", "moneySmall", "blue0", "blue1"
+                "money", "moneySmall", "blue0", "labBottom"
             });
 
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);

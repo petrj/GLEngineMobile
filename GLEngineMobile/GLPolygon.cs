@@ -267,7 +267,7 @@ namespace GLEngineMobile
 			if (!Visible)
 			return;
             
-			GL.DepthFunc(depthFunc);           
+			//GL.DepthFunc(depthFunc);           
 
             if (Texture != null)
 			{
@@ -279,7 +279,7 @@ namespace GLEngineMobile
             } else
 			{
                 // only fill color
-                GL.Disable(All.Texture2D);  
+                //GL.Disable(All.Texture2D);  
                 GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);               
             }
 
@@ -298,7 +298,10 @@ namespace GLEngineMobile
                 }
             }
 
-            GL.Enable(All.Texture2D);
+            if (Texture != null)
+            {
+                GL.Disable(All.Texture2D);
+            }
 
             GL.DisableClientState(All.VertexArray);
             GL.DisableClientState(All.TextureCoordArray);        

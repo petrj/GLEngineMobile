@@ -20,6 +20,7 @@ namespace GLEngineMobile
 	public class GLScene : IDisposable
 	{
         private DateTime _FullScreenSetTime;
+        private const float DefaultDistance = 6;
 
 		public List<GLObj> Objects { get; set; }
 
@@ -194,7 +195,7 @@ namespace GLEngineMobile
 
             //L/ogger.Debug("Distance to labyrinth:" + dist);            
 
-			if (dist>5)
+			if (dist> DefaultDistance)
 			{
 				Observer.Position = movedPoint;
 			} else
@@ -217,7 +218,7 @@ namespace GLEngineMobile
                     var nearestPolygonToLeft = NearestPolygon(leftRotatedMovedPoint);
                     var distLeft = nearestPolygonToLeft.DistanceToPoint(leftRotatedMovedPoint);
 
-					if (distLeft>5)
+					if (distLeft> DefaultDistance)
 					{
 						Observer.Position = leftRotatedMovedPoint;				
 					} else
@@ -234,7 +235,7 @@ namespace GLEngineMobile
                         var nearestPolygonToRight = NearestPolygon(rightRotatedMovedPoint);
 
                         var distRight = nearestPolygonToRight.DistanceToPoint(rightRotatedMovedPoint);
-						if (distRight>5)
+						if (distRight> DefaultDistance)
 						{
                             Observer.Position = rightRotatedMovedPoint;				
 						}
