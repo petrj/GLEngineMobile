@@ -40,8 +40,8 @@ namespace GLEngineMobileLabyrinthDemo
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
-            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
-
+            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);         
+            
             paintingView.OnKeyboardDown(new KeyboardEvent()
             {
                 Event = e,
@@ -50,10 +50,17 @@ namespace GLEngineMobileLabyrinthDemo
             });
 
 #if DEBUG
-            if (keyCode == Keycode.Space)
+            var display = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
+            if (display != null)
+            {               
+                   display.Text = $"Key: KeyCode: {keyCode}";              
+            }
+
+            if (keyCode == Keycode.Del)
             {
                 paintingView.NewLevel();
             }
+#endif
 
             if (keyCode == Keycode.DpadCenter)
             {
@@ -75,12 +82,7 @@ namespace GLEngineMobileLabyrinthDemo
                 }
             }
 
-
-#endif
-
-
             return base.OnKeyDown(keyCode, e);
         }
-
     }
 }

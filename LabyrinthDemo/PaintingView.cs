@@ -237,6 +237,16 @@ namespace GLEngineMobileLabyrinthDemo
                 case Keycode.A:
                     _scene.Observer.Rotation.Y -= speed;
                     break;
+                case Keycode.ButtonL1:
+                case Keycode.ButtonL2:
+                case Keycode.Z:                
+                    _scene.Go(DirectionEnum.Left, speed);
+                    break;
+                case Keycode.ButtonR1:
+                case Keycode.ButtonR2:
+                case Keycode.X:
+                    _scene.Go(DirectionEnum.Right, speed);
+                    break;
             }
         }
 
@@ -364,13 +374,6 @@ namespace GLEngineMobileLabyrinthDemo
         private void UpdateDisplays()
         {
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
-
-                /*
-             if (DebugDisplayLabel != null)
-             {
-                 DebugDisplayLabel.Text = $"Position: {_scene.Observer.Position.ToShortString()} Rotation: : {_scene.Observer.Rotation.ToShortString()}";
-             }
-             */
 
             if (LeftDisplayLabel != null)
             {
