@@ -173,12 +173,12 @@ namespace GLEngineMobileLabyrinthDemo
             
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
-                Restart();
+                NewLevel();
 
             SetupCamera();			
 		}
-
-        public void Restart()
+        
+        public void NewLevel()
         {
             GLTextureAdmin.UnLoadGLTextures();
 
@@ -211,6 +211,33 @@ namespace GLEngineMobileLabyrinthDemo
         public float PxFromDp(float dp)
         {
             return dp * Context.Resources.DisplayMetrics.Density;
+        }
+
+        public void OnKeyboardDown(KeyboardEvent e)
+        {
+            Logger.Info($"Keycode: {e.Key}, KeyEvent:{e.Event}");
+
+            var speed = 5;
+
+            switch (e.Key)
+            {
+                case Keycode.DpadUp:
+                case Keycode.W:
+                    _scene.Go(DirectionEnum.Forward, speed);
+                    break;
+                case Keycode.DpadDown:
+                case Keycode.S:
+                    _scene.Go(DirectionEnum.Backward, speed);
+                    break;
+                case Keycode.DpadRight:
+                case Keycode.D:
+                    _scene.Observer.Rotation.Y += speed;
+                    break;
+                case Keycode.DpadLeft:
+                case Keycode.A:
+                    _scene.Observer.Rotation.Y -= speed;
+                    break;
+            }
         }
 
         public override bool OnTouchEvent (MotionEvent e)
@@ -327,8 +354,8 @@ namespace GLEngineMobileLabyrinthDemo
             var distToFinish = _scene.Observer.Position.DistanceToPoint(finishPosition);
             if (distToFinish < labyrinth.TileWidth && !labyrinth.Locked)
             {
-                labyrinth.Level++;                
-                Restart();
+                labyrinth.Level++;
+                NewLevel();
             }         
 
             Render();

@@ -6,7 +6,7 @@ using Android.Widget;
 using Android.Content.PM;
 using Android.Views;
 using LoggerService;
-
+using System;
 
 namespace GLEngineMobileLabyrinthDemo
 {    
@@ -37,5 +37,50 @@ namespace GLEngineMobileLabyrinthDemo
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
+        {
+            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
+
+            paintingView.OnKeyboardDown(new KeyboardEvent()
+            {
+                Event = e,
+                Key = keyCode,
+                Time = DateTime.Now
+            });
+
+#if DEBUG
+            if (keyCode == Keycode.Space)
+            {
+                paintingView.NewLevel();
+            }
+
+            if (keyCode == Keycode.DpadCenter)
+            {
+                var cross = FindViewById<ImageView>(Resource.Id.cross);
+                if (cross != null)
+                {
+                    if (cross.Visibility == ViewStates.Visible)                    
+                        cross.Visibility = ViewStates.Invisible;                    
+                    else if (cross.Visibility == ViewStates.Invisible)                    
+                        cross.Visibility = ViewStates.Visible;                    
+                }
+                var sidemove = FindViewById<ImageView>(Resource.Id.sidemove);
+                if (sidemove != null)
+                {
+                    if (sidemove.Visibility == ViewStates.Visible)
+                        sidemove.Visibility = ViewStates.Invisible;
+                    else if (sidemove.Visibility == ViewStates.Invisible)
+                        sidemove.Visibility = ViewStates.Visible;
+                }
+            }
+
+
+#endif
+
+
+            return base.OnKeyDown(keyCode, e);
+        }
+
     }
 }
