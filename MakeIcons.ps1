@@ -1,14 +1,14 @@
 ﻿cd $PSScriptRoot
 
 $convert = "C:\Program Files (x86)\ImageMagick\convert.exe"
-$ResourcesFolder = "C:\GLEngineMobile\LabyrinthDemo\Resources"
-$SourceImage = "C:\GLEngineMobile\Graphics\LabyrinthDemoIcon.png";
+$ResourcesFolder = "C:\GLEngineMobile\Easy3DLabyrinth\Resources"
+$SourceImage = "C:\GLEngineMobile\Graphics\Easy3DLabyrinth.png";
 
 $tmpFileName = [System.IO.Path]::GetTempFileName();
 
 $SourceImageName = [System.IO.Path]::GetFileName($SourceImage)
 
-& $convert -size 128x128 $SourceImage -resize 128x128 $ResourcesFolder\drawable-nodpi\LabyrinthDemoIcon.png
+& $convert -size 128x128 $SourceImage -resize 128x128 $ResourcesFolder\drawable-nodpi\Easy3DLabyrinth.png
 
 # mipmap-hdpi
 

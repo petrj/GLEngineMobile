@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+  android:background="#000000"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="0px"
+		android:layout_weight="1">
+
+    <Easy3DLabyrinth.PaintingView
+			android:id="@+id/paintingview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+    <LinearLayout android:id="@+id/debugdisplaycontainer"
+      android:orientation="vertical"
+      android:visibility="visible"
+      android:background="@drawable/translucent"
+      android:gravity="bottom|center"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/debugDisplayTextView"
+        android:name="debugDisplayLabel"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/leftdisplaymoneycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/transparent"
+      android:gravity="top|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <ImageView android:id="@+id/moneyimageview"
+             android:src="@drawable/money"
+             android:layout_marginLeft="5dp"
+             android:layout_marginTop="5dp"
+             android:layout_width="35dp"
+             android:layout_height="20dp" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/leftdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/transparent"
+      android:gravity="top|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/leftDisplayTextView"
+        android:name="leftDisplayLabel"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
+        android:text="0/5"
+        android:textColor="#FFFF00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>      
+    </LinearLayout>
+    
+    <LinearLayout android:id="@+id/centerdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"			
+      android:gravity="top|center"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/centerDisplayTextView"
+        android:name="centerDisplayLabel"
+        android:text="Find all dollars"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF"        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>    
+
+    <LinearLayout android:id="@+id/rightdisplaycontainer"
+			android:orientation="vertical"
+			android:visibility="visible"			
+      android:gravity="top|right"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+      <TextView
+        android:id="@+id/rightDisplayTextView"
+        android:name="rightDisplayLabel"
+        android:text="Level 1"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFFFFF" 
+        android:layout_marginRight="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/crosscontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/translucent"
+			android:gravity="bottom|right"                  
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">      
+      <ImageView android:id="@+id/cross"
+        android:src="@drawable/cross"
+        android:layout_width="135dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="135dp" />      	
+		</LinearLayout>
+    
+    <LinearLayout android:id="@+id/sidemovecontainer"
+			android:orientation="vertical"
+			android:visibility="visible"
+			android:background="@drawable/translucent"
+			android:gravity="bottom|left"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"> 
+      <ImageView android:id="@+id/sidemove"
+        android:src="@drawable/step"
+        android:layout_marginLeft="20dp"
+        android:layout_width="135dp"
+        android:layout_height="135dp" />
+    </LinearLayout>
+    
+  </FrameLayout>     
+</LinearLayout>

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDemo", "SpaceDemo\SpaceDemo.csproj", "{67BD578D-0B15-4FBC-B1BD-F9C3DD6E23CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabyrinthDemo", "LabyrinthDemo\LabyrinthDemo.csproj", "{E083685B-5206-4205-A43F-DB5491091314}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy3DLabyrinth", "Easy3dLabyrinth\Easy3DLabyrinth.csproj", "{E083685B-5206-4205-A43F-DB5491091314}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
