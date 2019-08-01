@@ -22,7 +22,8 @@ namespace Easy3DLabyrinth
             // Inflate our UI from its XML layout description
             SetContentView(Resource.Layout.main);
 
-            SupportActionBar.Hide();
+            SupportActionBar.Hide();            
+            //Window.Attributes.ScreenBrightness = 1f;  // override system display brightness
 
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
             paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
@@ -52,11 +53,13 @@ namespace Easy3DLabyrinth
             });
 
 #if DEBUG
+            /*
             var display = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             if (display != null)
             {               
                    display.Text = $"Key: KeyCode: {keyCode}";              
             }
+            */
 #endif
 
             if ((keyCode == Keycode.Del) || (keyCode == Keycode.ForwardDel))

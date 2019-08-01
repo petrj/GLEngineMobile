@@ -28,6 +28,8 @@ namespace GLEngineMobileSpaceDemo
 
             paintingView.RotationLabel = FindViewById<TextView>(Resource.Id.rotationTextView);
 
+
+
             Logger.InitLoggerService(new BasicLoggingService());
             Logger.Info("Starting Space Demo");
         }

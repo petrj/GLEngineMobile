@@ -204,9 +204,8 @@ namespace Easy3DLabyrinth
                     }
 
                     var item = new GLObject();
-                    item.LoadFromAndroidAsset(context, "money.xml");
-                    item.Position = new GLPoint((p.X + 0) * TileWidth, 0, (p.Y + 0) * TileWidth + TileWidth / 2);                    
-                    item.SetTexture("money");
+                    item.LoadFromAndroidAsset(context, "diamond.xml");
+                    item.Position = new GLPoint((p.X + 0) * TileWidth, -2, (p.Y + 0) * TileWidth + TileWidth / 2);                    
 
                     BonusItems.Add(new Point(p.X, p.Y), item);
                 }

@@ -54,73 +54,17 @@ namespace GLEngineMobile
             _bmp = bmp;
 
             GL.BindTexture(All.Texture2D, TexHandle);
-            
+
+            //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Modulate);            
+
             // setup texture parameters
             GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);            
             GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
             GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);            
+            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
             Android.Opengl.GLUtils.TexImage2D((int)All.Texture2D, 0, bmp, 0);
         }
-
-        /*
-
-		public void LoadFromFile(string fileName)
-		{
-			if (File.Exists(fileName))
-			{
-				Img = new Bitmap(fileName);
-				Name = Path.GetFileNameWithoutExtension(fileName);
-			}
-		}
-        */
-
-    
-        /*
-		public static GLTexture CreateFromText(string text,Font font, Brush foreground, Brush background, int minWidth = 6)
-		{
-			SizeF size;
-			var testBmp = new Bitmap(1,1);
-			using(var g = Graphics.FromImage(testBmp) )
-			{
-				// var correting text
-
-				var correctedText = new StringBuilder();
-
-				for (var i=0; i<text.Length; i++) 
-				{
-					if (text.Substring (i, 1) != Environment.NewLine) 
-					{
-						correctedText.Append ('W');
-					} else
-						correctedText.AppendLine ();
-				}
-
-				size = g.MeasureString(correctedText.ToString(),font);
-				if (size.Width<minWidth) size.Width = minWidth;
-			}
-
-			var sichr = 5;
-
-			var tex = new GLTexture();
-
-			var bmp = new Bitmap(Convert.ToInt32(size.Width+sichr),Convert.ToInt32(size.Height+sichr));
-
-				using(var g = Graphics.FromImage(bmp) )
-				{
-					var rectf = new RectangleF(0, 0, bmp.Width, bmp.Height);
-					g.FillRectangle(background,rectf);
-				    g.DrawString(text,font,foreground,rectf);
-				}
-
-				tex.Img = bmp;
-				tex.Name = "someText";
-
-			return tex;
-
-		}
-        */
 
 		public void Unload()
 		{

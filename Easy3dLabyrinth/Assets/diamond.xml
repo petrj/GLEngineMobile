@@ -1,0 +1,99 @@
+<obj name="Diamond">
+  <polygon texture="blue0" >    
+    <point x="3" y="5"  z="0"></point>
+    <point x="2.12" y="5"  z="2.12"></point>
+    <point x="0" y="9"  z="0"></point>    
+  </polygon>
+  <polygon texture="blue1" >    
+    <point x="2.12" y="5"  z="2.12"></point>
+    <point x="0" y="5"  z="3"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+  <polygon texture="blue0" >    
+    <point x="0" y="5"  z="3"></point>
+    <point x="-2.12" y="5"  z="2.12"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >    
+    <point x="-2.12" y="5"  z="2.12"></point>
+    <point x="-3" y="5"  z="0"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue0" >    
+    <point x="-3" y="5"  z="0"></point>
+    <point x="-2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >    
+    <point x="-2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="5"  z="-3"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue0" >    
+    <point x="0" y="5"  z="-3"></point>
+    <point x="2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >    
+    <point x="2.12" y="5"  z="-2.12"></point>
+    <point x="3" y="5"  z="0"></point>
+    <point x="0" y="9"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >
+    <point x="3" y="5"  z="0"></point>
+    <point x="2.12" y="5"  z="2.12"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+  <polygon texture="blue0" >
+    <point x="2.12" y="5"  z="2.12"></point>
+    <point x="0" y="5"  z="3"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+  <polygon texture="blue1" >
+    <point x="0" y="5"  z="3"></point>
+    <point x="-2.12" y="5"  z="2.12"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue0" >
+    <point x="-2.12" y="5"  z="2.12"></point>
+    <point x="-3" y="5"  z="0"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >
+    <point x="-3" y="5"  z="0"></point>
+    <point x="-2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue0" >
+    <point x="-2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="5"  z="-3"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue1" >
+    <point x="0" y="5"  z="-3"></point>
+    <point x="2.12" y="5"  z="-2.12"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+  <polygon texture="blue0" >
+    <point x="2.12" y="5"  z="-2.12"></point>
+    <point x="3" y="5"  z="0"></point>
+    <point x="0" y="3"  z="0"></point>
+  </polygon>
+
+
+
+
+
+
+</obj>

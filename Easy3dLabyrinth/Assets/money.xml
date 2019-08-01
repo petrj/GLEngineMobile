@@ -1,8 +1,0 @@
-<obj name="Money">
-  <polygon texture="money" >    
-    <point x=" 10" y=" 5"  z="-5"></point>
-    <point x=" 10" y=" 5"  z=" 5"></point>
-    <point x="-10" y=" 5"  z=" 5"></point>
-    <point x="-10" y=" 5"  z="-5"></point>
-  </polygon>  
-</obj>

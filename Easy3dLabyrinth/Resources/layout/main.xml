@@ -31,15 +31,15 @@
         android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/leftdisplaymoneycontainer"
+    <LinearLayout android:id="@+id/leftdisplayItemcontainer"
 			android:orientation="vertical"
 			android:visibility="visible"
 			android:background="@drawable/transparent"
       android:gravity="top|left"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
-      <ImageView android:id="@+id/moneyimageview"
-             android:src="@drawable/money"
+      <ImageView android:id="@+id/itemimageview"
+             android:src="@drawable/item"
              android:layout_marginLeft="5dp"
              android:layout_marginTop="5dp"
              android:layout_width="35dp"

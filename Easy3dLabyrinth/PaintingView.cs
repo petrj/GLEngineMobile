@@ -184,7 +184,7 @@ namespace Easy3DLabyrinth
 
             GLTextureAdmin.AddTexturesFromResource(Context, new string[]
             {
-                "blue1", "labBottomF", "labBottomL", "labBottomS" ,
+                "blue0", "blue1", "labBottomF", "labBottomL", "labBottomS" ,
                 "labTop", "labTopF", "labTopL", "labTopS" ,
                 "labWall0", "labWall1", "labWall2", "labWall3" ,
                 "labWallF", "labWallL", "labWallS" ,
@@ -271,7 +271,7 @@ namespace Easy3DLabyrinth
                     _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
-                          e.GetX() - (Width - crossSize) - marginSize,
+                          e.GetX() - (Width - crossSize - marginSize),
                           e.GetY() - (Height - crossSize));
                 }
                 else
@@ -385,7 +385,7 @@ namespace Easy3DLabyrinth
             }
             if (CenterDisplayLabel != null)
             {
-                CenterDisplayLabel.Text = labyrinth.Locked ? "Find all dollars" : "Find exit";
+                CenterDisplayLabel.Text = labyrinth.Locked ? "Find all diamonds" : "Find exit";
             }
         }
 

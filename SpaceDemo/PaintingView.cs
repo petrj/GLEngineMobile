@@ -134,6 +134,7 @@ namespace GLEngineMobileSpaceDemo
             //GL.ShadeModel (All.Flat);
             GL.ShadeModel(All.Smooth);
             GL.ClearColor(0, 0, 0, 1);
+            GL.Clear((int)(All.ColorBufferBit | All.DepthBufferBit));
 
             GL.ClearDepth(1.0f);
             GL.Enable(All.DepthTest);
