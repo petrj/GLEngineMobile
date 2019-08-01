@@ -17,7 +17,7 @@ namespace Easy3DLabyrinth
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();
         private TapCrossMoveEvent _lastTapCrossMove;
-        private TapCrossMoveEvent _lastTapSideMove;
+        private TapCrossMoveEvent _lastTapRotateMove;
         private GLScene _scene;
         public TextView DebugDisplayLabel { get; set; }
         public TextView LeftDisplayLabel { get; set; }
@@ -152,20 +152,8 @@ namespace Easy3DLabyrinth
 
 		protected override void OnLoad (EventArgs e)
 		{            
-			//GL.ShadeModel (All.Flat);
             GL.ShadeModel(All.Smooth);
             GL.ClearColor (1, 1, 1, 1);
-
-            /* 
-            GL.enable(All.Blend);
-            GL.BlendFunc(All.SrcAlpha, All.OneMinusSrcAlpha);            
-            GL.Disable(All.Lighting);
-            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Replace);
-            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Modulate);
-            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Combine);
-            GL.Color4(255, 255, 255, 255);
-            */
-
 
             GL.ClearDepth (1.0f);            
             GL.Enable (All.DepthTest);
@@ -198,7 +186,7 @@ namespace Easy3DLabyrinth
             _scene.Observer.Rotation = new GLVector(0, 180, 0);
 
             _lastTapCrossMove = null;
-            _lastTapSideMove = null;
+            _lastTapRotateMove = null;
 
             UpdateDisplays();
         }
@@ -213,10 +201,13 @@ namespace Easy3DLabyrinth
             return dp * Context.Resources.DisplayMetrics.Density;
         }
 
+        public void OnKeyboarUp(KeyboardEvent e)
+        {
+           
+        }
+
         public void OnKeyboardDown(KeyboardEvent e)
         {
-            Logger.Info($"Keycode: {e.Key}, KeyEvent:{e.Event}");
-
             var speed = 5;
 
             switch (e.Key)
@@ -271,13 +262,13 @@ namespace Easy3DLabyrinth
                     _lastTapCrossMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
-                          e.GetX() - (Width - crossSize - marginSize),
+                           e.GetX() - (Width - crossSize - marginSize),
                           e.GetY() - (Height - crossSize));
-                }
+                } 
                 else
                 {
-                    // left half => side move event
-                    _lastTapSideMove = TapCrossMoveEvent.GetTapMoveEvent(
+                    // left half => rotation 
+                    _lastTapRotateMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
                           e.GetX() - marginSize,
@@ -298,8 +289,8 @@ namespace Easy3DLabyrinth
                 }
                 else
                 {
-                    // left half => side move event
-                    _lastTapSideMove = null;
+                    // left half => no rotation
+                    _lastTapRotateMove = null;
                 }
 
                 return true;
@@ -309,18 +300,18 @@ namespace Easy3DLabyrinth
             }
 		}
 
+
         private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
         {
+
             if (_lastTapCrossMove != null)
             {
                 if (_lastTapCrossMove.Right > 10)
                 {
-                    //_scene.Observer.Rotation.Y += _lastTapCrossMove.Right/5f;
                     _scene.Go(DirectionEnum.Right, _lastTapCrossMove.Right / 50f);
                 }
                 if (_lastTapCrossMove.Left > 10)
                 {
-                    // _scene.Observer.Rotation.Y -= _lastTapCrossMove.Left /5f;                     
                     _scene.Go(DirectionEnum.Left, _lastTapCrossMove.Left / 50f);
                 }
                 if (_lastTapCrossMove.Top > 10)
@@ -333,17 +324,15 @@ namespace Easy3DLabyrinth
                 }                
             }
 
-            if (_lastTapSideMove != null)
+            if (_lastTapRotateMove != null)
             {
-                if (_lastTapSideMove.Right > 10)
+                if (_lastTapRotateMove.Right > 10)
                 {
-                    //_scene.Go(DirectionEnum.Right, _lastTapSideMove.Right / 50f);
-                    _scene.Observer.Rotation.Y += _lastTapSideMove.Right / 10f;
+                    _scene.Observer.Rotation.Y += _lastTapRotateMove.Right / 10f;
                 }
-                if (_lastTapSideMove.Left > 10)
+                if (_lastTapRotateMove.Left > 10)
                 {
-                    //_scene.Go(DirectionEnum.Left, _lastTapSideMove.Left / 50f);
-                    _scene.Observer.Rotation.Y -= _lastTapSideMove.Left / 10f;
+                    _scene.Observer.Rotation.Y -= _lastTapRotateMove.Left / 10f;
                 }
             }
 

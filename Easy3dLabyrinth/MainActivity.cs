@@ -41,6 +41,20 @@ namespace Easy3DLabyrinth
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        public override bool OnKeyUp(Keycode keyCode, KeyEvent e)
+        {
+            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
+
+            paintingView.OnKeyboarUp(new KeyboardEvent()
+            {
+                Event = e,
+                Key = keyCode,
+                Time = DateTime.Now
+            });
+
+            return base.OnKeyUp(keyCode, e);
+        }
+
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);         
