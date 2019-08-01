@@ -22,6 +22,8 @@ namespace Easy3DLabyrinth
             // Inflate our UI from its XML layout description
             SetContentView(Resource.Layout.main);
 
+            SupportActionBar.Hide();
+
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
             paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             paintingView.LeftDisplayLabel = FindViewById<TextView>(Resource.Id.leftDisplayTextView);
