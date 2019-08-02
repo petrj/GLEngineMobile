@@ -18,8 +18,7 @@ namespace Easy3DLabyrinth
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();
         private TapCrossMoveEvent _lastTapCrossMove;
-        private TapCrossMoveEvent _lastTapRotateMove;
-        private bool _nearLockedDoors = false;
+        private TapCrossMoveEvent _lastTapRotateMove;       
         private GLScene _scene;
         public TextView DebugDisplayLabel { get; set; }
         public TextView LeftDisplayLabel { get; set; }
@@ -182,7 +181,26 @@ namespace Easy3DLabyrinth
             });
 
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
-            labyrinth.Generate(Context);
+
+            int moves;
+            int items;
+
+            if (labyrinth.Level <= 5) // 1 .. 5 level => 5 * 2 .. 25 * 10
+            {
+                moves = labyrinth.Level * 5;
+                items = labyrinth.Level * 2;
+            } else
+            if (labyrinth.Level <= 20) // 6 .. 20 level =>  26 * 11 .. 40 * 25 
+            {
+                moves = 20 + labyrinth.Level;
+                items = 5 + labyrinth.Level;
+            } else
+            {
+                moves = 40;
+                items = 25;
+            }            
+
+            labyrinth.Generate(Context, moves, items);
 
             _scene.Observer.Position = labyrinth.LabPointToScenePoint(labyrinth.StartPos);
             _scene.Observer.Rotation = new GLVector(0, 180, 0);
@@ -337,59 +355,20 @@ namespace Easy3DLabyrinth
                     _scene.Observer.Rotation.Y -= _lastTapRotateMove.Left / 10f;
                 }
             }
-
+            
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
 
-            var nearestBonusItem = labyrinth.GetNearestBonusItem(_scene.Observer.Position);
-            if (nearestBonusItem != null)
+            var newLevel = labyrinth.CheckPosition(_scene.Observer.Position);
+            UpdateDisplays(newLevel ? "Loading new level ..." : null);
+            if (newLevel)
             {
-                var dist = _scene.Observer.Position.DistanceToPoint(nearestBonusItem.Position);
-                if (dist < labyrinth.TileWidth)
-                {
-                    labyrinth.PickUpBonusItem(nearestBonusItem);
-                    UpdateDisplays();
-                }
-            }
-            
-            var finishPosition = labyrinth.LabPointToScenePoint(labyrinth.EndPos);
-            var distToFinish = _scene.Observer.Position.DistanceToPoint(finishPosition);
-            if (distToFinish < labyrinth.TileWidth)
-            {
-                if (!labyrinth.Locked)
-                {
-                    labyrinth.Level++;
-
-                    Task.Run(() =>
-                    {
-                        var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                        player.Load("levelcomplete.mp3");
-                        player.Play();
-                    });
-
-                    NewLevel();
-                } else
-                {
-                    if (!_nearLockedDoors)
-                    {
-                        Task.Run(() =>
-                        {
-                            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
-                            player.Load("doorclosed.mp3");
-                            player.Play();
-                        });
-
-                        _nearLockedDoors = true;
-                    }
-                }
-            } else
-            {
-                _nearLockedDoors = false;
+                NewLevel();
             }
 
             Render();
         }
 
-        private void UpdateDisplays()
+        private void UpdateDisplays(string centerDisplayText = null)
         {
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
 
@@ -403,7 +382,13 @@ namespace Easy3DLabyrinth
             }
             if (CenterDisplayLabel != null)
             {
-                CenterDisplayLabel.Text = labyrinth.Locked ? "Find all diamonds" : "Find exit";
+                if (centerDisplayText == null)
+                {
+                    CenterDisplayLabel.Text = labyrinth.Locked ? "Find all diamonds" : "Find exit";
+                } else
+                {
+                    CenterDisplayLabel.Text = centerDisplayText;
+                }
             }
         }
 

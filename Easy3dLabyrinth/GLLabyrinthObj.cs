@@ -16,15 +16,24 @@ using System.Threading.Tasks;
 namespace Easy3DLabyrinth
 {
 	public class GLLabyrinthObj : GLObject
-	{	
-		public int[,] LabMatrix { get; set; }
-		
-		public Dictionary<Point,GLObject> BonusItems  { get; set; }
+	{
+        private bool _nearLockedDoors = false;
+        private int _bonusItemsCount = 10;
+
+        public int[,] LabMatrix { get; set; }        
+
+        public Dictionary<Point,GLObject> BonusItems  { get; set; }
 		
 		public Point StartPos { get; set; }
 		public Point EndPos { get; set; }
 
-        public int BonusItemsCount = 10;
+        public int BonusItemsCount
+        {
+            get
+            {
+                return _bonusItemsCount;
+            }
+        }
 		
 		public int LabyrinthWidth = 100;
 		public int LabyrinthHeight = 100;
@@ -113,7 +122,7 @@ namespace Easy3DLabyrinth
 			 	return true;
 		}
 
-		public void Generate(Context context)
+		public void Generate(Context context, int moves, int itemsCount)
 		{		
 		 	Clear();
 
@@ -121,19 +130,19 @@ namespace Easy3DLabyrinth
 		 	
 		 	StartPos = new Point(Rnd.Next(20,80),Rnd.Next(20,80));
 
-		 	var actPos = new Point(StartPos.X,StartPos.Y);
+            _bonusItemsCount = itemsCount;
+
+            var actPos = new Point(StartPos.X,StartPos.Y);
 		 	EndPos = new Point(actPos.X,actPos.Y);
 		 	
 		 	LabMatrix[actPos.X,actPos.Y] = 1;
 
 		 	var direction = 1;
-		 	var moves = 25;		 	
-		 	
 		 	for (var move=0;move<=moves;move++)
 		 	{
 		 		var steps = Rnd.Next( 1, 4);
 
-                if (move == 0) steps = 3; // 3 steps on beginning
+                if (move == 0) steps = 4; // 4 steps on beginning
 
                 for (var step=0;step<steps;step++)
 		 		{		 		
@@ -199,7 +208,10 @@ namespace Easy3DLabyrinth
 
                     var p = new Point(generatedPositions[r].X, generatedPositions[r].Y);
 
-                    if (BonusItems.ContainsKey(p))
+                    if (BonusItems.ContainsKey(p) ||
+                        ((StartPos.X == p.X && StartPos.Y == p.Y)) ||
+                        ((EndPos.X == p.X && EndPos.Y == p.Y))
+                        )
                     {
                         continue;
                     }
@@ -480,6 +492,58 @@ namespace Easy3DLabyrinth
                     player.Play();
                 });
             }
+        }
+
+        public bool CheckPosition(GLPoint position)
+        {
+            var nearestBonusItem = GetNearestBonusItem(position);
+            if (nearestBonusItem != null)
+            {
+                var dist = position.DistanceToPoint(nearestBonusItem.Position);
+                if (dist < TileWidth)
+                {
+                    PickUpBonusItem(nearestBonusItem);
+                }
+            }
+
+            var finishPosition = LabPointToScenePoint(EndPos);
+            var distToFinish = position.DistanceToPoint(finishPosition);
+            if (distToFinish < TileWidth)
+            {
+                if (!Locked)
+                {
+                    Level++;
+
+                    Task.Run(() =>
+                    {
+                        var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                        player.Load("levelcomplete.mp3");
+                        player.Play();
+                    });
+
+                    return true;
+                }
+                else
+                {
+                    if (!_nearLockedDoors)
+                    {
+                        Task.Run(() =>
+                        {
+                            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                            player.Load("doorclosed.mp3");
+                            player.Play();
+                        });
+
+                        _nearLockedDoors = true;
+                    }
+                }
+            }
+            else
+            {
+                _nearLockedDoors = false;
+            }
+
+            return false;
         }
 
         public GLLabyrinthObj()
