@@ -9,6 +9,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
 using OpenTK.Platform.Android;
 using System;
+using System.Threading.Tasks;
 
 namespace Easy3DLabyrinth
 {
@@ -18,6 +19,7 @@ namespace Easy3DLabyrinth
         GLPoint _finger2TapCoordinates = new GLPoint();
         private TapCrossMoveEvent _lastTapCrossMove;
         private TapCrossMoveEvent _lastTapRotateMove;
+        private bool _nearLockedDoors = false;
         private GLScene _scene;
         public TextView DebugDisplayLabel { get; set; }
         public TextView LeftDisplayLabel { get; set; }
@@ -351,11 +353,38 @@ namespace Easy3DLabyrinth
             
             var finishPosition = labyrinth.LabPointToScenePoint(labyrinth.EndPos);
             var distToFinish = _scene.Observer.Position.DistanceToPoint(finishPosition);
-            if (distToFinish < labyrinth.TileWidth && !labyrinth.Locked)
+            if (distToFinish < labyrinth.TileWidth)
             {
-                labyrinth.Level++;
-                NewLevel();
-            }         
+                if (!labyrinth.Locked)
+                {
+                    labyrinth.Level++;
+
+                    Task.Run(() =>
+                    {
+                        var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                        player.Load("levelcomplete.mp3");
+                        player.Play();
+                    });
+
+                    NewLevel();
+                } else
+                {
+                    if (!_nearLockedDoors)
+                    {
+                        Task.Run(() =>
+                        {
+                            var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                            player.Load("doorclosed.mp3");
+                            player.Play();
+                        });
+
+                        _nearLockedDoors = true;
+                    }
+                }
+            } else
+            {
+                _nearLockedDoors = false;
+            }
 
             Render();
         }

@@ -11,6 +11,7 @@ using OpenTK.Graphics.ES11;
 using GLEngineMobile;
 using LoggerService;
 using Android.Content;
+using System.Threading.Tasks;
 
 namespace Easy3DLabyrinth
 {
@@ -461,8 +462,23 @@ namespace Easy3DLabyrinth
             {
                 BonusItems.Remove(indexToRemove);
                 FinishCount++;
+
+                string sound;
                 if (FinishCount >= BonusItemsCount)
+                {
+                    sound = "lastdiamond.mp3";
                     Locked = false;
+                } else
+                {
+                    sound = "diamond.mp3";
+                }
+
+                Task.Run(() =>
+                {
+                    var player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                    player.Load(sound);
+                    player.Play();
+                });
             }
         }
 
