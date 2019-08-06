@@ -122,6 +122,11 @@ namespace GLEngineMobile
 			if (element.HasAttribute("name"))			
 				Name = element.GetAttribute("name");
 		}		
+
+        public float[] ToFloatArray()
+        {
+            return new float[] { (float)X, (float)Y, (float)Z };
+        }
 	}
 }
 

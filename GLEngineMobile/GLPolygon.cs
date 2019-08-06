@@ -246,6 +246,17 @@ namespace GLEngineMobile
             }
         }
 
+        public GLVector CrossProduct()
+        {
+            if (Points.Count < 3)
+                return new GLVector();
+
+            var u = new GLVector(Points[0], Points[1]);
+            var v = new GLVector(Points[1], Points[2]);
+
+            return GLVector.CrossProduct(u, v);        
+        }
+
 
         public float[] TextureCoords
         {
@@ -266,20 +277,19 @@ namespace GLEngineMobile
 		{
 			if (!Visible)
 			return;
-            
-			//GL.DepthFunc(depthFunc);           
 
             if (Texture != null)
 			{
                 GL.Enable(All.Texture2D);
-                GL.Color4(Color.White.R, Color.White.G, Color.White.G, Color.White.A);  // viz http://stackoverflow.com/questions/5607471/previous-calls-to-gl-color3-are-making-my-texture-use-the-wrong-colors
+                GL.Color4(1f, 1f, 1f, 1f);  // viz http://stackoverflow.com/questions/5607471/previous-calls-to-gl-color3-are-making-my-texture-use-the-wrong-colors
                 GL.BindTexture(All.Texture2D, Texture.TexHandle);
 
+                //GL.Disable(All.Blend);
                 //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (int)All.Replace);
+                
             } else
 			{
                 // only fill color
-                //GL.Disable(All.Texture2D);  
                 GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);               
             }
 
@@ -292,6 +302,10 @@ namespace GLEngineMobile
             {
                 fixed (float* pv = VertexCoords, pt = TextureCoords)
                 {
+                    // normal for light
+                    var n = CrossProduct();
+                    GL.Normal3((float)n.X, (float)n.Y, (float)n.Z);
+
                     GL.VertexPointer(3, All.Float, 0, new IntPtr(pv));
                     GL.TexCoordPointer(2, All.Float, 0, new IntPtr(pt));
                     GL.DrawArrays(All.TriangleFan, 0, Points.Count);

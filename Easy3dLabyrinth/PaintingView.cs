@@ -155,11 +155,15 @@ namespace Easy3DLabyrinth
 		{            
             GL.ShadeModel(All.Smooth);
             GL.ClearColor (1, 1, 1, 1);
+            //GL.Color4(1f, 1f, 1f, 1f);
 
             GL.ClearDepth (1.0f);            
             GL.Enable (All.DepthTest);
-            GL.DepthFunc (All.Lequal);            
-            
+            GL.DepthFunc (All.Lequal);
+
+            GL.Enable(All.Lighting);
+            GL.Enable(All.Light0);
+
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
                 NewLevel();
@@ -364,6 +368,15 @@ namespace Easy3DLabyrinth
             {
                 NewLevel();
             }
+
+            
+            // adding light above Observer
+            GL.Light(All.Light0, All.Position, _scene.Observer.Position.ToFloatArray());
+
+            GL.Material(All.Front, All.Ambient, new float[] { 1f, 1f, 1f });
+            GL.Material(All.Front, All.Diffuse, new float[] { 1f, 1f, 1f });
+            GL.Material(All.Front, All.Specular, new float[] { 1f, 1f, 1f });
+            GL.Material(All.Front, All.Shininess, 128f);
 
             Render();
         }

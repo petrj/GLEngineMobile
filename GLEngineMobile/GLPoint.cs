@@ -168,7 +168,12 @@ namespace GLEngineMobile
 			return rotatedPoint;
 		}
 
-		public static GLPoint GetMovedPointByAngle(GLPoint P,double stepSize, double angle, bool forward)
+        public static GLPoint GetMovedPoint(GLPoint P, GLVector moveVector)
+        {
+            return new GLPoint(P.X + moveVector.X, P.X + moveVector.Y, P.X + moveVector.Z);
+        }
+
+        public static GLPoint GetMovedPointByAngle(GLPoint P,double stepSize, double angle, bool forward)
 		{        	
 			var rotatedPoint = new GLPoint(0,P.Y,0);
 
@@ -193,7 +198,17 @@ namespace GLEngineMobile
 
 			return movedPoint;
 		}
-		
-	}
+
+        public float[] ToFloatArray()
+        {
+            return new float[] { (float)X, (float)Y, (float)Z };
+        }
+
+        public double[] ToDoubleArray()
+        {
+            return new double[] { X, Y, Z };
+        }
+
+    }
 }
 

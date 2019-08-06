@@ -333,15 +333,15 @@ namespace Easy3DLabyrinth
 			polygons.Add(bottomPolygon);
 					
 		
-			// top
-		
+			// top		
 			var topPolygon = new GLPolygon();
 			topPolygon.Points = new List<GLPoint>() 
-				{ 	new GLPoint(x,y+TileWidth,z),
-					new GLPoint(x+TileWidth,y+TileWidth,z),
-					new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
-					new GLPoint(x,y+TileWidth,z+TileWidth)
-				};
+				{                    
+					new GLPoint(x,y+TileWidth,z+TileWidth),
+                    new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
+                    new GLPoint(x+TileWidth,y+TileWidth,z),
+                    new GLPoint(x,y+TileWidth,z),
+                };
 				
 			topPolygon.Texture = specialTopTexture == null ? GLTextureAdmin.GetTextureByName("labTop") 
 																: GLTextureAdmin.GetTextureByName(specialTopTexture);
@@ -353,12 +353,10 @@ namespace Easy3DLabyrinth
 				var leftPolygon = new GLPolygon();
 				leftPolygon.Points = new List<GLPoint>() 			
 					{
-
+						new GLPoint(x+TileWidth,y,z),
+                        new GLPoint(x+TileWidth,y+TileWidth,z),
+                        new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
                         new GLPoint(x+TileWidth,y,z+TileWidth),
-						new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
-						new GLPoint(x+TileWidth,y+TileWidth,z),
-						new GLPoint(x+TileWidth,y,z)
-                     
                     };				
 				
 				leftPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
@@ -371,10 +369,10 @@ namespace Easy3DLabyrinth
 				var rightPolygon = new GLPolygon();
 				rightPolygon.Points = new List<GLPoint>() 			
 					{ 	
-   						new GLPoint(x,y,z+TileWidth),
-						new GLPoint(x,y+TileWidth,z+TileWidth),
-						new GLPoint(x,y+TileWidth,z),
-						new GLPoint(x,y,z)               
+                        new GLPoint(x,y,z),
+                        new GLPoint(x,y+TileWidth,z),
+                        new GLPoint(x,y+TileWidth,z+TileWidth),
+                        new GLPoint(x,y,z+TileWidth),
                     };				
 				
 				rightPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);											
