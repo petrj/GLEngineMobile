@@ -163,6 +163,7 @@ namespace Easy3DLabyrinth
 
             GL.Enable(All.Lighting);
             GL.Enable(All.Light0);
+            GL.Enable(All.Light1);
 
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
@@ -369,14 +370,28 @@ namespace Easy3DLabyrinth
                 NewLevel();
             }
 
-            
+
             // adding light above Observer
+           
             GL.Light(All.Light0, All.Position, _scene.Observer.Position.ToFloatArray());
+
+            GL.Light(All.Light0, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(All.Light0, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(All.Light0, All.Specular, new float[] { 1f, 1f, 1f, 1f });          
+
+            // adding light in front of Observer
+            var pBefore = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
+            GL.Light(All.Light1, All.Position, pBefore.ToFloatArray());
+
+            GL.Light(All.Light1, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(All.Light1, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(All.Light1, All.Specular, new float[] { 1f, 1f, 1f, 1f });
 
             GL.Material(All.Front, All.Ambient, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Diffuse, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Specular, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Shininess, 128f);
+
 
             Render();
         }
