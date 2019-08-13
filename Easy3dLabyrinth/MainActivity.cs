@@ -29,11 +29,20 @@ namespace Easy3DLabyrinth
             paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             paintingView.LeftDisplayLabel = FindViewById<TextView>(Resource.Id.leftDisplayTextView);
             paintingView.CenterDisplayLabel = FindViewById<TextView>(Resource.Id.centerDisplayTextView);
-            paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);            
+            paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);      
+            
+            var settingsImgage = FindViewById<ImageView>(Resource.Id.settingsImageBtn);
+            settingsImgage.Click += SettingsImgage_Click;
 
             Logger.InitLoggerService(new BasicLoggingService());
             Logger.Info("Starting Labyrinth demo");
         }
+
+        private void SettingsImgage_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

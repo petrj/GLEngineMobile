@@ -20,8 +20,8 @@
     <Reference Include="Mono.Android">
       <HintPath>C:\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\..\MonoAndroid\v4.4\OpenTK.dll</HintPath>
+    <Reference Include="OpenTK-1.0">
+      <HintPath>..\..\MonoAndroid\v4.4\OpenTK-1.0.dll</HintPath>
     </Reference>    
   </ItemGroup>  
 

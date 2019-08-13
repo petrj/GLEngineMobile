@@ -68,8 +68,6 @@ namespace GLEngineMobileSpaceDemo
         // prior to context creation
         protected override void CreateFrameBuffer ()
 		{
-			GLContextVersion = GLContextVersion.Gles1_1;
-
 			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
 			try
             {
@@ -134,7 +132,7 @@ namespace GLEngineMobileSpaceDemo
             //GL.ShadeModel (All.Flat);
             GL.ShadeModel(All.Smooth);
             GL.ClearColor(0, 0, 0, 1);
-            GL.Clear((int)(All.ColorBufferBit | All.DepthBufferBit));
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             GL.ClearDepth(1.0f);
             GL.Enable(All.DepthTest);

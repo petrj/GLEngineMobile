@@ -1,23 +1,12 @@
 using System;
 using System.Xml;
-using System.IO;
-using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Platform;
 using System.Collections.Generic;
 using Android.Content;
-using LoggerService;
-using Android.Content.Res;
-using OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
-using OpenTK.Platform;
-using OpenTK.Platform.Android;
-using OpenTK;
-using Android.Graphics.Drawables;
 
 namespace GLEngineMobile
 {
-	public class GLScene : IDisposable
+    public class GLScene : IDisposable
 	{
         private DateTime _FullScreenSetTime;
         private const float DefaultDistance = 6;
@@ -58,7 +47,7 @@ namespace GLEngineMobile
 
 		public void Render()
 		{
-            GL.Clear((int)All.ColorBufferBit | (int)All.DepthBufferBit);
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.MatrixMode(All.Modelview);
             GL.LoadIdentity();
 

@@ -53,7 +53,9 @@ namespace Easy3DLabyrinth
 			};           
 
             Run(30); // fps
-            RenderFrame += PaintingView_RenderFrame;            
+            RenderFrame += PaintingView_RenderFrame;
+
+          
         }
 
         private void SetupCamera()
@@ -90,8 +92,6 @@ namespace Easy3DLabyrinth
         // prior to context creation
         protected override void CreateFrameBuffer ()
 		{
-			GLContextVersion = GLContextVersion.Gles1_1;
-
 			// the default GraphicsMode that is set consists of (16, 16, 0, 0, 2, false)
 			try
             {
