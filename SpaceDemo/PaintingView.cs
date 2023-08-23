@@ -22,7 +22,7 @@ namespace GLEngineMobileSpaceDemo
 	class PaintingView : AndroidGameView
 	{
         GLPoint _fingerTapCoordinates = new GLPoint();
-        GLPoint _finger2TapCoordinates = new GLPoint();        
+        GLPoint _finger2TapCoordinates = new GLPoint();
         bool _zoom = false;
         int width, height;
         GLScene _scene;
@@ -41,12 +41,12 @@ namespace GLEngineMobileSpaceDemo
 
 		private void Initialize ()
 		{
-            _scene = new GLScene();         
+            _scene = new GLScene();
 
             //_scene.Objects.Add(new GLAxis());
-            _scene.Objects.Add(new GLStarSpace() { Count = 200 });            
+            _scene.Objects.Add(new GLStarSpace() { Count = 200 });
 
-            Resize += delegate 
+            Resize += delegate
             {
 				height = Height;
 				width = Width;
@@ -55,7 +55,7 @@ namespace GLEngineMobileSpaceDemo
 
             Run(20); // 20 fps
 
-            RenderFrame += PaintingView_RenderFrame;            
+            RenderFrame += PaintingView_RenderFrame;
         }
 
         private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
@@ -128,9 +128,10 @@ namespace GLEngineMobileSpaceDemo
 		}
 
 		protected override void OnLoad (EventArgs e)
-		{              
+		{
             //GL.ShadeModel (All.Flat);
-            GL.ShadeModel(All.Smooth);
+            //GL.ShadeModel(All.Smooth);
+            GL.ShadeModel(All.Flat);
             GL.ClearColor(0, 0, 0, 1);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -150,8 +151,8 @@ namespace GLEngineMobileSpaceDemo
             ent.OrbitEllipse.RadiusMajor = 6;
             ent.OrbitEllipse.RadiusMinor = 5;
             ent.OrbitAngle = 90;
-           
-            SetupCamera();			
+
+            SetupCamera();
 		}
 
 		void SetupCamera ()
@@ -186,9 +187,9 @@ namespace GLEngineMobileSpaceDemo
 
 			GL.LoadMatrix (perspective_m);
 		}
-        
+
 		public override bool OnTouchEvent (MotionEvent e)
-		{   
+		{
             var x = e.GetX();
             var y = e.GetY();
 
@@ -200,11 +201,11 @@ namespace GLEngineMobileSpaceDemo
                 _fingerTapCoordinates.Y = y;
 
                 Logger.Info($"Down: {x}:{y}");
-            }           
+            }
             else
             if (e.Action == MotionEventActions.Pointer2Down)
             {
-                // second finger down 
+                // second finger down
 
                 Logger.Info($"Pointer2Down: {x}:{y}");
             } else
@@ -214,7 +215,7 @@ namespace GLEngineMobileSpaceDemo
                 {
                     if (!_zoom)
                     {
-                        _zoom = true;                        
+                        _zoom = true;
 
                         _fingerTapCoordinates = new GLPoint(e.GetX(0), e.GetY(0), 0);
                         _finger2TapCoordinates = new GLPoint(e.GetX(1), e.GetY(1), 0);
@@ -251,7 +252,7 @@ namespace GLEngineMobileSpaceDemo
                 else if (!_zoom)
                 {
                     Logger.Info($"Move:");
-                    
+
                     float xdiff = ((float)_fingerTapCoordinates.X - x);
                     float ydiff = ((float)_fingerTapCoordinates.Y - y);
 
@@ -266,14 +267,14 @@ namespace GLEngineMobileSpaceDemo
             if (e.Action == MotionEventActions.Up)
             {
                 _zoom = false;
-            }            
+            }
 
             return true;
 		}
 
 		protected override void OnUnload (EventArgs e)
 		{
-            
+
         }
 
 		void Render ()
@@ -299,7 +300,7 @@ namespace GLEngineMobileSpaceDemo
 
             SwapBuffers();
 		}
-		
+
 		protected override void Dispose (bool disposing)
 		{
             GLTextureAdmin.UnLoadGLTextures();
@@ -308,7 +309,7 @@ namespace GLEngineMobileSpaceDemo
 
 		protected override void OnResize (EventArgs e)
 		{
-			base.OnResize (e);			
+			base.OnResize (e);
 		}
 
 		public static float ToRadians (float degrees)
@@ -316,6 +317,6 @@ namespace GLEngineMobileSpaceDemo
 			//pi/180
 			//FIXME: precalc pi/180
 			return (float) (degrees * (System.Math.PI/180.0));
-		}		
+		}
 	}
 }

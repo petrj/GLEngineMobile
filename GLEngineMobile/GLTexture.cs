@@ -40,7 +40,7 @@ namespace GLEngineMobile
         }
 
         public void LoadFromResource(Context context, string name)
-        {            
+        {
             var resourceId = context.Resources.GetIdentifier(name, "drawable", context.PackageName);
 
             var bmp = BitmapFactory.DecodeResource(context.Resources, resourceId);
@@ -53,24 +53,30 @@ namespace GLEngineMobile
         {
             _bmp = bmp;
 
+            GL.Enable(All.Texture2D);
+
             GL.BindTexture(All.Texture2D, TexHandle);
 
-            //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Modulate);            
+            //GL.Disable(All.Blend);
+            //GL.Disable(All.Lighting);
+            //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Decal);
+            //GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);
 
             // setup texture parameters
-            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);            
+            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);
             GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
             GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
             GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
             Android.Opengl.GLUtils.TexImage2D((int)All.Texture2D, 0, bmp, 0);
+
         }
 
 		public void Unload()
 		{
             int[] textureIds = new int[1] { TexHandle };
             GL.DeleteTextures(1, textureIds);
-		}        
+		}
 
         #region IDisposable implementation
 
@@ -82,7 +88,7 @@ namespace GLEngineMobile
             Unload();
         }
 
-		#endregion      
+		#endregion
     }
 
 }

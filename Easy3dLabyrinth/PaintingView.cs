@@ -18,7 +18,7 @@ namespace Easy3DLabyrinth
         GLPoint _fingerTapCoordinates = new GLPoint();
         GLPoint _finger2TapCoordinates = new GLPoint();
         private TapCrossMoveEvent _lastTapCrossMove;
-        private TapCrossMoveEvent _lastTapRotateMove;       
+        private TapCrossMoveEvent _lastTapRotateMove;
         private GLScene _scene;
         public TextView DebugDisplayLabel { get; set; }
         public TextView LeftDisplayLabel { get; set; }
@@ -43,19 +43,19 @@ namespace Easy3DLabyrinth
             Logger.InitLoggerService(new BasicLoggingService());
 
             var labyrinth = new GLLabyrinthObj();
-            labyrinth.Name = "labyrinth";          
+            labyrinth.Name = "labyrinth";
 
             _scene.Objects.Add(labyrinth);
 
-            Resize += delegate 
+            Resize += delegate
             {
 				SetupCamera ();
-			};           
+			};
 
             Run(30); // fps
             RenderFrame += PaintingView_RenderFrame;
 
-          
+
         }
 
         private void SetupCamera()
@@ -152,14 +152,16 @@ namespace Easy3DLabyrinth
 		}
 
 		protected override void OnLoad (EventArgs e)
-		{            
+		{
             GL.ShadeModel(All.Smooth);
-            GL.ClearColor (1, 1, 1, 1);
-            //GL.Color4(1f, 1f, 1f, 1f);
+            //GL.ShadeModel(All.Flat);
+            GL.ClearColor (1f, 1f, 1f, 1f);
+            GL.Color4(1f, 1f, 1f, 1f);
 
-            GL.ClearDepth (1.0f);            
+            GL.ClearDepth (1.0f);
             GL.Enable (All.DepthTest);
             GL.DepthFunc (All.Lequal);
+            GL.Disable(All.Blend);
 
             GL.Enable(All.Lighting);
             GL.Enable(All.Light0);
@@ -169,9 +171,9 @@ namespace Easy3DLabyrinth
             if (labyrinth.Polygons.Count == 0)
                 NewLevel();
 
-            SetupCamera();			
+            SetupCamera();
 		}
-        
+
         public void NewLevel()
         {
             GLTextureAdmin.UnLoadGLTextures();
@@ -195,7 +197,7 @@ namespace Easy3DLabyrinth
                 moves = labyrinth.Level * 5;
                 items = labyrinth.Level * 2;
             } else
-            if (labyrinth.Level <= 20) // 6 .. 20 level =>  26 * 11 .. 40 * 25 
+            if (labyrinth.Level <= 20) // 6 .. 20 level =>  26 * 11 .. 40 * 25
             {
                 moves = 20 + labyrinth.Level;
                 items = 5 + labyrinth.Level;
@@ -203,7 +205,7 @@ namespace Easy3DLabyrinth
             {
                 moves = 40;
                 items = 25;
-            }            
+            }
 
             labyrinth.Generate(Context, moves, items);
 
@@ -228,7 +230,7 @@ namespace Easy3DLabyrinth
 
         public void OnKeyboarUp(KeyboardEvent e)
         {
-           
+
         }
 
         public void OnKeyboardDown(KeyboardEvent e)
@@ -255,7 +257,7 @@ namespace Easy3DLabyrinth
                     break;
                 case Keycode.ButtonL1:
                 case Keycode.ButtonL2:
-                case Keycode.Z:                
+                case Keycode.Z:
                     _scene.Go(DirectionEnum.Left, speed);
                     break;
                 case Keycode.ButtonR1:
@@ -289,10 +291,10 @@ namespace Easy3DLabyrinth
                           crossSize,
                            e.GetX() - (Width - crossSize - marginSize),
                           e.GetY() - (Height - crossSize));
-                } 
+                }
                 else
                 {
-                    // left half => rotation 
+                    // left half => rotation
                     _lastTapRotateMove = TapCrossMoveEvent.GetTapMoveEvent(
                           crossSize,
                           crossSize,
@@ -346,7 +348,7 @@ namespace Easy3DLabyrinth
                 if (_lastTapCrossMove.Bottom > 10)
                 {
                     _scene.Go(DirectionEnum.Backward, _lastTapCrossMove.Bottom / 10f);
-                }                
+                }
             }
 
             if (_lastTapRotateMove != null)
@@ -360,7 +362,7 @@ namespace Easy3DLabyrinth
                     _scene.Observer.Rotation.Y -= _lastTapRotateMove.Left / 10f;
                 }
             }
-            
+
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
 
             var newLevel = labyrinth.CheckPosition(_scene.Observer.Position);
@@ -372,12 +374,12 @@ namespace Easy3DLabyrinth
 
 
             // adding light above Observer
-           
+
             GL.Light(All.Light0, All.Position, _scene.Observer.Position.ToFloatArray());
 
             GL.Light(All.Light0, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
             GL.Light(All.Light0, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
-            GL.Light(All.Light0, All.Specular, new float[] { 1f, 1f, 1f, 1f });          
+            GL.Light(All.Light0, All.Specular, new float[] { 1f, 1f, 1f, 1f });
 
             // adding light in front of Observer
             var pBefore = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
@@ -424,14 +426,14 @@ namespace Easy3DLabyrinth
 		{
             MakeCurrent();
 
-            _scene.Render();        
+            _scene.Render();
 
-            SwapBuffers();           
+            SwapBuffers();
         }
-		
+
 		protected override void OnResize (EventArgs e)
 		{
-			base.OnResize (e);			
+			base.OnResize (e);
 		}
 
         protected override void Dispose(bool disposing)

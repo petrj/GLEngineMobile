@@ -98,7 +98,7 @@ namespace GLEngineMobile
 
             GL.EnableClientState(All.VertexArray);
 
-            GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);            
+            GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);
 
             GLPoint lastPoint = new GLPoint();
 
@@ -137,7 +137,7 @@ namespace GLEngineMobile
             GL.Enable(All.Texture2D);
 
             GL.DisableClientState(All.VertexArray);
-         
+
             base.AfterRender();
         }
 
