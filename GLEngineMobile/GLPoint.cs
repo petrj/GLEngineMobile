@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace GLEngineMobile
@@ -15,72 +16,77 @@ namespace GLEngineMobile
 		public double X { get; set; }
 		public double Y { get; set; }
 		public double Z { get; set; }
-		
+
 		public string Name { get; set; }
+
+		public float[] To3Float()
+		{
+			return new float[] { (float)X, (float)Y, (float)Z };
+		}
 
         public static GLPoint ZeroPoint
 		{
 			get
 			{
-				return new GLPoint(0,0,0);	
+				return new GLPoint(0,0,0);
 			}
 		}
-		
+
 		public static GLPoint CopyFrom(GLPoint point)
 		{
-			return new GLPoint(point.X,point.Y,point.Z);			
+			return new GLPoint(point.X,point.Y,point.Z);
 		}
-		
+
 		public GLPoint Clone()
 		{
 			return new GLPoint(X,Y,Z);
-		}		
-	
+		}
+
 		public GLPoint ()
 		{
-						
+
 		}
-		
+
 		public GLPoint (string name)
 		{
 			Name = name;
 		}
-		
+
 		public GLPoint (GLPoint p)
 		{
 			Name = "";
 			X = p.X;
 			Y = p.Y;
 			Z = p.Z;
-		}		
-		
+		}
+
 		public GLPoint PointAdded(GLPoint P)
 		{
 			return new GLPoint(X+P.X,Y+P.Y,Z+P.Z);
 		}
-		
+
 		public GLPoint PointSubtracted(GLPoint P)
 		{
 			return new GLPoint(X-P.X,Y-P.Y,Z-P.Z);
-		}		
-		
+		}
+
 		public double DistanceToPoint(GLPoint P)
 		{
-			// √( x2 + y2 + z2)   
-			var denominator = Math.Pow((P.X-X),2)+Math.Pow((P.Y-Y),2)+Math.Pow((P.Z-Z),2);			
+			// √( x2 + y2 + z2)
+			var denominator = Math.Pow((P.X-X),2)+Math.Pow((P.Y-Y),2)+Math.Pow((P.Z-Z),2);
 			if (denominator == 0)
 				return 0; // zero vector -the same point
-			
+
 			return Math.Sqrt(denominator);
 		}
-		
+
 		public GLPoint (double x,double y,double z)
 		{
 			X = x;
 			Y = y;
 			Z = z;
 		}
-		
+
         /*
 		public void WriteToLog()
 		{
@@ -90,45 +96,45 @@ namespace GLEngineMobile
 		 	s += "; " + Y.ToString("N2").PadLeft(8);
 		 	s += "; " + Z.ToString("N2").PadLeft(8);
 		 	s += " ]";
-		 	
+
 			Logger.WriteToLog(s);
 		}
         */
-		
+
 		public void Move(double x,double y,double z)
 		{
 			X += x;
 			Y += y;
 			Z += z;
 		}
-		
+
 		public void Move(GLVector vec)
 		{
 			X += vec.X;
 			Y += vec.Y;
 			Z += vec.Z;
-		}		
-		
+		}
+
 		public void LoadFromXmlElement(XmlElement element)
-		{			
-			if (element.HasAttribute("x"))			
-				X = Convert.ToDouble(element.GetAttribute("x"),System.Globalization.CultureInfo.InvariantCulture);			
-				
-			if (element.HasAttribute("y"))			
-				Y = Convert.ToDouble(element.GetAttribute("y"),System.Globalization.CultureInfo.InvariantCulture);				
-				
-			if (element.HasAttribute("z"))			
+		{
+			if (element.HasAttribute("x"))
+				X = Convert.ToDouble(element.GetAttribute("x"),System.Globalization.CultureInfo.InvariantCulture);
+
+			if (element.HasAttribute("y"))
+				Y = Convert.ToDouble(element.GetAttribute("y"),System.Globalization.CultureInfo.InvariantCulture);
+
+			if (element.HasAttribute("z"))
 				Z = Convert.ToDouble(element.GetAttribute("z"),System.Globalization.CultureInfo.InvariantCulture);
-				
-			if (element.HasAttribute("name"))			
+
+			if (element.HasAttribute("name"))
 				Name = element.GetAttribute("name");
 		}
-		
+
 		public override string ToString()
 		{
 			return (Name == null ? "" : Name) + " [" + X.ToString("N2")+" ; " + Y.ToString("N2")+" ; " + Z.ToString("N2") + "]";
 		}
-		
+
 		public string ToShortString()
 		{
 			return "[" + X.ToString("#0")+";" + Y.ToString("#0")+";" + Z.ToString("#0") + "]";
@@ -140,11 +146,11 @@ namespace GLEngineMobile
 		}
 
 		public GLPoint RotatedByAxis(GLAxisEnum axis, double radius, double angle)
-		{        	
+		{
 			var rotatedPoint = new GLPoint (this);
 			var angleRad = DegToRad (angle);
 
-			switch (axis) 
+			switch (axis)
 			{
 				case GLAxisEnum.X:
 
@@ -174,7 +180,7 @@ namespace GLEngineMobile
         }
 
         public static GLPoint GetMovedPointByAngle(GLPoint P,double stepSize, double angle, bool forward)
-		{        	
+		{
 			var rotatedPoint = new GLPoint(0,P.Y,0);
 
 			rotatedPoint.X = P.X + stepSize*Math.Cos( (angle-90)*Math.PI/180.0 );

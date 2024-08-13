@@ -30,7 +30,7 @@ namespace GLEngineMobile
 			ObjectsDirectory = "obj";
 			_FullScreenSetTime = DateTime.Now.AddSeconds (-60);
 			State = AutoPilotStateEnum.Stoppped;
-		}	               
+		}
 
 		public GLObj GetObjectByName(string name)
 		{
@@ -54,6 +54,17 @@ namespace GLEngineMobile
             var op = Observer.Position;
             var or = Observer.Rotation;
 
+			/*
+			GL.Light(All.Light0, All.Position, new float[] { 0, 0, 0 });
+            GL.Light(All.Light0, All.Ambient, new float[] { 1, 1, 1, 1 });
+            GL.Light(All.Light0, All.Diffuse, new float[] { 1, 1, 1, 1 });
+            GL.Enable(All.Lighting);
+            GL.Enable(All.Light0);
+
+            //glEnable(GL_LIGHTING);
+            //glEnable(GL_LIGHT0);
+			*/
+
             GL.Rotate((float)or.X, 1, 0, 0);
             GL.Rotate((float)or.Y, 0, 1, 0);
             GL.Rotate((float)or.Z, 0, 0, 1);
@@ -62,7 +73,7 @@ namespace GLEngineMobile
 
             foreach (var obj in Objects)
 			{
-				obj.Render();									
+				obj.Render();
 			}
 		}
 
@@ -86,7 +97,7 @@ namespace GLEngineMobile
 				{
 					var d = obj.DistanceToPoint(P);
 
-					if (d == -1) 
+					if (d == -1)
 					{
 						// some error
 						continue;
@@ -97,12 +108,12 @@ namespace GLEngineMobile
 						minDistance = d;
 						nearestPolygon = (obj as GLObject).NearestPolygon (P);
 					}
-				} 
+				}
 				i++;
-			}			
+			}
 
 			return nearestPolygon;
-		} 
+		}
 
         public void LoadFromAndroidAsset(Context context, string name)
         {
@@ -111,26 +122,26 @@ namespace GLEngineMobile
         }
 
         public void LoadFromXmlDocument(Context context, XmlDocument xmlDoc)
-		{	
+		{
 			var sceneNode = xmlDoc.SelectSingleNode("//scene");
 			if(sceneNode != null)
 			{
-            
+
 				var objs = sceneNode.SelectNodes ("./obj");
-				foreach (XmlElement objElement in objs) 
+				foreach (XmlElement objElement in objs)
 				{
 					if ((objElement.HasAttribute ("name")) && (objElement.GetAttribute ("name") == "Observer"))
                     {
 						Observer.LoadFromXmlElement(context, objElement);
-					} else 
-					{                     
+					} else
+					{
 						var obj = new GLObject ();
 						obj.LoadFromXmlElement(context, objElement);
 
 						Objects.Add (obj);
 					}
 				}
-                
+
                 var planets = sceneNode.SelectNodes("./planet");
                 foreach (XmlElement planetNode in planets)
                 {
@@ -182,14 +193,14 @@ namespace GLEngineMobile
 			var nearestPolygon = NearestPolygon (movedPoint);
             var dist = nearestPolygon.DistanceToPoint(movedPoint);
 
-            //L/ogger.Debug("Distance to labyrinth:" + dist);            
+            //L/ogger.Debug("Distance to labyrinth:" + dist);
 
 			if (dist> DefaultDistance)
 			{
 				Observer.Position = movedPoint;
 			} else
 			{
-				// collision 		
+				// collision
 
 				var angle = nearestPolygon.AngleToVec(new GLVector(Observer.Position,movedPoint));
 
@@ -201,7 +212,7 @@ namespace GLEngineMobile
 					switch (direction)
 					{
 						case DirectionEnum.Forward:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,true);break;
-						case DirectionEnum.Backward:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,false);break;		        		
+						case DirectionEnum.Backward:  leftRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y-angle,false);break;
 					}
 
                     var nearestPolygonToLeft = NearestPolygon(leftRotatedMovedPoint);
@@ -209,7 +220,7 @@ namespace GLEngineMobile
 
 					if (distLeft> DefaultDistance)
 					{
-						Observer.Position = leftRotatedMovedPoint;				
+						Observer.Position = leftRotatedMovedPoint;
 					} else
 					{
                         // sliding right
@@ -218,7 +229,7 @@ namespace GLEngineMobile
 						switch (direction)
 						{
 							case DirectionEnum.Forward:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,true);break;
-							case DirectionEnum.Backward:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,false);break;		        		
+							case DirectionEnum.Backward:  rightRotatedMovedPoint = GLPoint.GetMovedPointByAngle(Observer.Position,3,Observer.Rotation.Y+angle,false);break;
 						}
 
                         var nearestPolygonToRight = NearestPolygon(rightRotatedMovedPoint);
@@ -226,7 +237,7 @@ namespace GLEngineMobile
                         var distRight = nearestPolygonToRight.DistanceToPoint(rightRotatedMovedPoint);
 						if (distRight> DefaultDistance)
 						{
-                            Observer.Position = rightRotatedMovedPoint;				
+                            Observer.Position = rightRotatedMovedPoint;
 						}
 					}
 				}
@@ -247,10 +258,11 @@ namespace GLEngineMobile
 	{
 		Stoppped = 0,
 		MovingForward = 1,
-		TurningRight = 2, 
+		TurningRight = 2,
 		Turningleft = 3,
 		Reverse = 4
 
 	}
 }
+
 

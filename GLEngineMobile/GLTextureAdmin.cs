@@ -10,7 +10,7 @@ namespace GLEngineMobile
 {
 	public static class GLTextureAdmin
 	{
-		public static Dictionary<string,GLTexture>Textures { get; set; }		
+		public static Dictionary<string,GLTexture>Textures { get; set; }
 
 		static GLTextureAdmin()
 		{
@@ -44,7 +44,7 @@ namespace GLEngineMobile
         }
 
         public static GLTexture AddTextureFromResource(Context context, string name)
-		{            
+		{
             if (Textures.ContainsKey(name.ToLower()))
             {
                 Logger.Info($"Texture {name} already loaded");

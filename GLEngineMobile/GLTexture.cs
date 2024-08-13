@@ -63,10 +63,10 @@ namespace GLEngineMobile
             //GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);
 
             // setup texture parameters
-            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Linear);
-            GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Linear);
-            GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+            GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Nearest);
+            GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Nearest);
+            //GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
+            //GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
             Android.Opengl.GLUtils.TexImage2D((int)All.Texture2D, 0, bmp, 0);
 

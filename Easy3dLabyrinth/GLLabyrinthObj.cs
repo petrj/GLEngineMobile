@@ -20,10 +20,10 @@ namespace Easy3DLabyrinth
         private bool _nearLockedDoors = false;
         private int _bonusItemsCount = 10;
 
-        public int[,] LabMatrix { get; set; }        
+        public int[,] LabMatrix { get; set; }
 
         public Dictionary<Point,GLObject> BonusItems  { get; set; }
-		
+
 		public Point StartPos { get; set; }
 		public Point EndPos { get; set; }
 
@@ -34,15 +34,15 @@ namespace Easy3DLabyrinth
                 return _bonusItemsCount;
             }
         }
-		
+
 		public int LabyrinthWidth = 100;
 		public int LabyrinthHeight = 100;
-		
-		public double FloorY = -3;		
-		public double TileWidth = 25;		
-		
+
+		public double FloorY = -3;
+		public double TileWidth = 25;
+
 		private Random Rnd = new Random();
-		
+
 		public int FinishCount { get; set; }
         public int Level { get; set; } = 1;
 
@@ -52,26 +52,26 @@ namespace Easy3DLabyrinth
 		public List<int> Path { get; set; }
 
 		public AutoPilotStateEnum State { get; set; }
-		
+
 		public void Clear()
 		{
 			Polygons = new List<GLPolygon>();
-			
+
 			for (var i=0;i<LabyrinthWidth;i++)
 			{
 				for (var j=0;j<LabyrinthHeight;j++)
 				{
 					LabMatrix[i,j] = 0;
-				}				
+				}
 			}
-			
+
 			UnLockedFinishPolygons.Clear();
 			LockedFinishPolygons.Clear();
-			
+
 			BonusItems.Clear();
 			Path.Clear ();
 		}
-		
+
 		public bool Locked
 		{
 			get
@@ -90,7 +90,7 @@ namespace Easy3DLabyrinth
 				}
 			}
 		}
-		
+
 		public GLPoint LabPointToScenePoint(Point P)
 		{
 			var glP = new GLPoint((TileWidth)*P.X, 10,(TileWidth)*(P.Y)+TileWidth/2);
@@ -105,36 +105,36 @@ namespace Easy3DLabyrinth
 		{
 				switch(direction)
 			 		{
-			 			case 0: x += 1; break; 				 			
+			 			case 0: x += 1; break;
 			 			case 1: y += 1; break;
 			 			case 2: x -= 1; break;
 			 			case 3: y -= 1; break;
 			 		}
-			 		
-			 	
-			 	if (x<0) return false;			 	
+
+
+			 	if (x<0) return false;
 			 	if (x>LabyrinthWidth-1) return false;
-			 	if (y<0) return false;			 	
+			 	if (y<0) return false;
 			 	if (y>LabyrinthHeight-1) return false;
-			 	
+
 			 	if ((x==StartPos.X) &&	(y==StartPos.Y)) return false;
 
 			 	return true;
 		}
 
 		public void Generate(Context context, int moves, int itemsCount)
-		{		
+		{
 		 	Clear();
 
             State = AutoPilotStateEnum.Stoppped;
-		 	
+
 		 	StartPos = new Point(Rnd.Next(20,80),Rnd.Next(20,80));
 
             _bonusItemsCount = itemsCount;
 
             var actPos = new Point(StartPos.X,StartPos.Y);
 		 	EndPos = new Point(actPos.X,actPos.Y);
-		 	
+
 		 	LabMatrix[actPos.X,actPos.Y] = 1;
 
 		 	var direction = 1;
@@ -145,51 +145,51 @@ namespace Easy3DLabyrinth
                 if (move == 0) steps = 4; // 4 steps on beginning
 
                 for (var step=0;step<steps;step++)
-		 		{		 		
+		 		{
 		 			if (CanMove(actPos.X,actPos.Y,direction))
 		 			{
 			 			switch(direction)
 				 		{
-				 			case 0: actPos.X += 1; break; 				 			
+				 			case 0: actPos.X += 1; break;
 				 			case 1: actPos.Y += 1; break;
 				 			case 2: actPos.X -= 1; break;
 				 			case 3: actPos.Y -= 1; break;
 				 		}
 
 						Path.Add (direction);
-				 		
+
 				 		EndPos = new Point(actPos.X,actPos.Y);
 				 		LabMatrix[actPos.X,actPos.Y] = 1;
 				 	}
 			 	}
-			 	
+
 			 	direction = Rnd.Next( 0, 3);
 		 	}
-	 	
-		 	var generatedPositions = new List<Point>();		 	
+
+		 	var generatedPositions = new List<Point>();
 		 	for (var j=0;j<LabyrinthHeight;j++)
 			{
-				for (var i=0;i<LabyrinthWidth;i++)				
-				{				
-					if (LabMatrix[i,j] == 1)					
-						generatedPositions.Add(new Point(i,j));					
-				
+				for (var i=0;i<LabyrinthWidth;i++)
+				{
+					if (LabMatrix[i,j] == 1)
+						generatedPositions.Add(new Point(i,j));
+
 					if ((i==StartPos.X) && (j==StartPos.Y))
-					{		
+					{
 							GeneratePosition(i,j,"labWallS","labBottomS", "labTopS");
 					} else
-					if ((i==EndPos.X) && (j==EndPos.Y)) 
+					if ((i==EndPos.X) && (j==EndPos.Y))
 					{
 							// locked:
 							LockedFinishPolygons.AddRange( GeneratePosition(i,j,"labWallL","labBottomL", "labTopL") );
-							
+
 							// unlocked:
 							UnLockedFinishPolygons.AddRange( GeneratePosition(i,j,"labWallF","labBottomF", "labTopF") );
 					} else
-					{	
+					{
 						GeneratePosition(i,j);
-					}	
-				}			
+					}
+				}
 
 			}
 
@@ -218,22 +218,22 @@ namespace Easy3DLabyrinth
 
                     var item = new GLObject();
                     item.LoadFromAndroidAsset(context, "diamond.xml");
-                    item.Position = new GLPoint((p.X + 0) * TileWidth, -2, (p.Y + 0) * TileWidth + TileWidth / 2);                    
+                    item.Position = new GLPoint((p.X + 0) * TileWidth, -2, (p.Y + 0) * TileWidth + TileWidth / 2);
 
                     BonusItems.Add(new Point(p.X, p.Y), item);
                 }
             }
-		
+
 			// generating map
 			var mapLines = new StringBuilder();
 			for (var j=0;j<LabyrinthHeight;j++)
 			{
 				string line = null;
-				for (var i=0;i<LabyrinthWidth;i++)				
-				{					
+				for (var i=0;i<LabyrinthWidth;i++)
+				{
 					if (LabMatrix[i,j] == 1)
 					{
-						if ((i==StartPos.X) && (j==StartPos.Y)) 
+						if ((i==StartPos.X) && (j==StartPos.Y))
 						{
 							line+='S';
 						} else
@@ -251,171 +251,171 @@ namespace Easy3DLabyrinth
 									break;
 								}
 							}
-							
-							line+= bonusAtThisPos ? 'o' :'#';							
+
+							line+= bonusAtThisPos ? 'o' :'#';
 						}
 					} else
 					{
 						line+=' ';
 					}
-				}		
-				
+				}
+
 				if (line != null && line.Trim()!=String.Empty)
-				{	
-					mapLines.Append(line);			
+				{
+					mapLines.Append(line);
 					mapLines.Append(Environment.NewLine);
 				}
 			}
-			
-			Logger.Info("Map:"+Environment.NewLine+mapLines.ToString());  
-				 				 			 			
+
+			Logger.Info("Map:"+Environment.NewLine+mapLines.ToString());
+
 			Locked = true;
             FinishCount = 0;
-					 			
-			Move(-TileWidth/2,0,0);			
+
+			Move(-TileWidth/2,0,0);
 		}
-		
-		public List<GLPolygon> GeneratePosition(int labX,int labY, 
+
+		public List<GLPolygon> GeneratePosition(int labX,int labY,
 										string specialTexture = null, string specialBottomTexture = null, string specialTopTexture = null)
-		{	
+		{
 			if (LabMatrix[labX,labY] == 1)
 					{
 						var left = true;
 						var right = true;
 						var front = true;
 						var back = true;
-						
+
 						if ((labX<LabyrinthWidth-1) && (LabMatrix[labX+1,labY]==1)) left = false;
 						if ((labX>0) && (LabMatrix[labX-1,labY]==1)) right = false;
-						
+
 						if ((labY<LabyrinthHeight-1) && (LabMatrix[labX,labY+1]==1)) front = false;
 						if ((labY>0) && (LabMatrix[labX,labY-1]==1)) back = false;
-						
+
 						return GeneratePosition(labX*TileWidth,FloorY,labY*TileWidth,left,right,front, back, specialTexture, specialBottomTexture, specialTopTexture);
 					}
-			
+
 			return null;
 		}
-		
+
 		public GLTexture GetRandomTexture(string texName)
 		{
 			var texNameIndex = 0;
-			if (Rnd.Next(0,3)==1) texNameIndex = 1; else			
+			if (Rnd.Next(0,3)==1) texNameIndex = 1; else
 			if (Rnd.Next(0,3)==1) texNameIndex = 3; else
-			if (Rnd.Next(0,7)==1) texNameIndex = 2; 
-           
+			if (Rnd.Next(0,7)==1) texNameIndex = 2;
+
             texName = texName + texNameIndex.ToString();
 			var tex = GLTextureAdmin.GetTextureByName(texName);
-			
+
 			return tex;
 		}
 
-		public List<GLPolygon> GeneratePosition(double x,double y,double z, 
+		public List<GLPolygon> GeneratePosition(double x,double y,double z,
 										bool left, bool right, bool front, bool back,
 										string specialTexture = null, string specialBottomTexture = null, string specialTopTexture = null)
 		{
 			var polygons = new List<GLPolygon>();
-		
-			// bottom 
-		
+
+			// bottom
+
 			var bottomPolygon = new GLPolygon();
-			bottomPolygon.Points = new List<GLPoint>() 
+			bottomPolygon.Points = new List<GLPoint>()
 				{
                     new GLPoint(x+TileWidth,y,z+TileWidth),
                     new GLPoint(x+TileWidth,y,z),
                     new GLPoint(x,y,z),
-                
+
                     new GLPoint(x,y,z+TileWidth),
                 };
-				
-			bottomPolygon.Texture = specialBottomTexture == null ? GLTextureAdmin.GetTextureByName("labBottom") 
+
+			bottomPolygon.Texture = specialBottomTexture == null ? GLTextureAdmin.GetTextureByName("labBottom")
 																: GLTextureAdmin.GetTextureByName(specialBottomTexture);
 			polygons.Add(bottomPolygon);
-					
-		
-			// top		
+
+
+			// top
 			var topPolygon = new GLPolygon();
-			topPolygon.Points = new List<GLPoint>() 
-				{                    
+			topPolygon.Points = new List<GLPoint>()
+				{
 					new GLPoint(x,y+TileWidth,z+TileWidth),
                     new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
                     new GLPoint(x+TileWidth,y+TileWidth,z),
                     new GLPoint(x,y+TileWidth,z),
                 };
-				
-			topPolygon.Texture = specialTopTexture == null ? GLTextureAdmin.GetTextureByName("labTop") 
+
+			topPolygon.Texture = specialTopTexture == null ? GLTextureAdmin.GetTextureByName("labTop")
 																: GLTextureAdmin.GetTextureByName(specialTopTexture);
 			polygons.Add(topPolygon);
-		
-		
+
+
 			if (left)
-			{			
+			{
 				var leftPolygon = new GLPolygon();
-				leftPolygon.Points = new List<GLPoint>() 			
+				leftPolygon.Points = new List<GLPoint>()
 					{
 						new GLPoint(x+TileWidth,y,z),
                         new GLPoint(x+TileWidth,y+TileWidth,z),
                         new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
                         new GLPoint(x+TileWidth,y,z+TileWidth),
-                    };				
-				
+                    };
+
 				leftPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(leftPolygon);
 			}
-					
+
 
 			if (right)
-			{			
+			{
 				var rightPolygon = new GLPolygon();
-				rightPolygon.Points = new List<GLPoint>() 			
-					{ 	
+				rightPolygon.Points = new List<GLPoint>()
+					{
                         new GLPoint(x,y,z),
                         new GLPoint(x,y+TileWidth,z),
                         new GLPoint(x,y+TileWidth,z+TileWidth),
                         new GLPoint(x,y,z+TileWidth),
-                    };				
-				
-				rightPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);											
+                    };
+
+				rightPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(rightPolygon);
 			}
-			
+
 			if (front)
-			{			
+			{
 				var frontPolygon = new GLPolygon();
-				frontPolygon.Points = new List<GLPoint>() 			
-					{ 							
+				frontPolygon.Points = new List<GLPoint>()
+					{
 						new GLPoint(x+TileWidth,y,z+TileWidth),
 						new GLPoint(x+TileWidth,y+TileWidth,z+TileWidth),
 						new GLPoint(x,y+TileWidth,z+TileWidth),
 						new GLPoint(x,y,z+TileWidth)
-					};				
-					
-				frontPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);											
+					};
+
+				frontPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(frontPolygon);
-			}	
-			
+			}
+
 			if (back)
-			{			
+			{
 				var backPolygon = new GLPolygon();
-				backPolygon.Points = new List<GLPoint>() 			
-					{ 							
+				backPolygon.Points = new List<GLPoint>()
+					{
 						new GLPoint(x+TileWidth,y,z),
 						new GLPoint(x+TileWidth,y+TileWidth,z),
 						new GLPoint(x,y+TileWidth,z),
 						new GLPoint(x,y,z)
-					};				
-					
-					
-				backPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);															
+					};
+
+
+				backPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(backPolygon);
-			}				
-			
-			
+			}
+
+
 			foreach (var polygon in polygons)
 			{
 				Polygons.Add(polygon);
 			}
-			
+
 			return polygons;
 		}
 
@@ -429,7 +429,7 @@ namespace Easy3DLabyrinth
                 var ms = DateTime.Now.Millisecond + DateTime.Now.Second*1000;
                 ms = ms % 5000;
 
-                var angle = ms * (360.0 / (5.0 * 1000.0)); // around in 5 sec;                
+                var angle = ms * (360.0 / (5.0 * 1000.0)); // around in 5 sec;
 
                 kvp.Value.Rotation.Y = angle;
 
@@ -547,19 +547,19 @@ namespace Easy3DLabyrinth
         public GLLabyrinthObj()
 		{
 			BonusItems = new Dictionary<Point, GLObject>();
-			
+
 			UnLockedFinishPolygons = new List<GLPolygon>();
 			LockedFinishPolygons = new List<GLPolygon>();
 			Path = new List<int> ();
-		
-			LabMatrix = new int[LabyrinthWidth,LabyrinthHeight];			
-			
+
+			LabMatrix = new int[LabyrinthWidth,LabyrinthHeight];
+
 			FinishCount = 0;
             Level = 1;
-			
+
 			Clear();
-		}	
-	
+		}
+
 	}
 }
 

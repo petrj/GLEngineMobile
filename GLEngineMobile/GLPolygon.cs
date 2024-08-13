@@ -13,21 +13,21 @@ namespace GLEngineMobile
 	public class GLPolygon
 	{
 		public string Name { get; set; }
-		
+
 		public GLTexture Texture { get; set; }
         public Color FillColor { get; set; }
-		
+
 		public bool Visible { get; set; }
-		
+
 		public List<GLPoint> Points { get; set; }
         public List<GLTexCoord> TexCoord { get; set; }
-	
+
 		public GLPolygon ()
 		{
 			Points = new List<GLPoint>();
             TexCoord = new List<GLTexCoord>();
             FillColor = Color.Argb(255,255,255,255);
-			Texture = null;	
+			Texture = null;
 			Visible = true;
 
 			SetPolygonTexCoords();
@@ -50,9 +50,9 @@ namespace GLEngineMobile
             SetPolygonTexCoords(new List<GLTexCoord>()
             {
                 new GLTexCoord() { X = 0, Y = 0 },
-                new GLTexCoord() { X = 0, Y = 1 },                
+                new GLTexCoord() { X = 0, Y = 1 },
                 new GLTexCoord() { X = 1, Y = 1 },
-                new GLTexCoord() { X = 1, Y = 0 },                
+                new GLTexCoord() { X = 1, Y = 0 },
             });
         }
 
@@ -63,177 +63,177 @@ namespace GLEngineMobile
             foreach (var coord in coords)
             {
                 TexCoord.Add(coord);
-            }			
+            }
 		}
-		
+
 		public GLPolygon Clone()
 		{
 			var pol = new GLPolygon();
 			pol.FillColor = FillColor;
 			pol.Texture = Texture;
 			pol.Visible = Visible;
-			
+
 			pol.Points = new List<GLPoint>();
-			
+
 			foreach (var point in Points)
 			{
 				pol.Points.Add(new GLPoint( point.X,point.Y,point.Z));
 			}
-			
+
 			return pol;
 		}
-		
+
 		public double AngleToVec(GLVector vec)
 		{
-			// using first three points for creating plane vectors: 
+			// using first three points for creating plane vectors:
 			if (Points.Count<3)
-			{				
+			{
 				return 0;
 			}
 			var plane =  GLPlane.CreateFromPoints(Points[0],Points[1],Points[2]);
-			
+
 			var angleToNormal = plane.NormalVector.AngleToVec(vec);
-						
+
 			return 90-angleToNormal;
 		}
-		
+
 		public double DistanceToPoint(GLPoint P)
 		{
-			// using first three points for creating plane vectors: 
+			// using first three points for creating plane vectors:
 			if (Points.Count<3)
-			{				
+			{
 				return -1;
-			}			
-			
+			}
+
 			var plane =  GLPlane.CreateFromPoints(Points[0],Points[1],Points[2]);
-									
-			// computing line (made by observer view) - plane cross 
-			
+
+			// computing line (made by observer view) - plane cross
+
 			var viewLine = new GLLine();
 			viewLine.Position = P;
 			viewLine.LineVector = plane.NormalVector;
-			
+
 			var cross = plane.CrossWithLine(viewLine);
-			
-			// geting polygon center to determine right half-plane 
+
+			// geting polygon center to determine right half-plane
 			var center = new GLPoint(
 				(Points[0].X+Points[1].X+Points[2].X)/3,
 				(Points[0].Y+Points[1].Y+Points[2].Y)/3,
 				(Points[0].Z+Points[1].Z+Points[2].Z)/3);
-						
+
 			// creating polygon-edge planes:
-			
+
 			//Logger.WriteToLog("Generating edge planes and lines");
-			
+
 			var edgeLines = new List <GLLine>();
-		
+
 			var pointInsideEdgePlanes = true;
 			for (var i=0;i<Points.Count;i++)
 			{
-				var A = Points[i];				
-				var B = i+1 <= Points.Count-1 ? Points[i+1] : Points[0];				
+				var A = Points[i];
+				var B = i+1 <= Points.Count-1 ? Points[i+1] : Points[0];
 				var u = new GLVector(A,B);
-				
+
 				var edgePlane = GLPlane.CreateFromVectorsAndPoint(u,plane.NormalVector,A);
-				
+
 				// testing center half-plane position
 				var centerInUpperHalfPlane = edgePlane.PointInUpperHalfPlane(center);
 				var crossInUpperHalfPlane = edgePlane.PointInUpperHalfPlane(cross);
 
-				edgeLines.Add(GLLine.CrateFromPoints(A,B));	
-				
-				if (centerInUpperHalfPlane != crossInUpperHalfPlane)					
+				edgeLines.Add(GLLine.CrateFromPoints(A,B));
+
+				if (centerInUpperHalfPlane != crossInUpperHalfPlane)
 					{
 						pointInsideEdgePlanes = false;
-						break;						
+						break;
 					}
 			}
-			
-			//Logger.WriteToLog(" cross: " + cross.ToString());			
-						
+
+			//Logger.WriteToLog(" cross: " + cross.ToString());
+
 			if (pointInsideEdgePlanes)
 			{
 				// point inside edge planes
-				//Logger.WriteToLog(" point inside edge planes");				
-				
-				return cross.DistanceToPoint(P);		
+				//Logger.WriteToLog(" point inside edge planes");
+
+				return cross.DistanceToPoint(P);
 			} else
 			{
-				//Logger.WriteToLog("detecting minimal distance to all edge lines");	
-				
+				//Logger.WriteToLog("detecting minimal distance to all edge lines");
+
 				var minDistance = double.MaxValue;
-				
+
 				foreach (var line in edgeLines)
-				{				
+				{
 					if (line.LineVector.IsZero)
 						continue;
 
-					var intersectionT = line.IntersectionWithPerpendicularThroughPointParamTValue(P);					
-					//Logger.WriteToLog(" intersectionT param value: " + intersectionT.ToString());			
-					
-					if (intersectionT == double.MinValue) 
-					{					
-						return -1;									
+					var intersectionT = line.IntersectionWithPerpendicularThroughPointParamTValue(P);
+					//Logger.WriteToLog(" intersectionT param value: " + intersectionT.ToString());
+
+					if (intersectionT == double.MinValue)
+					{
+						return -1;
 					}
-					
+
 					if (intersectionT<0)
 					{
 						// distance to A
-						
+
 						var distanceToA = P.DistanceToPoint(line.Position);
 						if (distanceToA<minDistance)
 							minDistance = distanceToA;
-						
+
 					} else if (intersectionT>1)
 					{
-						// distance to B	
+						// distance to B
 						var B = line.PointByParam(1);
 						var distanceToB = P.DistanceToPoint(B);
 						if (distanceToB<minDistance)
 							minDistance = distanceToB;
-						
+
 					} else
 					{
-						// distance to perpendicular line intersection 
-						
+						// distance to perpendicular line intersection
+
 						var intersection = line.PointByParam(intersectionT);
 						var distanceToLine = P.DistanceToPoint(intersection);
 						if (distanceToLine<minDistance)
 							minDistance = distanceToLine;
-						
+
 					}
-				}		
-				
+				}
+
 				if (minDistance==double.MaxValue)
-					return -1; 
-				
+					return -1;
+
 				return minDistance;
-			}		
+			}
 
 		}
-		
+
 		public void Magnify(double ratio)
 		{
 			foreach (var p in Points)
 			{
-				p.X = p.X * ratio;				
+				p.X = p.X * ratio;
 				p.Y = p.Y * ratio;
 				p.Z = p.Z * ratio;
-			}		
+			}
 		}
-		
+
 		public void Move(double x,double y,double z)
 		{
 			foreach (var p in Points)
 			{
 				p.Move(x,y,z);
-			}		
+			}
 		}
 
         public float[] VertexCoords
         {
             get
-            {         
+            {
                 var verticesList = new List<float>();
                 foreach (var p in Points)
                 {
@@ -254,7 +254,7 @@ namespace GLEngineMobile
             var u = new GLVector(Points[0], Points[1]);
             var v = new GLVector(Points[1], Points[2]);
 
-            return GLVector.CrossProduct(u, v);        
+            return GLVector.CrossProduct(u, v);
         }
 
 
@@ -286,11 +286,11 @@ namespace GLEngineMobile
 
                 //GL.Disable(All.Blend);
                 //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (int)All.Replace);
-                
+
             } else
 			{
                 // only fill color
-                GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);               
+                GL.Color4(FillColor.R, FillColor.G, FillColor.B, FillColor.A);
             }
 
             GL.EnableClientState(All.VertexArray);
@@ -318,34 +318,34 @@ namespace GLEngineMobile
             }
 
             GL.DisableClientState(All.VertexArray);
-            GL.DisableClientState(All.TextureCoordArray);        
+            GL.DisableClientState(All.TextureCoordArray);
         }
 
 		public static GLPolygon CreateFromPoints(IEnumerable<GLPoint> points)
 		{
 			var pol = new GLPolygon();
-			
-			foreach (var point in points) 
+
+			foreach (var point in points)
 				pol.Points.Add(point);
-				
+
 			return pol;
-		}	
-		
+		}
+
 		public void LoadFromXmlElement(XmlElement element)
-		{			
-			Points = new List<GLPoint>();			
-		
+		{
+			Points = new List<GLPoint>();
+
 			var allPoints = element.SelectNodes("point");
 			if (allPoints != null)
-			{	
+			{
 				foreach (XmlElement pointElement in allPoints)
-				{		
+				{
 					var p = new GLPoint();
 					p.LoadFromXmlElement(pointElement);
-					Points.Add(p);					
+					Points.Add(p);
 				}
 			}
-			
+
 			if (element.HasAttribute("texture"))
 			{
 				Name = element.GetAttribute("texture");
