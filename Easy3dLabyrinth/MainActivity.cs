@@ -9,7 +9,7 @@ using LoggerService;
 using System;
 
 namespace Easy3DLabyrinth
-{    
+{
     [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/Easy3DLabyrinth",
         ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : AppCompatActivity
@@ -22,15 +22,15 @@ namespace Easy3DLabyrinth
             // Inflate our UI from its XML layout description
             SetContentView(Resource.Layout.main);
 
-            SupportActionBar.Hide();            
+            SupportActionBar.Hide();
             //Window.Attributes.ScreenBrightness = 1f;  // override system display brightness
 
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
             paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             paintingView.LeftDisplayLabel = FindViewById<TextView>(Resource.Id.leftDisplayTextView);
             paintingView.CenterDisplayLabel = FindViewById<TextView>(Resource.Id.centerDisplayTextView);
-            paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);      
-            
+            paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);
+
             var settingsImgage = FindViewById<ImageView>(Resource.Id.settingsImageBtn);
             settingsImgage.Click += SettingsImgage_Click;
 
@@ -40,7 +40,7 @@ namespace Easy3DLabyrinth
 
         private void SettingsImgage_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -66,8 +66,8 @@ namespace Easy3DLabyrinth
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
-            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);         
-            
+            var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
+
             paintingView.OnKeyboardDown(new KeyboardEvent()
             {
                 Event = e,
@@ -79,8 +79,8 @@ namespace Easy3DLabyrinth
             /*
             var display = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             if (display != null)
-            {               
-                   display.Text = $"Key: KeyCode: {keyCode}";              
+            {
+                   display.Text = $"Key: KeyCode: {keyCode}";
             }
             */
 #endif
@@ -95,10 +95,10 @@ namespace Easy3DLabyrinth
                 var cross = FindViewById<ImageView>(Resource.Id.cross);
                 if (cross != null)
                 {
-                    if (cross.Visibility == ViewStates.Visible)                    
-                        cross.Visibility = ViewStates.Invisible;                    
-                    else if (cross.Visibility == ViewStates.Invisible)                    
-                        cross.Visibility = ViewStates.Visible;                    
+                    if (cross.Visibility == ViewStates.Visible)
+                        cross.Visibility = ViewStates.Invisible;
+                    else if (cross.Visibility == ViewStates.Invisible)
+                        cross.Visibility = ViewStates.Visible;
                 }
                 var sidemove = FindViewById<ImageView>(Resource.Id.sidemove);
                 if (sidemove != null)
