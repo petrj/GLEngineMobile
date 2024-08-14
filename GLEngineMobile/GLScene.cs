@@ -47,23 +47,28 @@ namespace GLEngineMobile
 
 		public void Render()
 		{
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            GL.Clear(ClearBufferMask.ColorBufferBit);
             GL.MatrixMode(All.Modelview);
             GL.LoadIdentity();
 
             var op = Observer.Position;
             var or = Observer.Rotation;
 
-			/*
-			GL.Light(All.Light0, All.Position, new float[] { 0, 0, 0 });
-            GL.Light(All.Light0, All.Ambient, new float[] { 1, 1, 1, 1 });
-            GL.Light(All.Light0, All.Diffuse, new float[] { 1, 1, 1, 1 });
+            /*
+            GL.Disable(All.Blend);
+            GL.Disable(All.Lighting);
+            GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Replace);
+            GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);*/
+
+
+
             GL.Enable(All.Lighting);
             GL.Enable(All.Light0);
 
-            //glEnable(GL_LIGHTING);
-            //glEnable(GL_LIGHT0);
-			*/
+            GL.Light(All.Light0, All.Position, new float[] { -(float)op.X, -(float)op.Y, -(float)op.Z });
+            GL.Light(All.Light0, All.Ambient, new float[] { 1, 1, 1, 1 });
+            GL.Light(All.Light0, All.Diffuse, new float[] { 1, 1, 1, 1 });
 
             GL.Rotate((float)or.X, 1, 0, 0);
             GL.Rotate((float)or.Y, 0, 1, 0);

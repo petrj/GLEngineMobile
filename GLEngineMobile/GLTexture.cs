@@ -55,21 +55,24 @@ namespace GLEngineMobile
 
             GL.Enable(All.Texture2D);
 
+
             GL.BindTexture(All.Texture2D, TexHandle);
+
+
+            //glColor3f(1.0f, 1.0f, 1.0f);
 
             //GL.Disable(All.Blend);
             //GL.Disable(All.Lighting);
-            //GL.TexEnv(All.TextureEnv, All.TextureEnvMode, (float)All.Decal);
-            //GL.Color4(1.0f, 1.0f, 1.0f, 1.0f);
 
             // setup texture parameters
             GL.TexParameterx(All.Texture2D, All.TextureMagFilter, (int)All.Nearest);
             GL.TexParameterx(All.Texture2D, All.TextureMinFilter, (int)All.Nearest);
-            //GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-            //GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+            GL.TexParameterx(All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
+            GL.TexParameterx(All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
 
             Android.Opengl.GLUtils.TexImage2D((int)All.Texture2D, 0, bmp, 0);
 
+            GL.Disable(All.Texture2D);
         }
 
 		public void Unload()
