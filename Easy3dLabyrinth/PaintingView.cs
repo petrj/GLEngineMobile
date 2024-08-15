@@ -153,19 +153,10 @@ namespace Easy3DLabyrinth
 
 		protected override void OnLoad (EventArgs e)
 		{
-            GL.ShadeModel(All.Smooth);
-            //GL.ShadeModel(All.Flat);
-            GL.ClearColor (1f, 1f, 1f, 1f);
-            GL.Color4(1f, 1f, 1f, 1f);
-
             GL.ClearDepth (1.0f);
             GL.Enable (All.DepthTest);
             GL.DepthFunc (All.Lequal);
             GL.Disable(All.Blend);
-
-            GL.Enable(All.Lighting);
-            GL.Enable(All.Light0);
-            GL.Enable(All.Light1);
 
             var labyrinth = (_scene.GetObjectByName("labyrinth") as GLLabyrinthObj);
             if (labyrinth.Polygons.Count == 0)
@@ -330,7 +321,6 @@ namespace Easy3DLabyrinth
 
         private void PaintingView_RenderFrame(object sender, FrameEventArgs e)
         {
-
             if (_lastTapCrossMove != null)
             {
                 if (_lastTapCrossMove.Right > 10)
@@ -372,30 +362,56 @@ namespace Easy3DLabyrinth
                 NewLevel();
             }
 
+            //GL.ShadeModel(All.Smooth);
+            //GL.ShadeModel(All.Flat);
+            //GL.ClearColor (1f, 1f, 1f, 1f);
+            //GL.Color4(1f, 1f, 1f, 1f);
+            //GL.Enable(All.Lighting);
+            //AddLight(All.Light0, _scene.Observer.Position);
 
-            // adding light above Observer
+            //var light4Pos = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
+            //AddLight(All.Light1, light4Pos);
 
-            GL.Light(All.Light0, All.Position, _scene.Observer.Position.ToFloatArray());
+            //GL.Enable(All.Light0);
+            //GL.Enable(All.Light1);
 
-            GL.Light(All.Light0, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
-            GL.Light(All.Light0, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
-            GL.Light(All.Light0, All.Specular, new float[] { 1f, 1f, 1f, 1f });
+            //GL.Disable(All.Lighting);
+
+            /*
+
+            GL.Enable(All.Lighting);
+
+            var light1Pos = _scene.Observer.Position.Clone();
+            var light2Pos = _scene.Observer.Position.Clone();
+            light1Pos.Move(1, 1, 1);
+            light2Pos.Move(-1, -1, -1);
+            var light3Pos = new GLPoint(-_scene.Observer.Position.X, -_scene.Observer.Position.Y, -_scene.Observer.Position.Z);
 
             // adding light in front of Observer
-            var pBefore = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
-            GL.Light(All.Light1, All.Position, pBefore.ToFloatArray());
+            var light4Pos = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
 
-            GL.Light(All.Light1, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
-            GL.Light(All.Light1, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
-            GL.Light(All.Light1, All.Specular, new float[] { 1f, 1f, 1f, 1f });
+
+            AddLight(All.Light1, light1Pos);
+            AddLight(All.Light2, light2Pos);
+            AddLight(All.Light3, light3Pos);
+            AddLight(All.Light4, light4Pos);
 
             GL.Material(All.Front, All.Ambient, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Diffuse, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Specular, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Shininess, 128f);
-
+            */
 
             Render();
+        }
+
+        private void AddLight(All light, GLPoint position)
+        {
+            GL.Enable(light);
+            GL.Light(light, All.Position, position.ToFloatArray());
+            GL.Light(light, All.Ambient, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(light, All.Diffuse, new float[] { 1f, 1f, 1f, 1f });
+            GL.Light(light, All.Specular, new float[] { 1f, 1f, 1f, 1f });
         }
 
         private void UpdateDisplays(string centerDisplayText = null)

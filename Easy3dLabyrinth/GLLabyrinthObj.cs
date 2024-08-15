@@ -332,7 +332,6 @@ namespace Easy3DLabyrinth
 																: GLTextureAdmin.GetTextureByName(specialBottomTexture);
 			polygons.Add(bottomPolygon);
 
-
 			// top
 			var topPolygon = new GLPolygon();
 			topPolygon.Points = new List<GLPoint>()
@@ -346,7 +345,6 @@ namespace Easy3DLabyrinth
 			topPolygon.Texture = specialTopTexture == null ? GLTextureAdmin.GetTextureByName("labTop")
 																: GLTextureAdmin.GetTextureByName(specialTopTexture);
 			polygons.Add(topPolygon);
-
 
 			if (left)
 			{
@@ -409,7 +407,6 @@ namespace Easy3DLabyrinth
 				backPolygon.Texture = specialTexture == null ? GetRandomTexture("labWall") :  GLTextureAdmin.GetTextureByName(specialTexture);
 				polygons.Add(backPolygon);
 			}
-
 
 			foreach (var polygon in polygons)
 			{
