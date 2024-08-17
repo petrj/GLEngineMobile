@@ -26,10 +26,12 @@ namespace Easy3DLabyrinth
             //Window.Attributes.ScreenBrightness = 1f;  // override system display brightness
 
             var paintingView = FindViewById<PaintingView>(Resource.Id.paintingview);
+
             paintingView.DebugDisplayLabel = FindViewById<TextView>(Resource.Id.debugDisplayTextView);
             paintingView.LeftDisplayLabel = FindViewById<TextView>(Resource.Id.leftDisplayTextView);
             paintingView.CenterDisplayLabel = FindViewById<TextView>(Resource.Id.centerDisplayTextView);
             paintingView.RightDisplayLabel = FindViewById<TextView>(Resource.Id.rightDisplayTextView);
+
 
             var settingsImgage = FindViewById<ImageView>(Resource.Id.settingsImageBtn);
             settingsImgage.Click += SettingsImgage_Click;

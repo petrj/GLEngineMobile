@@ -1,4 +1,5 @@
 using Android.Content;
+using Android.Hardware.Lights;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -54,8 +55,6 @@ namespace Easy3DLabyrinth
 
             Run(30); // fps
             RenderFrame += PaintingView_RenderFrame;
-
-
         }
 
         private void SetupCamera()
@@ -377,25 +376,27 @@ namespace Easy3DLabyrinth
 
             //GL.Disable(All.Lighting);
 
+            //GL.Enable(All.Lighting);
+
+            //var light1Pos = _scene.Observer.Position.Clone();
+            //var light2Pos = _scene.Observer.Position.Clone();
+            //light1Pos.Move(1, 1, 1);
+            //light2Pos.Move(-1, -1, -1);
+            //var light3Pos = new GLPoint(-_scene.Observer.Position.X, -_scene.Observer.Position.Y, -_scene.Observer.Position.Z);
+
+            //// adding light in front of Observer
+            //var light4Pos = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
+
+            //AddLight(All.Light1, light1Pos);
+            //AddLight(All.Light2, light2Pos);
+            //AddLight(All.Light3, light3Pos);
+            //AddLight(All.Light4, light4Pos);
+
+            //GL.Light(All.Light4, All.Ambient, _scene.Observer.Position.To3Float());
+            //GL.Light(All.Light4, All.Diffuse, new float[] { 0.8f, 0.8f, 0.8f, 1f });
+            //GL.Light(All.Light4, All.Specular, new float[] { 0.5f, 0.5f, 0.5f, 1f });
+
             /*
-
-            GL.Enable(All.Lighting);
-
-            var light1Pos = _scene.Observer.Position.Clone();
-            var light2Pos = _scene.Observer.Position.Clone();
-            light1Pos.Move(1, 1, 1);
-            light2Pos.Move(-1, -1, -1);
-            var light3Pos = new GLPoint(-_scene.Observer.Position.X, -_scene.Observer.Position.Y, -_scene.Observer.Position.Z);
-
-            // adding light in front of Observer
-            var light4Pos = GLPoint.GetMovedPointByAngle(_scene.Observer.Position, labyrinth.TileWidth, _scene.Observer.Rotation.Y, true);
-
-
-            AddLight(All.Light1, light1Pos);
-            AddLight(All.Light2, light2Pos);
-            AddLight(All.Light3, light3Pos);
-            AddLight(All.Light4, light4Pos);
-
             GL.Material(All.Front, All.Ambient, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Diffuse, new float[] { 1f, 1f, 1f });
             GL.Material(All.Front, All.Specular, new float[] { 1f, 1f, 1f });
