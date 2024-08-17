@@ -18,7 +18,6 @@
     <LinearLayout android:id="@+id/debugdisplaycontainer"
       android:orientation="vertical"
       android:visibility="visible"
-      android:background="@drawable/translucent"
       android:gravity="bottom|center"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
@@ -60,6 +59,7 @@
         android:layout_marginTop="5dp"
         android:text="0/5"
         android:textColor="#FFFF00"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -75,7 +75,8 @@
         android:name="centerDisplayLabel"
         android:text="Find all diamonds"
         android:layout_marginTop="5dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFFF00"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -91,7 +92,8 @@
         android:name="rightDisplayLabel"
         android:text="Level 1"
         android:layout_marginTop="5dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#FFFF00"
+        android:textStyle="bold"
         android:layout_marginRight="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -99,8 +101,7 @@
 
     <LinearLayout android:id="@+id/settingsImageBtnContainer"
      android:orientation="vertical"
-     android:visibility="visible"
-     android:background="@drawable/translucent"
+     android:visibility="invisible"
      android:gravity="top|right"
      android:layout_width="match_parent"
      android:layout_height="match_parent">
@@ -115,7 +116,6 @@
     <LinearLayout android:id="@+id/crosscontainer"
 			android:orientation="vertical"
 			android:visibility="visible"
-			android:background="@drawable/translucent"
 			android:gravity="bottom|right"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
@@ -129,7 +129,6 @@
     <LinearLayout android:id="@+id/sidemovecontainer"
 			android:orientation="vertical"
 			android:visibility="visible"
-			android:background="@drawable/translucent"
 			android:gravity="bottom|left"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
