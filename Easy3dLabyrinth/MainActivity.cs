@@ -10,8 +10,7 @@ using System;
 
 namespace Easy3DLabyrinth
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/Easy3DLabyrinth",
-        ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
+    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/Easy3DLabyrinth", Banner = "@drawable/banner", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.KeyboardHidden, LaunchMode = LaunchMode.SingleTask)]
     public class MainActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
