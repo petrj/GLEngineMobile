@@ -18,11 +18,11 @@
 
   <ItemGroup>
     <Reference Include="Mono.Android">
-      <HintPath>..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
+      <HintPath>..\..\Visual Studio\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v4.4\Mono.Android.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK-1.0">
-      <HintPath>..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v4.4\OpenTK-1.0.dll</HintPath>
+      <HintPath>..\..\Visual Studio\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v4.4\OpenTK-1.0.dll</HintPath>
     </Reference>
-  </ItemGroup>  
+  </ItemGroup>
 
 </Project>
